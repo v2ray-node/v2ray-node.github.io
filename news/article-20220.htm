@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-20220.htm" />
+    <title>数组模拟队列进阶版本——环形队列（真正意义上的排队）</title>
+        <meta name="description" content="昨天我们做了数组模拟队列的基本情景。可以进行排队和取出数据（最早的人离开队列)，但是我们发现，取出的地方不能重复利用。让我们的队列成为了一次性队列。今天我们来看如何将我们的队列改进称数组模拟环形队列。" />
+        <link rel="icon" href="__ADDON__/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>数组模拟队列进阶版本——环形队列（真正意义上的排队）</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				</h1> <h4 id="昨天我们做了数组模拟队列的基本情景可以进行排队和取出数据最早的人离开队列但是我们发现取出的地方不能重复利用让我们的队列成为了一次性队列今天我们来看如何将我们的队列改进称数组模拟环形队列实现已释放位置的重复利用">昨天我们做了数组模拟队列的基本情景。可以进行排队和取出数据（最早的人离开队列)，但是我们发现，取出的地方不能重复利用。让我们的队列成为了一次性队列。今天我们来看如何将我们的队列改进称数组模拟环形队列。实现已释放位置的重复利用</h4> <h2 id="基本原理">基本原理：</h2> <p>要知道我们实现队列的基本是头和尾。rear和front。这两个的指向决定了队列的头尾。也就是队列本身。这个具体指向头部本身索引或者前一个后一个不是固定的。是根据具体算法而定的。这次我们规定头和尾默认指向0索引。</p> <p>对前面的数组模拟队列的优化，充分利用数组. 因此将数组看做是一个环形的。(通过取模的方式式来实现即可)</p> <h2 id="分析说明">分析说明：</h2> <h3 id="1尾索引的下一个为头索引时表示队列满即将队列容量空出一个作为约定这个在做判断队列满的时候需要注意-rear--1--maxsize--front-满">1：尾索引的下一个为头索引时表示队列满，即将队列容量空出一个作为约定,这个在做判断队列满的时候需要注意 (rear + 1) % maxSize == front 满]</h3> <h3 id="2rear--front-空">2：rear == front [空]</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c35be991f7600d8ab4b35b8dd740df70.jpg" alt="数组模拟队列进阶版本——环形队列（真正意义上的排队）"></p> <p>代码如下：</p> <pre><code class="language-java">package com.joseph.sparseArray;  import java.util.Map; import java.util.Scanner;  public class CircularQueue {     public static void main(String[] args) {              CQueue cQueue = new CQueue(5);             Scanner sc = new Scanner(System.in);         int i;             while(true) {                 System.out.println("---------------排队系统--------------");                 System.out.println("---------------1：排队咨询--------------");                 System.out.println("---------------2：结束排队(最早成功的人)--------------");                 System.out.println("-------------- 3：查看当前排队详情--------------");                 System.out.println("---------------88:SHOW REAR AND FRONT");                 System.out.println("---------------4：退出--------------");                 i = sc.nextInt();                 switch (i) {                      case 1:                         System.out.println("请输入你的电话");                         int tel = sc.nextInt();                         cQueue.add(tel);                         if(cQueue.rear == 0){                             if(cQueue.arr[cQueue.MaxSize-1] == tel) {                                 System.out.println("排队成功！");                                 System.out.println("已结束最早完成排队的人。当前空闲位置为：" + ((cQueue.MaxSize - 1) - (cQueue.rear - cQueue.front + cQueue.MaxSize) % cQueue.MaxSize));                             }                         }else if (cQueue.arr[cQueue.rear - 1] == tel) {                             System.out.println("排队成功！");                             System.out.println("已结束最早完成排队的人。当前空闲位置为：" + ((cQueue.MaxSize -1) - (cQueue.rear - cQueue.front + cQueue.MaxSize) % cQueue.MaxSize));                             break;                         } else {                             System.out.println("排队失败！");                             System.out.println("已结束最早完成排队的人。当前空闲位置为：" + ((cQueue.MaxSize -1) - (cQueue.rear - cQueue.front + cQueue.MaxSize) % cQueue.MaxSize));                             break;                         }                     case 2:                         int oldFront = cQueue.front;                         cQueue.get();                         if (cQueue.front != oldFront) {                             System.out.println("已结束最早完成排队的人。当前空闲位置为：" + ((cQueue.MaxSize -1) - (cQueue.rear - cQueue.front + cQueue.MaxSize) % cQueue.MaxSize));                             break;                         }                         System.out.println("结束失败");                         break;                     case 3:                         cQueue.List();                         break;                     case 4:                         System.out.println("谢谢使用！");                         break;                     case 88:                         System.out.println("front:" + cQueue.front);                         System.out.println("rear:"+cQueue.rear);                 }             }     } } class CQueue{     int MaxSize ;//数组最大容量，因为我们的REAR(尾部)指向的是最后一个数据索引的后一个。这也就是说我们的真实存储长度要比MaxSize小一个。因为总要空出一个由rear指向。这是一个约定。前面有说到。     int rear ;//尾部。指向队列最后一个数据的后一个位置     int front ;//头部。直接指向第一个数据索引下标     int arr[] ;//数组     public CQueue(int MaxSize){//基本没变。rear和front初始值和上次不一样。不懂得先看上次数组模拟队列基础版         this.MaxSize = MaxSize ;         arr = new int[MaxSize];         this.rear = 0;         this.front = 0;     }     public boolean isFull(){         return (rear+1)%MaxSize == front ;//由于环形队列，其实队列满的状态。是他们两个差"一个"，因为rear指向的是数据的后一个。而front指向的第一个数据。因为是环形，0和4要联系起来只差一个就需要取模。利用rear+1和MaxSize取模。等于front就代表满了。这个需要好好理解。比较有难度     }     public boolean isEmpty(){//判断为空。当他们两个相等。不管在什么位置。就代表没有数据。         return rear == front ;     }      public void add(int key){//添加数据         if(isFull()){             System.out.println("QUEUE IS FULL,CAN'T ADD ANYTHING");             return ;         }         arr[rear] = key ;//直接将rear的下标赋值。         rear = (rear+1)%MaxSize ;//这里不能再自增了。因为是环形的。需要利用+1后取模实现周期性。否则会下标越界     }     public int get(){         if(isEmpty()){             throw new RuntimeException("QUEUE IS EMPTY,NO THINGS BE GETED");         }         int temp = arr[front] ;//这里先把头部数据拿出来。放到temp         front = (front+1)%MaxSize ;//给front移位。当数据取出。就往后+1作为初始第一个数据。但是是环形的。继续利用+1后取模实现周期性+1.不然会下标越界         return temp ;     }     public void List(){         //判断         if(isEmpty()){             System.out.println("QUEUE IS EMPTY!");             return ;         }         for(int i = front ; i &lt; (rear - front + MaxSize)%MaxSize +front ;i++){//这里不能用传统思维去输出了。要从front开始输出。也就是队列的开头             //而i的范围。不再是队列长度。而是队列的有效数据个数+front。前面有算出是（rear-front+MaxSize)%MaxSize,其实rear是最后一个数据的后一个，而front就是第一个。我认为rear-front就是有效数据个数。而由于环形。往往出现负数。所以继续取模达到绝对值的效果。由于我们是环形的。front初始位置会由于用户取出导致变化。所以必须再加上front。因为front才是开始的位置。再加上有效数据个数。就是i的范围             System.out.printf("队伍第[%d]号 ： %d\n",i%MaxSize,arr[i%MaxSize]);//这里输出用printf方法做一个格式化。不能用i，要取模。否则会越界         }     } } /**  * @author JosephWang  * @date 2021/8/10 11:58  */</code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-19761.htm">兽用疫苗储藏冷藏温度多少合适（兽用疫苗储存温度要求）</a></p>
+                                        <p>下一个：<a href="/news/article-20221.htm">宠物粮食店铺名称大全 宠物粮食店铺名称大全集</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-subscribe-node.htm" title="「10月25日」最高速度19.7M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「10月25日」最高速度19.7M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-node-share.htm" title="「10月10日」最高速度22.8M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「10月10日」最高速度22.8M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="「11月27日」最高速度18.4M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「11月27日」最高速度18.4M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-6-free-v2ray.htm" title="「9月6日」最高速度22.6M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「9月6日」最高速度22.6M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-free-high-speed-nodes.htm" title="「11月12日」最高速度22.8M/S，2024年Clash/V2ray/SSR/Shadowrocket每天更新免费节点订阅链接">「11月12日」最高速度22.8M/S，2024年Clash/V2ray/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-1-free-node-subscribe-links.htm" title="「10月1日」最高速度18.7M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接">「10月1日」最高速度18.7M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-25-free-v2ray-subscribe.htm" title="「9月25日」最高速度21M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「9月25日」最高速度21M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-clash-v2ray-ss-ssr.htm" title="「10月24日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「10月24日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-19-free-node-subscribe-links.htm" title="「8月19日」最高速度22.1M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「8月19日」最高速度22.1M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
