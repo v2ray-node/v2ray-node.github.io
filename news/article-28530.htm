@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-28530.htm" />
+    <title>Java中File类方法详解以及实践_java</title>
+        <meta name="description" content="目录  File类概述 File类常用构造器 File类常用方法 常用方法示例 createTempFile临时文件创建示例 FilenameFilter文件过滤器示例 总结    File类概述 F" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>Java中File类方法详解以及实践_java</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">File类概述</a></li> <li><a href="#_label1" rel="nofollow">File类常用构造器</a></li> <li><a href="#_label2" rel="nofollow">File类常用方法</a></li> <li><a href="#_label3" rel="nofollow">常用方法示例</a></li> <li><a href="#_label4" rel="nofollow">createTempFile临时文件创建示例</a></li> <li><a href="#_label5" rel="nofollow">FilenameFilter文件过滤器示例</a></li> <li><a href="#_label6" rel="nofollow">总结</a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>File类概述</h2> <p>File类是java.io包下代表与平台无关的文件和目录。File可以新建、删除、重命名文件和目录，但是不能访问文件内容本身，如果需要访问内容的话，需要通过输入/输出流进行访问。</p> <p>File类可以使用文件路径字符串创建File实例，路径既可以是绝对路径，也可以是相对路径。一般相对路径的话是由系统属性user.dir指定，即为Java VM所在路径。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>File类常用构造器</h2> <div class="ay1code"> <pre class="brush:java;">    /**       * Creates a new &lt;code&gt;File&lt;/code&gt; instance by converting the given       * pathname string into an abstract pathname.  If the given string is       * the empty string, then the result is the empty abstract pathname.       *       * @param   pathname  A pathname string       * @throws  NullPointerException       *          If the &lt;code&gt;pathname&lt;/code&gt; argument is &lt;code&gt;null&lt;/code&gt;       */      public File(String pathname) {          if (pathname == null) {              throw new NullPointerException();          }          this.path = fs.normalize(pathname);          this.prefixLength = fs.prefixLength(this.path);      }</pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>File类常用方法</h2> <ul> <li>public String getName()：返回File对象锁表示的文件名或者目录名（若为目录，返回的是最后一级子目录）。</li> <li>public String getParent()：返回此File对象所对应的路径名，返回String类型。</li> <li>public File getParentFile()：返回此File对象的父目录，返回File类型。</li> <li>public String getPath()：返回此File对象所对应的路径名，返回String类型。</li> <li>public boolean isAbsolute()：判断File对象所对应的文件或者目录是否是绝对路径。</li> <li>public String getAbsolutePath()：返回此File对象所对应的绝对路径，返回String类型。</li> <li>public String getCanonicalPath() throws IOException：</li> <li>public File getCanonicalFile() throws IOException：</li> <li>public File getAbsoluteFile()：返回此File对象所对应的绝对路径，返回File类型。</li> <li>public boolean canRead()：判断此File对象所对应的文件或目录是否可读。</li> <li>public boolean canWrite()：判断此File对象所对应的文件或目录是否可写。</li> <li>public boolean canExecute()：判断此File对象所对应的文件或目录是否可执行。</li> <li>public boolean exists()：判断此File对象所对应的文件或目录是否存在。</li> <li>public boolean isDirectory()：判断此File对象是否为目录。</li> <li>public boolean isFile()：判断此File对象是否为文件。</li> <li>public boolean isHidden()：判断此File对象是否为隐藏。</li> <li>public long lastModified()：返回该File对象最后修改的时间戳，我们可以通过SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");进行格式化为时间日期展示。</li> <li>public boolean setLastModified(long time)：设置该File对象最后修改的时间戳。</li> <li>public long length()：返回该File对象的文件内容长度。</li> <li>public boolean createNewFile() throws IOException：当此File对象所对应的文件不存在时，该方法会新建一个该File对象所指定的新文件，如果创建成功，返回true；否则，返回false。</li> <li>public boolean delete()：删除File对象所对应的文件或目录，删除成功，返回true；否则，返回false。</li> <li>public void deleteOnExit()：Requests that the file or directory denoted by this abstract pathname be deleted when the virtual machine terminates.意思就是在VM关闭的时候，删除该文件或者目录，不像delete()方法一调用就删除。一般用于临时文件比较合适。</li> <li>public String[] list()：列出File对象的所有子文件名和路径名，返回的是String数组。</li> <li>public File[] listFiles()：列出File对象的所有子文件吗和路径名，返回的是File数组。</li> <li>public boolean mkdir()：创建目录，并且只能在已有的父类下面创建子类，如果父类没有，那么就无法创建子类。</li> <li>public boolean mkdirs()：也是创建目录，而且可以在父文件夹不存在的情况下，创建子文件夹，顺便将父文件夹也创建了，递归创建。</li> <li>public boolean renameTo(File dest)：重命名此File对象所对应的文件或目录，如果重命名成功，则返回true；否则，返回false。</li> <li>public boolean setReadOnly()：设置此File对象为只读权限。</li> <li>public boolean setWritable(boolean writable, boolean ownerOnly)：写权限设置，writable如果为true，允许写访问权限；如果为false，写访问权限是不允许的。ownerOnly如果为true，则写访问权限仅适用于所有者；否则它适用于所有人。</li> <li>public boolean setWritable(boolean writable)： 底层实现是：通过setWritable(writable, true)实现，默认是仅适用于文件或目录所有者。</li> </ul> <div class="ay1code"> <pre class="brush:java;">    public boolean setWritable(boolean writable) {          return setWritable(writable, true);      }</pre> </div> <ul> <li>public boolean setReadable(boolean readable, boolean ownerOnly)：读权限设置，readable如果为true，允许读访问权限；如果为false，读访问权限是不允许的。ownerOnly如果为true，则读访问权限仅适用于所有者；否则它适用于所有人。</li> <li>public boolean setReadable(boolean readable)： 底层实现是：通过setReadable(readable, true)实现，默认是仅适用于文件或目录所有者。</li> </ul> <div class="ay1code"> <pre class="brush:java;">    public boolean setReadable(boolean readable) {          return setReadable(readable, true);      }</pre> </div> <ul> <li>public boolean setExecutable(boolean executable, boolean ownerOnly)：执行权限设置，executable如果为true，允许执行访问权限；如果为false，执行访问权限是不允许的。ownerOnly如果为true，则执行访问权限仅适用于所有者；否则它适用于所有人。</li> <li>public boolean setExecutable(boolean executable)： 底层实现是：通过setExecutable(executable, true)实现，默认是仅适用于文件或目录所有者。</li> </ul> <div class="ay1code"> <pre class="brush:java;">    public boolean setExecutable(boolean executable) {          return setExecutable(executable, true);      }</pre> </div> <ul> <li>public static File[] listRoots()：列出系统所有的根路径，可以直接通过File类进行调用。</li> <li>public long getTotalSpace()：返回总空间大小，默认单位为字节。</li> <li>public long getFreeSpace()：Returns the number of unallocated bytes in the partition，返回未被分配空间大小，默认单位为字节。</li> <li>public long getUsableSpace()：Returns the number of bytes available to this virtual machine on the partition，返回可用空间大小，默认单位为字节。</li> <li>public Path toPath()：返回该File对象的Path对象。</li> <li>public static File createTempFile(String prefix, String suffix) throws IOException：在默认存放临时文件目录中，创建一个临时空文件。可以直接使用File类来调用，使用给定前缀、系统生成的随机数以及给定后缀作为文件名。prefix至少3字节长。如果suffix设置为null，则默认后缀为.tmp。</li> <li>public static File createTempFile(String prefix, String suffix, File directory)：在指定的临时文件目录directort中，创建一个临时空文件。可以直接使用File类来调用，使用给定前缀、系统生成的随机数以及给定后缀作为文件名。prefix至少3字节长。如果suffix设置为null，则默认后缀为.tmp。</li> </ul> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>常用方法示例</h2> <p>1）运行主类</p> <div class="ay1code"> <pre class="brush:java;">package com.example.andya.demo;    import org.springframework.boot.SpringApplication;  import org.springframework.boot.autoconfigure.SpringBootApplication;    import java.io.File;  import java.io.IOException;  import java.net.URI;  import java.nio.file.Path;  import java.text.SimpleDateFormat;    @SpringBootApplication  public class DemoApplication {        public static void main(String[] args) throws IOException {          File file = new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir02\\FileTest.txt");          System.out.println("getName(): " + file.getName());          System.out.println("getParent(): " + file.getParent());          System.out.println("getParentFile(): " + file.getParentFile());          System.out.println("getAbsolutePath(): " + file.getAbsolutePath());          System.out.println("getAbsoluteFile(): " + file.getAbsoluteFile());          System.out.println("getAbsoluteFile().getParent(): " + file.getAbsoluteFile().getParent());          System.out.println("getPath(): " + file.getPath());          System.out.println("isAbsolute(): " + file.isAbsolute());          System.out.println("getCanonicalPath(): " + file.getCanonicalPath());          System.out.println("getCanonicalFile(): " + file.getCanonicalFile());          System.out.println("canRead(): " + file.canRead());          System.out.println("canWrite(): " + file.canWrite());          System.out.println("canExecute(): " + file.canExecute());          System.out.println("exists(): " + file.exists());          System.out.println("isDirectory(): " + file.isDirectory());          System.out.println("isFile(): " + file.isFile());          System.out.println("isHidden(): " + file.isHidden());          System.out.println(file.setLastModified(1546275661));          SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");          System.out.println("lastModified(): " + simpleDateFormat.format(file.lastModified()));          //在里面写了"123"这三个数字          System.out.println("length(): " + file.length());          File newFile01 = new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir02\\FileTest1.txt");          newFile01.createNewFile();          newFile01.delete();            File newDir1 = new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir02\\dir1");          System.out.println("mkdir(): " + newDir1.mkdir());            File newDir2 = new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir02\\dir2\\dir2-1");          System.out.println("mkdirs(): " + newDir2.mkdirs());            String[] fileList = file.getParentFile().list();          System.out.println("========上一级目录下的所有文件和路径=========");          for (String fileName : fileList) {              System.out.println(fileName);          }          System.out.println("file重命名：" + file.renameTo(new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir02\\FileTest.txt")));            System.out.println("========上一级目录下的所有文件和目录=========");          File[] files = file.getParentFile().listFiles();          for (File fileName : files) {              System.out.println(fileName.getName());          }            System.out.println("canRead(): " + file.canRead());            //人为改为不可写          System.out.println("setWritable(): " + file.setWritable(false, false));          System.out.println("canWrite(): "  + file.canWrite());            System.out.println("canExecute(): " + file.canExecute());            System.out.println("========相对路径=========");          //默认相对路径是user.dir即为当前工程所在位置          System.out.println("user.dir：" + System.getProperty("user.dir"));          File newFile = new File("test.txt");          System.out.println("newFile文件是否存在：" + newFile.exists());          newFile.createNewFile();          System.out.println("新建newFile文件后是否存在：" + newFile.exists() + ", 路径为：" + newFile.getAbsolutePath());          System.out.println("getName(): " + newFile.getName());          System.out.println("getParent(): " + newFile.getParent());          System.out.println("getParentFile(): " + newFile.getParentFile());          System.out.println("getAbsolutePath(): " + newFile.getAbsolutePath());          System.out.println("getAbsoluteFile(): " + newFile.getAbsoluteFile());          System.out.println("getAbsoluteFile().getParent(): " + newFile.getAbsoluteFile().getParent());          System.out.println("getPath(): " + newFile.getPath());          System.out.println("isAbsolute(): " + newFile.isAbsolute());          System.out.println("getCanonicalPath(): " + newFile.getCanonicalPath());          System.out.println("getCanonicalFile(): " + newFile.getCanonicalFile());          URI uri = newFile.toURI();          System.out.println("URI：" + uri.toString());            File[] listRoots = File.listRoots();          System.out.println("========系统根目录下的所有文件和路径=========");          for (File root : listRoots) {              System.out.println(root);          }            System.out.println("getTotalSpace(): " + file.getTotalSpace()/1024/1024/1024 + " G");          System.out.println("getFreeSpace(): " + file.getFreeSpace()/1024/1024/1024 + " G");          System.out.println("getUsableSpace(): " + file.getUsableSpace()/1024/1024/1024 + " G");          Path path = file.toPath();          System.out.println("Path: " + path);          SpringApplication.run(DemoApplication.class, args);      }  }</pre> </div> <p>2）运行结果：</p> <div class="ay1code"> <pre class="brush:java;">getName(): FileTest.txt  getParent(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02  getParentFile(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02  getAbsolutePath(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02\FileTest.txt  getAbsoluteFile(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02\FileTest.txt  getAbsoluteFile().getParent(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02  getPath(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02\FileTest.txt  isAbsolute(): true  getCanonicalPath(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02\FileTest.txt  getCanonicalFile(): C:\Users\LIAOJIANYA\Desktop\filetest\filedir02\FileTest.txt  canRead(): true  canWrite(): false  canExecute(): true  exists(): true  isDirectory(): false  isFile(): true  isHidden(): false  true  lastModified(): 1970-01-19 05:31:15  length(): 3  mkdir(): false  mkdirs(): false  ========上一级目录下的所有文件和路径=========  dir1  dir2  FileTest.txt  file重命名：true  ========上一级目录下的所有文件和目录=========  dir1  dir2  FileTest.txt  canRead(): true  setWritable(): true  canWrite(): false  canExecute(): true  ========相对路径=========  user.dir：C:\DATA\selfcode  newFile文件是否存在：true  新建newFile文件后是否存在：true, 路径为：C:\DATA\selfcode\test.txt  getName(): test.txt  getParent(): null  getParentFile(): null  getAbsolutePath(): C:\DATA\selfcode\test.txt  getAbsoluteFile(): C:\DATA\selfcode\test.txt  getAbsoluteFile().getParent(): C:\DATA\selfcode  getPath(): test.txt  isAbsolute(): false  getCanonicalPath(): C:\DATA\selfcode\test.txt  getCanonicalFile(): C:\DATA\selfcode\test.txt  URI：file:/C:/DATA/selfcode/test.txt  ========系统根目录下的所有文件和路径=========  C:\  getTotalSpace(): 237 G  getFreeSpace(): 41 G  getUsableSpace(): 41 G  Path: C:\Users\LIAOJIANYA\Desktop\filetest\filedir02\FileTest.txt</pre> </div> <p>3）结果的一些验证： a）文件长度以及修改时间</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/674a626810a9f519ffd391a032650c71.jpg"></p> <p>b）设置不可写后：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/d1f844dd15f80f8ef749731e4f48b8e0.jpg"></p> <p>b）磁盘大小</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/f15130f9af29f4a94aed1e4b38f6deca.jpg"></p> <p>c）user.dir路径</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/2b602f0a57bd35c5eeed0f8a4ba46925.jpg"></p> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>createTempFile临时文件创建示例</h2> <p>1）运行主类</p> <div class="ay1code"> <pre class="brush:java;">        File file2 = new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir01");          File tmp01 = file2.createTempFile("tmp01", ".tmp");          File tmp02 = file2.createTempFile("tmp02", ".tmp", file2);          tmp02.deleteOnExit();            File tmp03 = File.createTempFile("tmp03", null);          System.out.println("tmp01: " + tmp01.getAbsolutePath());          System.out.println("tmp02: " + tmp02.getAbsolutePath());          System.out.println("tmp03: " + tmp03.getAbsolutePath());</pre> </div> <p>2）运行结果</p> <blockquote> <p>tmp01: C:\Users\LIAOJI~1\AppData\Local\Temp\tmp01870328708927314810.tmp<br />tmp02: C:\Users\LIAOJIANYA\Desktop\filetest\filedir01\tmp023046960943790159256.tmp<br />tmp03: C:\Users\LIAOJI~1\AppData\Local\Temp\tmp032224782289258299121.tmp</p> </blockquote> <p>3）查看结果：</p> <p>a）默认临时文件存放地址：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/abe5c50162a8503029437ad011875abb.jpg"></p> <p>b）指定临时文件存放地址：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/a5aed8edea8aabdf012296500fa3eae3.jpg"></p> <p>其中，如果需求中需要创建一个临时文件，这个临时文件可能作为存储使用，但在程序运行结束后需要删除文件，可以使用<code>deleteOnExit()</code>方法。</p> <p class="maodian"><a name="_label5" rel="nofollow"></a></p> <h2>FilenameFilter文件过滤器示例</h2> <p><code>public String[] list(FilenameFilter filter)</code>方法的使用。 1）运行主类</p> <div class="ay1code"> <pre class="brush:java;">public class DemoApplication {        public static void main(String[] args) {          File file = new File("C:\\Users\\LIAOJIANYA\\Desktop\\filetest\\filedir02\\");          String[] nameArr = file.list(((dir, name) -&gt; name.endsWith(".doc")));          for (String name : nameArr) {              System.out.println(name);          }         }  }</pre> </div> <p>2）运行结果：</p> <blockquote> <p>文件01.doc</p> </blockquote> <p>3）验证：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/0489ea85b2fd82eaa55133ef1f76d32c.jpg"></p> <p>其中，通过使用Lambda表达式，目标类型为FilenameFilter实现文件过滤，上面过滤了以<code>.doc</code>结尾的文件。</p> <p class="maodian"><a name="_label6" rel="nofollow"></a></p> <h2>总结</h2> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-28529.htm">Qt QComboBox之setEditable和currentTextChanged及其源码分析</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-free-node-subscribe-links.htm" title="「10月8日」最高速度21.6M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接">「10月8日」最高速度21.6M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-v2ray.htm" title="「12月13日」最高速度22.2M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「12月13日」最高速度22.2M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-v2ray.htm" title="「12月15日」最高速度20.9M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接">「12月15日」最高速度20.9M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24337.htm" title="新手养猫入门必备攻略知乎（新手养猫宝典）">新手养猫入门必备攻略知乎（新手养猫宝典）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-v2ray.htm" title="「12月3日」最高速度21.3M/S，2024年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接">「12月3日」最高速度21.3M/S，2024年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-node-share.htm" title="「9月24日」最高速度20.5M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「9月24日」最高速度20.5M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-v2ray.htm" title="「11月6日」最高速度21.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「11月6日」最高速度21.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27605.htm" title="关于CSS样式的优先级问题">关于CSS样式的优先级问题</a></li>
+                        <li class="py-2"><a href="/news/article-27139.htm" title="开宠物医院最低多少平（开宠物医院一年能赚多少）">开宠物医院最低多少平（开宠物医院一年能赚多少）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
