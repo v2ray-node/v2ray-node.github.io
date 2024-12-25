@@ -83,6 +83,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>报错信息：</p> <pre><code class="language-bash">hdfs.util.HdfsError: Permission denied: user=dr.who, access=WRITE, inode="/user/hadoop/output":hadoop:supergroup:drwxr-xr-x</code></pre> <p>解决方法：</p> <p>因为权限的问题，需要修改配置文件和赋予权限：<br /> 1.赋予权限</p> <pre><code class="language-bash">hadoop fs -chmod 777 /user/hadoop</code></pre> <p>2.修改配置文件</p> <p>hdfs-site.xml</p> <pre><code class="language-bash">&lt;property&gt; &lt;name&gt;dfs.permissions.enabled&lt;/name&gt; &lt;value&gt;false&lt;/value&gt; &lt;/property&gt;</code></pre> <p>报错信息：</p> <pre><code class="language-bash">hdfs.util.HdfsError: Cannot create file/user/hadoop/output/result.txt. Name node is in safe mode.</code></pre> <p>解决方法：</p> <p>因为Name node处于安全模式，需要关闭安全模式</p> <pre><code class="language-bash">hadoop dfsadmin -safemode leave</code></pre> <p>报错信息：</p> <pre><code>requests.exceptions.ConnectionError: HTTPConnectionPool(host='ubuntu', port=50075): Max retries exceeded with url: /webhdfs/v1/user/hadoop/input/file1.txt?op=OPEN&amp;namenoderpcaddress=localhost:9000&amp;length=20&amp;offset=0 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x11c44f670&gt;: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known')) </code></pre> <p>解决方法：</p> <pre><code>问题原因 :出现host='16a187bf3b55', port=50075 表示客户端已经连接成功,但是无法解析域名  通过在python程序运行的机器上修改hosts文件  添加对应连接的ip 以及相关联的别名  如  119.10.1.15&nbsp; &nbsp; 16a187bf3b55&nbsp;&nbsp;namenode </code></pre> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-29936.htm">删除PicGo的右键菜单的方法</a></p>
+                                        <p>下一个：<a href="/news/article-30420.htm">动物医院科室有哪些 动物医院科室有哪些岗位</a></p>
                                     </div>
                                     </div>
                     <div class="col-md-3">
@@ -92,16 +93,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-8-20-free-high-speed-nodes.htm" title="「8月20日」最高速度18.2M/S，2024年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接">「8月20日」最高速度18.2M/S，2024年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-27-node-share.htm" title="「9月27日」最高速度21.1M/S，2024年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「9月27日」最高速度21.1M/S，2024年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-10-free-node-subscribe-links.htm" title="「9月10日」最高速度20.6M/S，2024年Clash/V2ray/SSR/Shadowrocket每天更新免费节点订阅链接">「9月10日」最高速度20.6M/S，2024年Clash/V2ray/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-node-subscribe.htm" title="「11月1日」最高速度18.3M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「11月1日」最高速度18.3M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-v2ray.htm" title="「11月6日」最高速度21.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「11月6日」最高速度21.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-27139.htm" title="开宠物医院最低多少平（开宠物医院一年能赚多少）">开宠物医院最低多少平（开宠物医院一年能赚多少）</a></li>
-                        <li class="py-2"><a href="/news/article-28997.htm" title="torch报错TypeError: can&#8217;t convert CUDA tensor to numpy. Use Tensor.cpu() to copy the tensor">torch报错TypeError: can&#8217;t convert CUDA tensor to numpy. Use Tensor.cpu() to copy the tensor</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="「12月4日」最高速度20.1M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「12月4日」最高速度20.1M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-v2ray.htm" title="「12月11日」最高速度20.8M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接">「12月11日」最高速度20.8M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-26671.htm" title="宠物粮食店名称大全四个字怎么取（宠物粮创意名字）">宠物粮食店名称大全四个字怎么取（宠物粮创意名字）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-subscribe-node.htm" title="「9月28日」最高速度20.9M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接">「9月28日」最高速度20.9M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-30-node-share.htm" title="「8月30日」最高速度21.8M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「8月30日」最高速度21.8M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-v2ray-subscribe.htm" title="「10月7日」最高速度23M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接">「10月7日」最高速度23M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19300.htm" title="安泰动物诊所嘉兴分店（安泰兽药怎么样）">安泰动物诊所嘉兴分店（安泰兽药怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-v2ray.htm" title="「12月3日」最高速度21.3M/S，2024年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接">「12月3日」最高速度21.3M/S，2024年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-high-speed-nodes.htm" title="「11月28日」最高速度18.7M/S，2024年SSR/Clash/Shadowrocket/V2ray每天更新免费节点订阅链接">「11月28日」最高速度18.7M/S，2024年SSR/Clash/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-free-subscribe-node.htm" title="「10月28日」最高速度20.7M/S，2024年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「10月28日」最高速度20.7M/S，2024年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-node-subscribe-links.htm" title="「10月17日」最高速度18.4M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接">「10月17日」最高速度18.4M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-free-node-subscribe-links.htm" title="「8月24日」最高速度21.2M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「8月24日」最高速度21.2M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-11-free-v2ray-subscribe.htm" title="「9月11日」最高速度22.6M/S，2024年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接">「9月11日」最高速度22.6M/S，2024年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -113,7 +114,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
