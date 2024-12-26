@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-31280.htm" />
+    <title>Spring Boot 2.4 新特性一键构建Docker镜像</title>
+        <meta name="description" content="背景 在我们开发过程中为了支持 Docker 容器化，一般使用 Maven 编译打包然后生成镜像，能够大大提供上线效率，同时能够快速动态扩容，快速回滚，着实很方便。docker-maven-plugi" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>Spring Boot 2.4 新特性一键构建Docker镜像</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body" style="font-size: 16px;"> <div class="content"> <h2>背景</h2> <p>在我们开发过程中为了支持 Docker 容器化，一般使用 Maven 编译打包然后生成镜像，能够大大提供上线效率，同时能够快速动态扩容，快速回滚，着实很方便。docker-maven-plugin 插件就是为了帮助我们在 Maven 工程中，通过简单的配置，自动生成镜像并推送到仓库中。</p> <h3>spotify 、fabric8</h3> <ul> <li> <p>这里主要使用的主要是如下两种插件<code>spotify</code> 、<code>fabric8</code> , ... -配置通过 xml 定义出 Dockerfile 或者挂载外部 Dockerfile 通过调用 Docker remote api 构建出镜像</p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/log4j/pig"  title="pig 微服务平台" rel="nofollow">pig 微服务平台</a>所有的容器化都是基于此构建</p> </li> </ul> <pre class="has"><code class="language-xml">&lt;plugin&gt;   &lt;groupId&gt;com.spotify&lt;/groupId&gt;   &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;   ...  -配置通过 xml 定义出 Dockerfile 或者挂载外部 Dockerfile &lt;/plugin&gt;   &lt;plugin&gt;   &lt;groupId&gt;io.fabric8&lt;/groupId&gt;   &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;    ...  -配置通过 xml 定义出 Dockerfile 或者挂载外部 Dockerfile &lt;/plugin&gt;</code></pre> <ul> <li>执行相应的插件周期即可<code>mvn docker:build &amp;&amp; mvn docker:push</code></li> </ul> <h3>jib</h3> <ul> <li> <p>项目每次发布实际上变更的代码量不大，尤其依赖的 jar 变动的可能性较小，如果使用前两种插件构建镜像，会导致每次都全量构建，会导致存储和带宽资源浪费。</p> </li> <li> <p>jib 是 Google 于 18 年 7 月发布的一个针对 Java 应用的构建镜像的工具(支持 Maven 和 Gradle) ，好处是能够复用构建缓存，能够加快构建，减小传输体积</p> </li> </ul> <pre class="has"><code>&lt;!--配置通过 xml 定义出 Dockerfile ，本质上和外挂 Dockerfile 并无区别--&gt; &lt;plugin&gt;     &lt;groupId&gt;com.google.cloud.tools&lt;/groupId&gt;     &lt;artifactId&gt;jib-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt;  mvn jib:dockerBuild</code></pre> <h3>以上三种方案的问题</h3> <ul> <li> <p>在实际开发过程中，大部分的 spring boot 项目构建 Dockerfile 都是相同，不需要通过的 XML 或者通过外挂 Dockerfile 来重新定义</p> </li> <li> <p>以上插件需要对 Dockerfile 的定义知识有相对的了 对开发并不友好</p> </li> <li> <p>没充分理由 Spring Boot 2.3 以后的 Jar 分层技术。</p> </li> </ul> <h2>解决方案</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.spring.io/spring-boot/docs/2.4.0/maven-plugin/reference/htmlsingle/#build-image-example-publish"  title="Spring Boot 2.4 Docker" rel="nofollow">Spring Boot 2.4</a> 推出了自己的 docker 构建工具 整合在原有的<code>spring-boot-maven-plugin</code> 中，只需要配置对应目标仓库和主机信息即可完成镜像构建。</li> </ul> <div style="text-align: center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220602/98b56774ec293fe5e385858cbfebefe2.jpg" alt="Spring Boot 2.4 新特性一键构建Docker镜像"></div> <ul> <li>如下配置即可完成上图中 通过开发机器在不安装 Docker 的同时，通过<code>192.168.0.10</code> 的 Docker Remote API 完成镜像构建并发布到<code>192.168.0.20</code> 的镜像仓库</li> </ul> <pre class="has"><code class="language-xml">&lt;plugin&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;     &lt;configuration&gt;         &lt;image&gt;             &lt;name&gt;192.168.0.20/pig4cloud/${project.artifactId}&lt;/name&gt;             &lt;!-- 执行完build 自动push --&gt;             &lt;publish&gt;true&lt;/publish&gt;         &lt;/image&gt;         &lt;!--配置构建宿主机信息，本机不用配置--&gt;         &lt;docker&gt; 			&lt;host&gt;http://192.168.0.10:2375&lt;/host&gt;             &lt;tlsVerify&gt;false&lt;/tlsVerify&gt;             &lt;publishRegistry&gt;                 &lt;username&gt;username&lt;/username&gt;                 &lt;password&gt;password&lt;/password&gt;                 &lt;url&gt;192.168.0.20&lt;/url&gt;             &lt;/publishRegistry&gt;         &lt;/docker&gt;     &lt;/configuration&gt; &lt;/plugin&gt;</code></pre> <ul> <li>执行以下命令即可完成 镜像的构建和自动发布</li> </ul> <pre class="has"><code>mvn spring-boot:build-image</code></pre> <h2>其他说明</h2> <h3>docker host 配置不生效</h3> <ul> <li>如下图 ① 处配置 &lt;host&gt;&lt;/host&gt; 节点，但是 ② 报错提示 host 不一致</li> </ul> <div style="text-align: center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220602/e943bf2b657aa8eaa9ef14d64c00b2ce.jpg" alt="Spring Boot 2.4 新特性一键构建Docker镜像"></div> <ul> <li>检查本地是否配置 $DOCKER_HOST 环境变量，经过阅读源码后发现优先读取此变量。</li> </ul> <pre class="has"><code>⋊&gt; ~ echo $DOCKER_HOST                                                  11:07:51 tcp://172.17.0.111:2375</code></pre> <h3>网络支持</h3> <ul> <li>截取部分构建过程中的日志，如下需要从 github 下载相关的依赖 约 100M ，这个过程大概率会失败。建议通过配置代理或者使用国外 ECS 来解决。</li> </ul> <pre class="has"><code>:: Spring Boot ::                (v2.4.0) [INFO]  &gt; Running creator [INFO]     [creator]         Downloading from https://github.com/bell-sw/Liberica/releases/download/8u275+1/bellsoft-jre8u275+1-linux-amd64.tar.gz [INFO]     [creator]       JVMKill Agent 1.16.0: Contributing to layer [INFO]     [creator]         Downloading from https://github.com/cloudfoundry/jvmkill/releases/download/v1.16.0.RELEASE/jvmkill-1.16.0-RELEASE.so [INFO]     [creator]         Downloading from https://repo.spring.io/release/org/springframework/cloud/spring-cloud-bindings/1.6.0/spring-cloud-bindings-1.6.0.jar [INFO]     [creator]         Verifying checksum [INFO]     [creator]           192.168.0.20/pig4cloud/demo:latest [INFO] [INFO] Successfully built image '192.168.0.20/pig4cloud/demo:latest' [INFO]  &gt; Pushing image '192.168.0.20/pig4cloud/demo:latest' 100% [INFO]  &gt; Pushed image '192.168.0.20/pig4cloud/demo:latest' [INFO] BUILD SUCCESS</code></pre> <blockquote> <p>项目推荐:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/log4j/pig"  rel="nofollow">Spring Cloud 、Spring Security OAuth2的RBAC权限管理系统 欢迎关注</a></p> </blockquote> </div> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-30900.htm">芭比堂宠物医院价格表（芭比堂宠物医院百度百科）</a></p>
+                                        <p>下一个：<a href="/news/article-31281.htm">免费领养狗狗正规网站平台有哪些软件可以下载（免费领养狗狗app）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-8-15-free-node-subscribe.htm" title="「8月15日」最高速度18M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「8月15日」最高速度18M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-v2ray-subscribe.htm" title="「11月2日」最高速度18.3M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「11月2日」最高速度18.3M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-5-free-high-speed-nodes.htm" title="「10月5日」最高速度18M/S，2024年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接">「10月5日」最高速度18M/S，2024年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-free-node-subscribe-links.htm" title="「8月24日」最高速度21.2M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「8月24日」最高速度21.2M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="「12月4日」最高速度20.1M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「12月4日」最高速度20.1M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-v2ray.htm" title="「12月10日」最高速度21.7M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「12月10日」最高速度21.7M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-3-free-v2ray.htm" title="「10月3日」最高速度21.6M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「10月3日」最高速度21.6M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-v2ray.htm" title="「12月21日」最高速度19.1M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「12月21日」最高速度19.1M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-v2ray.htm" title="「12月2日」最高速度18.4M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「12月2日」最高速度18.4M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-free-v2ray.htm" title="「9月26日」最高速度18.3M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接">「9月26日」最高速度18.3M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
