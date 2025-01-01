@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-34236.htm" />
+    <title>springBoot过滤器、拦截器配置使用</title>
+        <meta name="description" content="拦截器与过滤器的区别 ：  拦截器是基于java的反射机制的，而过滤器是基于函数回调。 拦截器不依赖与servlet容器，过滤器依赖与servlet容器。 拦截器只能对action请求起作用，而过滤器" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>springBoot过滤器、拦截器配置使用</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p><strong>拦截器与过滤器的区别</strong> ：</p> <ol> <li>拦截器是基于java的反射机制的，而过滤器是基于函数回调。</li> <li>拦截器不依赖与servlet容器，过滤器依赖与servlet容器。</li> <li>拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。</li> <li>拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。</li> <li>在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次拦截器的代<br /> 码实现。</li> <li>Filter基于回调函数，我们需要实现的filter接口中doFilter方法就是回调函数，而interceptor则基于<br /> java本身的反射机制,这是两者最本质的区别。</li> <li>Filter是依赖于servlet容器的，即只能在servlet容器中执行，很显然没有servlet容器就无法来回调<br /> doFilter方法。而interceptor与servlet容器无关。</li> <li>Filter的过滤范围比Interceptor大,Filter除了过滤请求外通过通配符可以保护页面，图片，文件等等，<br /> 而Interceptor只能过滤请求。</li> <li>Filter的过滤例外一般是在加载的时候在init方法声明,而Interceptor可以通过声明是guest请求还<br /> 是user请求来辨别是否过滤。<br /><strong>一.过滤器</strong><br /><strong>1.不使用springSecurity时，添加过滤器在启动类中增加</strong><br /> MyFilter需继承Filter</li> </ol> <pre><code>@Bean public FilterRegistrationBean myFilter(){ 	FilterRegistrationBean registrationBean=new FilterRegistrationBean(); 	FilterRegistrationBean.setName("myFilter"); 	MyFilter mf=new MyFilter(); 	//spring boot 会按照order值的大小，从小到大的顺序来依次过滤 	registrationBean.setOrder(0); 	registration.addUrlPatterns("/*"); 	return registration; }</code></pre> <p><strong>使用springSecurity</strong></p> <pre><code>@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true) public class SecurityConfig extends WebSecurityConfigurerAdapter{ 	@Override     protected void configure(HttpSecurity httpSecurity) throws Exception     {   //退出访问/logout时，执行logoutSuccessHandler这个处理器                   httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler); 		//添加过滤器，先执行AFilter，再执行authenticationTokenFilter         httpSecurity.addFilterBefore(authenticationTokenFilter, AFilter.class);     } }</code></pre> <p>得继承OncePerRequestFilter<br /> @Component<br /> @Order(1)//指定执行顺序<br /> public JwtAuthenticationTokenFilter extends OncePerRequestFilter<br /><strong>二：拦截器</strong><br /> 拦截器，在AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。拦截是AOP的一种实现策略<br /> 1.一般使用<br /> MyInterceptor需继承HandlerInterceptor</p> <pre><code>@Configuration public class MyMvcConfigurer implements WebMvcConfigurer{ 	@Override 	public void addInterceptors(InterceptorRegistry registry){ 		//添加自定义拦截器 		MyInterceptor mi=new MyInterceptor(); 		InterceptorRegistration i=registry.addInterceptor(mi); 		//拦截哪些路径 		i.addPathPatterns(new String[]{"/**"}); 		//不拦截哪些路径 		i.excludePathPatterns(new String[]{"/a"}); 	} }</code></pre> <p>2.在后端数据返回到前端时做一些处理</p> <pre><code>@ControllerAdvice public class MRSBA implements ResponseBodyAdvice{ 	@Override //obj为返回的数据 mt为数据格式类型 	public Object beforeBodyWrite(Object obj,MethodParameter param,,MediaType mt,Class converter,ServerHttpRequest httpRequest,ServerHttpResponse httpResponse){ 		//具体业务逻辑 	} }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33759.htm">宠物粮食市场规模多大啊（宠物粮市场份额）</a></p>
+                                        <p>下一个：<a href="/news/article-34237.htm">查看一个VUE项目的版本</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-21137.htm" title="做狗粮的机器多少钱一台（狗粮加工厂投资多少钱）">做狗粮的机器多少钱一台（狗粮加工厂投资多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-node-subscribe.htm" title="「10月14日」最高速度21.2M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「10月14日」最高速度21.2M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-15-free-high-speed-nodes.htm" title="「9月15日」最高速度22M/S，2024年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接">「9月15日」最高速度22M/S，2024年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-node-share-links.htm" title="「11月14日」最高速度19.1M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接">「11月14日」最高速度19.1M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-14-free-high-speed-nodes.htm" title="「8月14日」最高速度18M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「8月14日」最高速度18M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="「11月27日」最高速度18.4M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「11月27日」最高速度18.4M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24337.htm" title="新手养猫入门必备攻略知乎（新手养猫宝典）">新手养猫入门必备攻略知乎（新手养猫宝典）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-v2ray-subscribe.htm" title="「11月2日」最高速度18.3M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「11月2日」最高速度18.3M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19759.htm" title="猫咪三针疫苗多久能打完啊多少钱（猫咪三针疫苗间隔多久）">猫咪三针疫苗多久能打完啊多少钱（猫咪三针疫苗间隔多久）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-high-speed-nodes.htm" title="「12月26日」最高速度20.9M/S，2024年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接">「12月26日」最高速度20.9M/S，2024年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
