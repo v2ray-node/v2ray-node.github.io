@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-35578.htm" />
+    <title>字符集与编码详解</title>
+        <meta name="description" content="一个比特(bit)可以是0，或者是1，8个比特(bit)，组成一个字节(byte)。全为0时代表数字0，全为1时代表数字255。  一个字节可以表示256个数字，两个字节可以表示65536个数字。  " />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>字符集与编码详解</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<p>一个比特(bit)可以是0，或者是1，8个比特(bit)，组成一个字节(byte)。全为0时代表数字0，全为1时代表数字255。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/72a2ae6e76b86cefca190ac717ceb191.jpg" alt="字符集与编码详解"></p> <p>一个字节可以表示256个数字，两个字节可以表示65536个数字。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9d642572984438c16f811efa8e1792ee.jpg" alt="字符集与编码详解"></p> <p>更多的字节，可以有更多的组合，就可以表示更大的数值范围。</p> <p>整数可以这么存，那字符呢？一堆二进制的0和1，怎么也算不出字母A吧。不能直接表示，那就通过数字中转一下。只要给它指定一个数值编号，要存储字符时，就存储这个数值。要读取时，按照映射关系找到这个字符。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9fd07a8084e3fcfd942b3c8078ebc331.jpg" alt="字符集与编码详解"></p> <p>像这样收录许多字符然后给它们一一编号，得到一个字符编号对照表，这就是“字符集”。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e2457525ae7734e4266d51f64cf52f27.jpg" alt="字符集与编码详解"></p> <p>ASCII字符集只收录了128个字符，其扩展字符集也只有256个。(ASCII最初被设计的目的也只是用来映射英文体系所需要的字符)</p> <p>这在只使用英文的国家貌似没什么问题，但是随着世界的互联，其它非英语母语的国家该怎么办呢？比如汉字、日文等。</p> <p>针对汉字，最先设计了GB2312字符集、但是GB2312不包含繁体字，所以又设计了BIG5字符集，但是依然有很多字符没有被收录，其它国家的字体也不在其中</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f05ed1e5caf37e7f077782efc8b0731b.jpg" alt="字符集与编码详解"></p> <p>与其不断推出收录更多字符的字符集，还不如本着全球化统一标准的目的，制作一个通用字符集，Unicode学术学会就是这样做的，这个字符集就是Unicode，它于1990年开始研发并于1994年正式公布，实现了跨语言跨平台的文本转换与处理，字符集促成了字符与二进制的合作。但是有了字符集就万事大吉了吗？那怎么存储(eggo世界)这个内容呢？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/49b42fd1c283de57966957588f2004e1.jpg" alt="字符集与编码详解"></p> <p>直接的想法是，找到每个字符对应的编号，存成二进制，如果使用unicode字符集，拿到他们的编号，直接组合会得到这样一大串二进制位</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/29c0044bc85a4769109e751c6d5609fd.jpg" alt="字符集与编码详解"></p> <p>问题出现了，该怎么知道这一长串内容是要按照下面的方式划分的呢？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d949208baf16c1de5e2cf243204ec5f2.jpg" alt="字符集与编码详解"></p> <p>也可以按照下面的方式划分呀</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/43c77982d7d437c112d445b108e37bd5.jpg" alt="字符集与编码详解"></p> <p>所以，照搬编号的方式，行不通！！！</p> <p>那现在我们可以知道了，编码完成之后还需要解决的一个问题是如何划分字符边界。</p> <p>其中一个方法可以这样，不管编号多大多小，统一按照最长的编码的来，位数不够的高位补0嘛</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6996867cac1d3f13e1a98e03a4eb79c7.jpg" alt="字符集与编码详解"></p> <p>这就是定长编码，这样就可以解决字符边界的问题，但是可以发现，这样就太浪费内存了，而且字符集收录的符号越多，编号跨度就越大，定长编码造成的浪费就越显著，还得再想办法，定长编码不行，那就“变长编码”，小编号少占字节，大编号多占字节。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e0aba195e0f30f1bebcdf5f9f7578f6b.jpg" alt="字符集与编码详解"></p> <p>但是怎么划分字符边界呢？来看一种解决方案，如果编号属于[0,127]，就占用一个字节，且最高位固定标识为0。如果属于[128,2047]，就占用两个字节，且有固定标识位110和10，三个以及更多字节的编码也遵循这样的规则</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0d2df87498ee8a8bf0e29ca80e3b50d5.jpg" alt="字符集与编码详解"></p> <p>以二进制数字01100101，这个字节最高位是零，就表示这个字符只占一个字节，除去标识位，剩下的7位就是该字符的二进制编号，转换成十进制就是101，对应字符e，“世”字同理。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/96a62e331650a431e98a52cb442f58a0.jpg" alt="字符集与编码详解"></p> <p>这样划分字符就不成问题了。刚刚我们做的是解码，现在来编码试试，世界的“界”字在Unicode字符集中编号为30028，符合区间[2048,65535]，所以要占用三字节，使用下面这个模板。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b96f05889b25682960276ca804f53b03.jpg" alt="字符集与编码详解"></p> <p>然后将编号30028转换成二进制01110101 01001100，再对应填到模板中</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b495c7d69f3405c3c1df1989743567eb.jpg" alt="字符集与编码详解"></p> <p>好的，这样就编码完成了， 我们刚刚用的其实就是UTF-8编码，也就是Go语言默认的编码方式。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-35577.htm">javascript:将其他类型值转换成布尔类型值的方法</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-23890.htm" title="广州市宠物领养（广州宠物领养公众号）">广州市宠物领养（广州宠物领养公众号）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-23-node-share-links.htm" title="「8月23日」最高速度22.1M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「8月23日」最高速度22.1M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-6-free-v2ray.htm" title="「10月6日」最高速度21.4M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「10月6日」最高速度21.4M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-v2ray.htm" title="「11月19日」最高速度18.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「11月19日」最高速度18.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27139.htm" title="开宠物医院最低多少平（开宠物医院一年能赚多少）">开宠物医院最低多少平（开宠物医院一年能赚多少）</a></li>
+                        <li class="py-2"><a href="/news/article-27138.htm" title="动物医院好评模板怎么写的啊英文（动物医院好评语）">动物医院好评模板怎么写的啊英文（动物医院好评语）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-free-node-subscribe-links.htm" title="「12月18日」最高速度23M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接">「12月18日」最高速度23M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-subscribe-node.htm" title="「11月13日」最高速度19M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「11月13日」最高速度19M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-17-free-node-subscribe.htm" title="「8月17日」最高速度18M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「8月17日」最高速度18M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-subscribe-node.htm" title="「12月17日」最高速度19.1M/S，2024年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「12月17日」最高速度19.1M/S，2024年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
