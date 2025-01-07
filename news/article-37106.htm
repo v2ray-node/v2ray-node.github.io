@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-37106.htm" />
+    <title>Node.js躬行记（17）——UmiJS版本升级</title>
+        <meta name="description" content="　　在2020年我刚到公司的时候，公司使用的版本还是1.0，之后为了引入微前端，迫不得已被动升级。  　　在官方文档中，有专门一页讲如何升级的，这个用户体验非常好。 　　一个清单列的非常清楚，内容不多" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>Node.js躬行记（17）——UmiJS版本升级</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<p>　　在2020年我刚到公司的时候，公司使用的版本还是1.0，之后为了引入微前端，迫不得已被动升级。</p> </h1> <p>　　在官方文档中，有专门一页讲<span style="color: rgba(51, 102, 255, 1)"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://v2.umijs.org/zh/guide/migration.html"  target="_blank" rel="nofollow"><span style="color: rgba(51, 102, 255, 1)">如何升级</span></a></span>的，这个用户体验非常好。</p> <p>　　一个清单列的非常清楚，内容不多，让我信心大增。并且自己之前也曽依托 umi 2.0开源过<span style="color: rgba(51, 102, 255, 1)"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/pwstrick/shin-admin"  target="_blank" rel="nofollow"><span style="color: rgba(51, 102, 255, 1)">一套系统</span></a></span>。</p> <p>　　所以在实际操作中，升级遇到的阻力没有我想象中的那么大，但期间还是遇到了些难缠的问题，诸如页面空白，文件不存在等。</p> <p>　　具体的改造其实就那么几步，升级和替换依赖库，更正路由配置，去除过时文件等。</p> <p>　　改造好后，自己粗略的刷刷页面，没啥问题，然后就开心地发布到预发环境。但是在生成source map文件时，报内存栈溢出。</p> <p>　　source map文件主要用于<span style="color: rgba(51, 102, 255, 1)"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/strick/p/14577054.html"  target="_blank" rel="nofollow"><span style="color: rgba(51, 102, 255, 1)">监控系统</span></a></span>中的代码还原，在实际使用中用的比较少，那就先暂时关闭了。</p> <p>　　不过在生产发布的时候，又会报没有source map文件，因为生产有个将文件搬移到指定位置的脚本，得把这个脚本也关闭。</p> </h1> <p>　　为了能更好的引入TypeScript，提升项目代码质量的主动升级，根据官方给出的<span style="color: rgba(51, 102, 255, 1)"><a class="external-link" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://umijs.org/zh-CN/docs/upgrade-to-umi-3"  rel="nofollow"><span style="color: rgba(51, 102, 255, 1)">升级文档</span></a></span>进行了改造。</p> <p><span style="font-size: 16px"><strong>1）router改造</strong></span></p> <p>　　原先 component 中的路径可以包含斜杠，现在不行，因为&nbsp;Recommend 目录中没有默认的 index.js 文件。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">{   path:</span>'/video/recommend'<span style="color: rgba(0, 0, 0, 1)">,   exact:</span><span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">,   component:</span>'video/Recommend/'<span style="color: rgba(0, 0, 0, 1)">, } 改成 {   path:</span>'/video/recommend'<span style="color: rgba(0, 0, 0, 1)">,   exact:</span><span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">,   component:</span>'video/Recommend'<span style="color: rgba(0, 0, 0, 1)">, }</span></pre> </div> <p><span style="font-size: 16px"><strong>2）model.js验证</strong></span></p> <p>　　默认会做 model 文件的验证，但是我有个文件中包含 jsx 代码，导致无法验证通过，会报解析错误。</p> <div class="cnblogs_code"> <pre>Dva model src/models/playViewer.js parse failed, SyntaxError: Unexpected token, expected "," (71:20)</pre> </div> <p>　　后面就在 .umirc.js 配置文件中取消了验证，skipModelValidate 设置为 true。</p> <div class="cnblogs_code"> <pre>export<span style="color: rgba(0, 0, 255, 1)">default</span><span style="color: rgba(0, 0, 0, 1)"> {   antd: {},   dva: {</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 启用引入dva</span>     skipModelValidate:<span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">跳过 model 验证</span><span style="color: rgba(0, 0, 0, 1)">  }, }</span></pre> </div> <p><span style="font-size: 16px"><strong>3）namespace不唯一</strong></span></p> <p>　　项目构建的时候，报model的namespace重名的错误，因为 pages 子目录中的文件名都叫model.js。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">pages     foo</span>/model.js     bar/model.js</pre> </div> <p>　　下面是具体的报错信息，查了框架的issue，发现还蛮多人有<span style="color: rgba(51, 102, 255, 1)"><a class="external-link" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/umijs/umi/issues/4049"  rel="nofollow"><span style="color: rgba(51, 102, 255, 1)">这问题</span></a></span>的，但是我都升级到最新版本还是有问题。</p> <div class="cnblogs_code"> <pre>./src/.umi/plugin-dva/<span style="color: rgba(0, 0, 0, 1)">dva.ts [app.model] namespace should be unique app.model({ namespace:</span>'model'<span style="color: rgba(0, 0, 0, 1)">, ...ModelModel29 }); app.model({ namespace:</span>'model'<span style="color: rgba(0, 0, 0, 1)">, ...ModelModel30 }); app.model({ namespace:</span>'model'<span style="color: rgba(0, 0, 0, 1)">, ...ModelModel31 }); app.model({ namespace:</span>'model', ...ModelModel32 });</pre> </div> <p>　　后面发现将文件改个名字，然后放到models目录中，就不会唯一了。但是有300多张页面，都得手动处理。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">pages     foo</span>/<span style="color: rgba(0, 0, 0, 1)">         models</span>/login.js     bar/model.js</pre> </div> <p>　　没有找到更有效更直接的方法，只能用这种笨办法了，弄了好几个小时。</p> <p>　　中途也发现，很多页面已经废弃了，马上决定移除。</p> <p><span style="font-size: 16px"><strong>4）Link组件</strong></span></p> <p>　　之前Link组件都是从react-router-dom导入的，但现在会报错：Error: Invariant failed: You should not use &lt;Link&gt; outside a &lt;Router&gt;。</p> <p>　　这个好弄，只要换个库就行。</p> <div class="cnblogs_code"> <pre>- import { Link } from 'react-router-dom'<span style="color: rgba(0, 0, 0, 1)">;</span>+ import { Link } from 'umi';</pre> </div> <p><span style="font-size: 16px"><strong>5）警告</strong></span></p> <p>　　有个比较奇怪的警告，会一直提示，网上很多重复的帖子就是去本地 dva 库替换某条语句，还有就是升级到 2.6 版本。</p> <div class="cnblogs_code"> <pre>Warning: Please use `require("history").createHashHistory` instead of `require("history/createHashHistory")`. Support<span style="color: rgba(0, 0, 255, 1)">for</span> the latter will be removed<span style="color: rgba(0, 0, 255, 1)">in</span> the next major release.</pre> </div> <p>　　我升级到最新后，还是会有这个提示，就看源码，发现注释掉&nbsp;dva/router.js 的第一句就行了，不过发到线上后，就不会有这个警告了。</p> <div class="cnblogs_code"> <pre>require('./warnAboutDeprecatedCJSRequire.js')('router'<span style="color: rgba(0, 0, 0, 1)">); module.exports</span>= require('react-router-dom'<span style="color: rgba(0, 0, 0, 1)">); module.exports.routerRedux</span>= require('connected-react-router');</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37105.htm">c++引用折叠</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="「11月27日」最高速度18.4M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「11月27日」最高速度18.4M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-high-speed-nodes.htm" title="「11月23日」最高速度22.1M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「11月23日」最高速度22.1M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="「11月10日」最高速度20M/S，2024年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接">「11月10日」最高速度20M/S，2024年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-node-share-links.htm" title="「10月18日」最高速度21.7M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「10月18日」最高速度21.7M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-node-subscribe-links.htm" title="「1月3日」最高速度18.6M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「1月3日」最高速度18.6M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37106.htm" title="Node.js躬行记（17）——UmiJS版本升级">Node.js躬行记（17）——UmiJS版本升级</a></li>
+                        <li class="py-2"><a href="/news/article-26672.htm" title="动物医院起名和其他城市的医院有重复（动物医院起名和其他城市的医院有重复的名字吗）">动物医院起名和其他城市的医院有重复（动物医院起名和其他城市的医院有重复的名字吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-node-share-links.htm" title="「12月14日」最高速度18.2M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接">「12月14日」最高速度18.2M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23439.htm" title="动物疫苗论文（动物疫苗研究进展）">动物疫苗论文（动物疫苗研究进展）</a></li>
+                        <li class="py-2"><a href="/news/article-30899.htm" title="宠物粮食加工厂加盟条件及费用标准最新（宠物粮食加工厂怎么起步）">宠物粮食加工厂加盟条件及费用标准最新（宠物粮食加工厂怎么起步）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>

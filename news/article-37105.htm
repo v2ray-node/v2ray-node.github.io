@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-37105.htm" />
+    <title>c++引用折叠</title>
+        <meta name="description" content="目录  一、引用折叠 二、示例解析 三、参考：   &nbsp; &nbsp; &nbsp;由于存在T&amp;&amp;这种万能引用类型，当它作为参数时，有可能被一个左值引用或右值引用的参数初始化，" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>c++引用折叠</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p id="main-toc"><strong>目录</strong></p> <p id="-toc" style="margin-left:0px;"> <p id="%E4%B8%80%E3%80%81%E5%BC%95%E7%94%A8%E6%8A%98%E5%8F%A0-toc" style="margin-left:0px;"><a href="#%E4%B8%80%E3%80%81%E5%BC%95%E7%94%A8%E6%8A%98%E5%8F%A0" title="一、引用折叠" rel="nofollow">一、引用折叠</a></p> <p id="%E4%BA%8C%E3%80%81%E7%A4%BA%E4%BE%8B%E8%A7%A3%E6%9E%90-toc" style="margin-left:0px;"><a href="#%E4%BA%8C%E3%80%81%E7%A4%BA%E4%BE%8B%E8%A7%A3%E6%9E%90" title="二、示例解析" rel="nofollow">二、示例解析</a></p> <p id="%E4%B8%89%E3%80%81%E5%8F%82%E8%80%83%EF%BC%9A-toc" style="margin-left:0px;"><a href="#%E4%B8%89%E3%80%81%E5%8F%82%E8%80%83%EF%BC%9A" title="三、参考：" rel="nofollow">三、参考：</a></p> <hr id="hr-toc"/> </h1> <p>&nbsp; &nbsp; &nbsp;由于存在T&amp;&amp;这种万能引用类型，当它作为参数时，有可能被一个左值引用或右值引用的参数初始化，这是经过类型推导的T&amp;&amp;类型，相比右值引用(&amp;&amp;)会发生类型的变化，这种变化就称为引用折叠。</p> <p>1.所有右值引用折叠到右值引用上仍然是一个右值引用。（A&amp;&amp; &amp;&amp; 变成 A&amp;&amp;）<br /> 2.所有的其他引用类型之间的折叠都将变成左值引用。 （A&amp; &amp; 变成 A&amp;; A&amp; &amp;&amp; 变成 A&amp;; A&amp;&amp; &amp; 变成 A&amp;）</p> </h1> <p>&nbsp; &nbsp; &nbsp; &nbsp;要说引用折叠，首先得说右值引用(在看这个之前需要了解C++11中左值，右值的概念)。它是C++11出现的新概念，声明类型的方法是：T&amp;&amp;，具体信息可以看下面的代码：</p> <pre><code>Class A {     A()     {// do something} };  A GetA() {     return A(); }  int main() {     A a1 = GetA();   // a1是左值     A&amp;&amp; a2 = GetA(); // a2是右值引用     return 0; } </code></pre> <p>&nbsp; &nbsp; &nbsp; a1是左值，在构造时使用了GetA() 产生的临时对象，之后GetA()产生的临时对象会销毁。</p> <p>&nbsp; &nbsp; &nbsp; a2是右值引用，其指向的就是GetA()所产生的对象，这个对象的声明周期是和a2的声明周期是一致的。即少了临时对象，从而省去了临时对象的构造和析构。</p> <p>&nbsp; &nbsp; &nbsp;由此可见右值引用的好处，在新代码中，右值引用是值得大力使用的。但是，在使用的时候，有例外情况了:T&amp;&amp;并不是一定表示右值，比如，如果它绑定的类型是未知的话，既可能是左值，又可能是右值。比如：</p> <pre><code>template&lt;typename T&gt; void f(T&amp;&amp; param) {   std::cout&lt;&lt;param; }  f(10); // 10是右值   int &amp;&amp; int x = 10; f(x);  // x是左值   int &amp; </code></pre> <p>&nbsp; &nbsp; &nbsp; 以上这种万能引用类型(param的类型)能万能引用不同类型的参数,这种类型必须被初始化,而它是左值还是右值则取决于它的初始化，如果被左值初始化，那么它就是左值，反之亦然。那么什么时候是左值，什么时候是右值，就需要进行类型推导才知道。</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;有的人会问，我传入的是一个左值a,并不是一个左值引用，为什么编译器会推导出T 为int &amp;呢。首先，模板函数参数为 T&amp;&amp; param,也就是说，不管T是什么类型，T&amp;&amp;的最终结果必然是一个引用类型。如果T是int, 那么T&amp;&amp; 就是 int &amp;&amp;；如果T为 int &amp;，那么 T &amp;&amp;(int&amp; &amp;&amp;) 就是&amp;，如果T为&amp;&amp;,那么T &amp;&amp;(&amp;&amp; &amp;&amp;) 就是&amp;&amp;。很明显，接受左值的话，T只能推导为int &amp;。</p> <p>&nbsp; &nbsp; &nbsp;总结一下，万能引用就是利用模板推导和引用折叠的相关规则，生成不同的实例化模板来接收传进来的参数。</p> </h1> <p>https://www.zhihu.com/question/40346748/answer/88672920</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zhuanlan.zhihu.com/p/50816420"  title="引用折叠和完美转发 - 知乎" rel="nofollow">引用折叠和完美转发 - 知乎</a></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36623.htm">三国杀武将faq（三国杀武将翻面有啥用）</a></p>
+                                        <p>下一个：<a href="/news/article-37106.htm">Node.js躬行记（17）——UmiJS版本升级</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-clash-v2ray-ss-ssr.htm" title="「11月30日」最高速度19.2M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「11月30日」最高速度19.2M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-node-share.htm" title="「10月31日」最高速度20.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「10月31日」最高速度20.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-v2ray.htm" title="「11月19日」最高速度18.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「11月19日」最高速度18.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27606.htm" title="猫猫得了猫瘟还能活吗（猫咪得了猫瘟之后还会再得么）">猫猫得了猫瘟还能活吗（猫咪得了猫瘟之后还会再得么）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-v2ray.htm" title="「12月13日」最高速度22.2M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「12月13日」最高速度22.2M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23889.htm" title="python虚拟环境virtualenv">python虚拟环境virtualenv</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-node-share.htm" title="「10月19日」最高速度18.7M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接">「10月19日」最高速度18.7M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-node-subscribe.htm" title="「12月22日」最高速度18.3M/S，2024年Clash/V2ray/SSR/Shadowrocket每天更新免费节点订阅链接">「12月22日」最高速度18.3M/S，2024年Clash/V2ray/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37106.htm" title="Node.js躬行记（17）——UmiJS版本升级">Node.js躬行记（17）——UmiJS版本升级</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
