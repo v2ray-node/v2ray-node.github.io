@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-38092.htm" />
+    <title>导入导出接口写法</title>
+        <meta name="description" content="添加hutool依赖 &lt;dependency&gt;     &lt;groupId&gt;cn.hutool&lt;/groupId&gt;     &lt;artifactId&gt;hut" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>导入导出接口写法</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>添加hutool依赖</p> <pre><code class="prism language-powershell">&lt;dependency&gt;     &lt;groupId&gt;cn<span class="token punctuation">.</span>hutool&lt;<span class="token operator">/</span>groupId&gt;     &lt;artifactId&gt;hutool<span class="token operator">-</span>all&lt;<span class="token operator">/</span>artifactId&gt;     &lt;version&gt;5<span class="token punctuation">.</span>7<span class="token punctuation">.</span>20&lt;<span class="token operator">/</span>version&gt; &lt;<span class="token operator">/</span>dependency&gt; &lt;dependency&gt;     &lt;groupId&gt;org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>poi&lt;<span class="token operator">/</span>groupId&gt;     &lt;artifactId&gt;poi<span class="token operator">-</span>ooxml&lt;<span class="token operator">/</span>artifactId&gt;     &lt;version&gt;4<span class="token punctuation">.</span>1<span class="token punctuation">.</span>2&lt;<span class="token operator">/</span>version&gt; &lt;<span class="token operator">/</span>dependency&gt; </code></pre> <pre><code class="prism language-java"> <span class="token comment">/**      * 导入      * @param file      * @return      * @throws IOException      */</span>     <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"import"</span><span class="token punctuation">)</span>     <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">imp</span><span class="token punctuation">(</span><span class="token class-name">MultipartFile</span> file<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">InputStream</span> inputStream <span class="token operator">=</span> file<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">ExcelReader</span> reader <span class="token operator">=</span> <span class="token class-name">ExcelUtil</span><span class="token punctuation">.</span><span class="token function">getReader</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> reader<span class="token punctuation">.</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">return</span> userService<span class="token punctuation">.</span><span class="token function">saveBatch</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token comment">/**      * 导出      * @param response      * @throws IOException      */</span>     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"export"</span><span class="token punctuation">)</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">export</span><span class="token punctuation">(</span><span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> userService<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">ExcelWriter</span> writer <span class="token operator">=</span> <span class="token class-name">ExcelUtil</span><span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//        writer.addHeaderAlias("username","用户名");</span> <span class="token comment">//        writer.addHeaderAlias("password", "密码");</span> <span class="token comment">//        writer.addHeaderAlias("nickname", "昵称");</span> <span class="token comment">//        writer.addHeaderAlias("email", "邮箱");</span> <span class="token comment">//        writer.addHeaderAlias("phone", "电话");</span> <span class="token comment">//        writer.addHeaderAlias("address", "地址");</span> <span class="token comment">//        writer.addHeaderAlias("createTime", "创建时间");</span> <span class="token comment">//        writer.addHeaderAlias("avatarUrl", "头像");</span>          <span class="token comment">// 一次性写出list内的对象到excel，使用默认样式，强制输出标题</span>         writer<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 设置浏览器响应的格式</span>         response<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">String</span> fileName <span class="token operator">=</span> <span class="token class-name">URLEncoder</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">"用户信息"</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Disposition"</span><span class="token punctuation">,</span> <span class="token string">"attachment;filename="</span> <span class="token operator">+</span> fileName <span class="token operator">+</span> <span class="token string">".xlsx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token class-name">ServletOutputStream</span> out <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         writer<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span>out<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         out<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         writer<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> </code></pre> <h3><a id="_64" rel="nofollow"></a></h3> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37594.htm">宠物领养APP的设计与实现（宠物领养app的设计与实现方案）</a></p>
+                                        <p>下一个：<a href="/news/article-38094.htm">被猫抓伤最轻图片怎么治疗（被猫抓伤的伤痕图片）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-free-v2ray.htm" title="「12月31日」最高速度19.1M/S，2025年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「12月31日」最高速度19.1M/S，2025年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-free-subscribe-node.htm" title="「10月30日」最高速度22.1M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「10月30日」最高速度22.1M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29464.htm" title="宠物粮市场分析怎么写好一点（宠物粮市场调查）">宠物粮市场分析怎么写好一点（宠物粮市场调查）</a></li>
+                        <li class="py-2"><a href="/news/article-37106.htm" title="Node.js躬行记（17）——UmiJS版本升级">Node.js躬行记（17）——UmiJS版本升级</a></li>
+                        <li class="py-2"><a href="/news/article-31280.htm" title="Spring Boot 2.4 新特性一键构建Docker镜像">Spring Boot 2.4 新特性一键构建Docker镜像</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-v2ray.htm" title="「11月19日」最高速度18.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「11月19日」最高速度18.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21591.htm" title="义乌哪里有领养中心 义乌哪里有领养中心啊">义乌哪里有领养中心 义乌哪里有领养中心啊</a></li>
+                        <li class="py-2"><a href="/news/article-32806.htm" title="C/C++编程：异常处理(exception handling)的原理">C/C++编程：异常处理(exception handling)的原理</a></li>
+                        <li class="py-2"><a href="/news/article-22055.htm" title="动物疫苗作用机制有哪些（动物注射疫苗）">动物疫苗作用机制有哪些（动物注射疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-v2ray-subscribe.htm" title="「12月16日」最高速度18.1M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「12月16日」最高速度18.1M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
