@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-40081.htm" />
+    <title>设计模式——原型模式</title>
+        <meta name="description" content="阅读原文请访问我的博客BrightLoong's Blog   一. 概述 原型模式（Prototype） ，用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 原型模式其实就是从一个对" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>设计模式——原型模式</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div class="show-content-free"> <div class="image-package"> <div class="image-container"> <div class="image-container-fill"></div> <div class="image-view">阅读原文请访问我的博客<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://brightloong.github.io/2018/07/08/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/"  rel="nofollow">BrightLoong's Blog</a></div> </div> </div> <h2>一. 概述</h2> <p><code>原型模式（Prototype）</code> ，用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</p> <p>原型模式其实就是从一个对象再创建另外一个可定制的对象，而且不需要知道任何创建的细节。</p> <p>相信大家都都听过Java中的克隆（clone()），所谓的原型模式其实就是克隆，以某个对象为原型，复制出新的对象。</p> <h2>二. 代码实现</h2> <p>在概述中提到，原型模式其实就是Java中的克隆，在Java中实现克隆可以通过实现 Cloneable接口，并重写clone()方法来实现。可以发现Cloneable接口中并没有定义任何方法，clone()方法定义在Object中，其实Cloneable和Serializable一样都是标记型接口，内部没有方法和属性，实现Cloneable接口表示该对象能被克隆，能使用Object.clone()方法。如果没有实现Cloneable的类调用Object.clone()方法就会抛出CloneNotSupportedException。</p> <h3>Prototype</h3> <p>实现Cloneable，并重写clone()方法，Prototype有两个属性，一个是基本类型的，一个是对象引用，之后来看clone的结果是怎么样的。</p> <pre><code class="java">package io.github.brightloong.design.prototype;  /**  * Created by BrightLoong on 2018/7/8.  */ public class Prototype implements Cloneable {     //基本类型的属性     private String attribute;      //对象属性，引用     private Attribute attributeObject;      public Prototype(String attribute, Attribute attributeObject) {         this.attribute = attribute;         this.attributeObject = attributeObject;     }      public String getAttribute() {         return attribute;     }      public void setAttribute(String attribute) {         this.attribute = attribute;     }      public Attribute getAttributeObject() {         return attributeObject;     }      public void setAttributeObject(Attribute attributeObject) {         this.attributeObject = attributeObject;     }      /**      * 重写clone方法，这里实现的是浅拷贝，如果要进行深拷贝需要自己实现。      * @return      * @throws CloneNotSupportedException      */     @Override     public Object clone() throws CloneNotSupportedException {         return super.clone();     } }</code></pre> <h3>Attribute</h3> <pre><code class="java">package io.github.brightloong.design.prototype;  /**  * Created by BrightLoong on 2018/7/8.  */ public class Attribute {     public String name;      public Attribute(String name) {         this.name = name;     }      public String getName() {         return name;     }      public void setName(String name) {         this.name = name;     } }</code></pre> <h3>客户端调用和输出</h3> <pre><code class="java">package io.github.brightloong.design.prototype;  /**  * Created by BrightLoong on 2018/7/8.  */ public class Client {     public static void main(String[] args) throws CloneNotSupportedException {         Attribute attributeObject = new Attribute("BrightLoong");         Prototype prototype = new Prototype("属性", attributeObject);         Prototype copy = (Prototype) prototype.clone();          System.out.println(copy.getAttribute() + "======" + copy.getAttributeObject().getName());          //克隆后，原型中的对象引用的还是同一个，所以输出true         System.out.println(attributeObject == copy.getAttributeObject());     } }</code></pre> <p>输出如下：</p> <pre><code>属性======BrightLoong true</code></pre> <p>可以看到结果符合预期，进行了clone，但是发现Attribute属性试用==比较返回的是true，说明引用的是同一个Attribute，两个Prototype对象引用了同一个Attribute对象，这就是所谓的浅拷贝。</p> <h2>三. 浅拷贝和深拷贝</h2> <p>Object的clone()方法，如果属性是基本类型，对该属性的值进行复制，如果属性是引用类型，则复制引用而不是复制引用的对象。</p> <p>浅拷贝：浅拷贝是指拷贝对象时，拷贝的对象的所有基本类型属性的值都与原来的对象的值相同，而引用属性仍然指向原来对象中的引用属性。</p> <p>深拷贝：深拷贝不仅拷贝对象本身，而且拷贝对象包含的引用指向的所有对象。</p> <h2>四. 深拷贝代码实现</h2> <p>如何实现深拷贝，当然最简单粗暴的方法就是对引用的对象实现克隆，如果引用的对象中还有对象，那么对引用的对象中的对象的实现克隆，依次类推。</p> <p>这里使用另外一种方法，通过序列化(Serialization) 类实现深克隆。通过将对象写到流中，写到流中的对象是原有对象的一个拷贝，而原对象仍然存在于内存中，再从流里将其读出来，可以实现深克隆。 对象序列化需要实现Serializable 接口。</p> <p>下面是修改后的代码：</p> <h3>Prototype</h3> <p>同时实现Cloneable, Serializable ，并重写clone()方法。</p> <pre><code class="java">package io.github.brightloong.design.prototype;  import java.io.*;  /**  * Created by BrightLoong on 2018/7/8.  */ public class Prototype implements Cloneable, Serializable {     //基本类型的属性     private String attribute;      //对象属性，引用     private Attribute attributeObject;      public Prototype(String attribute, Attribute attributeObject) {         this.attribute = attribute;         this.attributeObject = attributeObject;     }      public String getAttribute() {         return attribute;     }      public void setAttribute(String attribute) {         this.attribute = attribute;     }      public Attribute getAttributeObject() {         return attributeObject;     }      public void setAttributeObject(Attribute attributeObject) {         this.attributeObject = attributeObject;     }      /**      * 重写clone方法，这里实现的是浅拷贝，如果要进行深拷贝需要自己实现。      * @return      * @throws CloneNotSupportedException      */     @Override     public Object clone() throws CloneNotSupportedException {         //将对象写入流中          ByteArrayOutputStream bao=new  ByteArrayOutputStream();         ObjectOutputStream oos = null;         ObjectInputStream ois = null;         Object copy = null;         try {             //将对象写入流中             oos = new ObjectOutputStream(bao);             oos.writeObject(this);             //将对象从流中取出             ByteArrayInputStream bis=new  ByteArrayInputStream(bao.toByteArray());             ois=new  ObjectInputStream(bis);             copy =  ois.readObject();         } catch (Exception e) {             e.printStackTrace();             if (oos != null) {                 try {                     oos.close();                 } catch (IOException e1) {                     e1.printStackTrace();                 }             }             if (ois != null) {                 try {                     ois.close();                 } catch (IOException e1) {                     e1.printStackTrace();                 }             }         }         return copy;     } }</code></pre> <h3>Attribute</h3> <p>Attribute同样实现Serializable。</p> <pre><code class="java">package io.github.brightloong.design.prototype;  import java.io.Serializable;  /**  * Created by BrightLoong on 2018/7/8.  */ public class Attribute implements Serializable{     public String name;      public Attribute(String name) {         this.name = name;     }      public String getName() {         return name;     }      public void setName(String name) {         this.name = name;     } }</code></pre> <h3>输出</h3> <p>还是使用原来的Client，输出如下，可以看到Attribute属性不再是同一个了，使用==比较返回了false。</p> <pre><code>属性======BrightLoong false</code></pre> <h2>五. 总结</h2> <h3>使用场景</h3> <ul> <li>如果某个对象new的过程中很耗时（类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等 ），则可以考虑使用原型模式 。</li> <li>如果系统要保存对象的状态，而对象的状态变化很小，或者对象本身占用内存较少时。</li> <li>一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时，可以考虑使用原型模式拷贝多个对象供调用者使用 。</li> </ul> <h3>优点</h3> <ul> <li>提高了效率，逃避了类的构造方法（<strong>对象拷贝时，类的构造函数是不会被执行的</strong> ）。</li> <li>当创建新的对象实例较为复杂时，使用原型模式可以简化对象的创建过程 。</li> </ul> <h3>缺点</h3> <ul> <li>在实现深克隆的时候，使用的对象可能是原来已经存在的，并且没有实现Serializable，这个时候只能自己去一层一层的克隆，编写较为复杂的代码。</li> </ul> <h3>其他</h3> <p>在很多工具类中已经实现了属性拷贝，并不用我们自己去实现比如apache.commons.beanutils 中的BeanUtils.copyProperties(obj1,obj2) 和PropertyUtils .copyProperties(obj1,obj2)。spring中也有类似的实现。</p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39562.htm">人打的疫苗和动物打的疫苗一样吗知乎 人打的疫苗和动物打的疫苗一样吗知乎</a></p>
+                                        <p>下一个：<a href="/news/article-40082.htm">妙三多猫疫苗剂量（妙三多猫疫苗的不良反应）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-subscribe-node.htm" title="「1月6日」最高速度20.1M/S，2025年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接">「1月6日」最高速度20.1M/S，2025年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-v2ray-subscribe.htm" title="「10月22日」最高速度19.7M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「10月22日」最高速度19.7M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27605.htm" title="关于CSS样式的优先级问题">关于CSS样式的优先级问题</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-subscribe-node.htm" title="「11月20日」最高速度20.5M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「11月20日」最高速度20.5M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-node-share.htm" title="「11月15日」最高速度19.6M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「11月15日」最高速度19.6M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-subscribe-node.htm" title="「12月20日」最高速度19.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「12月20日」最高速度19.5M/S，2024年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22967.htm" title="VUE跨组件数据传递方法详解">VUE跨组件数据传递方法详解</a></li>
+                        <li class="py-2"><a href="/news/article-26671.htm" title="宠物粮食店名称大全四个字怎么取（宠物粮创意名字）">宠物粮食店名称大全四个字怎么取（宠物粮创意名字）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-free-node-subscribe.htm" title="「12月25日」最高速度22.6M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接">「12月25日」最高速度22.6M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-31866.htm" title="动物医院属于医疗机构吗知乎文章（动物医院属于什么性质）">动物医院属于医疗机构吗知乎文章（动物医院属于什么性质）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
