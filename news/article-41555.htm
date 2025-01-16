@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-41555.htm" />
+    <title>JS &#8211;引用数据类型</title>
+        <meta name="description" content="JS数据类型三大类： 1.原始数据类型：数值类型number 字符串类型string，boolean类型，存放在栈内存 2.特殊数据类型：null,undifined,存放在栈内存3.引用数据类型：对" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>JS &#8211;引用数据类型</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3>JS数据类型三大类：</h3> <p>1.原始数据类型：数值类型number 字符串类型string，boolean类型，存放在<span style="color:#fe2c24;"><strong>栈内存</strong></span><br /> 2.特殊数据类型：null,undifined,存放在<span style="color:#fe2c24;"><strong>栈内存</strong></span><br /><strong><span style="color:#0d0016;">3.引用数据类型：对象数据类型object，array数组，function函数。存放在</span><span style="color:#fe2c24;">堆内存</span><span style="color:#0d0016;">里面</span></strong></p> <table border="1" cellpadding="1" cellspacing="1" style="width:541px;"> <tbody> <tr> <td style="width:243px;"> <p><strong><span style="color:#ff9900;">栈内存 &nbsp; &nbsp; &nbsp;</span></strong></p> <p><strong>number /&nbsp;string /&nbsp;boolean </strong></p> <p><strong>null / undifined&nbsp;</strong></p> <p> 1.声明变量就会在栈内存中开辟内存空间，变量则是对应的内存地址</p> <p>2.变量的赋值则是存放在对应的内存空间中的具体</p> <p>3.如果变量的值是<span style="color:#be191c;">原始数据类型</span>或者<span style="color:#be191c;">特殊数据类型</span><span style="color:#0d0016;">直接存放在栈内存</span></p> </td> <td style="width:294px;"> <p><strong><span style="color:#ff9900;">堆内存</span> </strong></p> <p><strong>object / array / function</strong></p> <p>4.<span style="color:#be191c;">引用数据类型</span>存放在堆内存，引用数据类型赋值给变量，是把<strong><u>引用数据类型在堆内存地址赋值给变量</u></strong></p> </td> </tr> </tbody> </table> <blockquote> <p>var a = { &nbsp; // --&gt; 会在栈中创建一个a内存空间 ，在堆中创建一个内存地址</p> <p>name: "nana",</p> <p>age: 14,</p> <p>}&nbsp;</p> <p>var b // &nbsp;--&gt;&nbsp;创建一个b对象</p> <p>b = a // --&gt; &nbsp;把a变量存的内存地址赋值给b ，这时b和a变量都是指向同一个堆内存地址</p> </blockquote> <p><span style="color:#fe2c24;"><strong>对于引用数据类型，直接赋值是一种<u><span style="background-color:#ffd900;">浅拷贝</span></u>，只拷贝了内存地址。<br /> &nbsp;&nbsp; &nbsp; &nbsp; 堆内存的数据变化之后，其他引用该内存地址的数据也会发生变化。</strong></span></p> <blockquote> <pre><code class="language-html">    &lt;script&gt;         var p1 = {             name: "nana",             age: 14,             addr: "xxx号",         }         var p2 = p1; //把p1的内存地址赋值给p2         console.log(p1)         // 判断p1和p2的内存地址是否相等         console.log(p1 === p2); //true  --&gt;  应用数据类型比较的是内存地址         p2.name = "li"; //单修改了p2中name属性的值，但是内存地址没有改变         console.log(p2);     //由于p2浅拷贝了p1的内存地址，p2的值发生变化时，p1对应的对象值也会改变         console.log(p1);          console.log(p1 === p2); //true  --&gt;  应用数据类型比较的是内存地址     &lt;/script&gt;</code></pre> </blockquote> <p><span style="color:#fe2c24;">如果不想要浅拷贝（拷贝内存地址）。<br /> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;需要创建一个新的内存地址，然后拷贝对象的属性和值<strong><u>即深拷贝</u></strong></span></p> <pre><code class="language-html">   &lt;script&gt;         var p1 = {             name: "nana",             age: 14,             addr: "xxx号",         }         var p3 = {}; //在堆中创建一个新的内存地址存放对象         for (var a in p1) { //遍历p1中的属性             p3[a] = p1[a]; //把p1中的属性赋值给p3中的属性         }         console.log(p1 === p3); //false --&gt; p3和p1的内存地址不一样         p3.name = "nananan"; //修改了p3中的name值         console.log(p3); //输出的name值为nananan         console.log(p1); //输出的name值为nana 因为内存地址不一样     &lt;/script&gt;</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41072.htm">济南美联培训学校怎么样 济南美联教育培训学校</a></p>
+                                        <p>下一个：<a href="/news/article-41556.htm">GUI编程之AWT组件详解</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-node-subscribe-links.htm" title="「1月7日」最高速度21.6M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「1月7日」最高速度21.6M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38092.htm" title="导入导出接口写法">导入导出接口写法</a></li>
+                        <li class="py-2"><a href="/news/article-37593.htm" title="SDDC的Windows初体验-QT篇">SDDC的Windows初体验-QT篇</a></li>
+                        <li class="py-2"><a href="/news/article-25282.htm" title="梦到抱着别的女人睡（梦到抱着别的女人睡在床上）">梦到抱着别的女人睡（梦到抱着别的女人睡在床上）</a></li>
+                        <li class="py-2"><a href="/news/article-29464.htm" title="宠物粮市场分析怎么写好一点（宠物粮市场调查）">宠物粮市场分析怎么写好一点（宠物粮市场调查）</a></li>
+                        <li class="py-2"><a href="/news/article-21588.htm" title="开宠物店盈利吗现在还有吗（开宠物店到底赚不赚钱）">开宠物店盈利吗现在还有吗（开宠物店到底赚不赚钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-v2ray-subscribe.htm" title="「1月4日」最高速度19.9M/S，2025年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接">「1月4日」最高速度19.9M/S，2025年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-clash-v2ray-ss-ssr.htm" title="「1月16日」最高速度21.2M/S，2025年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接">「1月16日」最高速度21.2M/S，2025年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-node-share.htm" title="「10月31日」最高速度20.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「10月31日」最高速度20.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-40081.htm" title="设计模式——原型模式">设计模式——原型模式</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
