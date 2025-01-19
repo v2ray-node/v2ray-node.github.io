@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-42546.htm" />
+    <title>python2字符串编码方式_一、基础部分-2.字符串编码</title>
+        <meta name="description" content="一、字符编码历史 1. ASCII 美国人搞了个ASCII码表，把123abcABC%$#(数字、字母、特殊符号) ，全部用10进制的数字表示。例如数字65，代表着“A” ，ASCII码表一共255个" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-42546.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="python2字符串编码方式_一、基础部分-2.字符串编码" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/ef0258d05bc7d0211f47300749f0816c.webp" />
+        <meta property="og:release_date" content="2025-01-18T07:15:18" />
+    <meta property="og:updated_time" content="2025-01-18T07:15:18" />
+        <meta property="og:description" content="一、字符编码历史 1. ASCII 美国人搞了个ASCII码表，把123abcABC%$#(数字、字母、特殊符号) ，全部用10进制的数字表示。例如数字65，代表着“A” ，ASCII码表一共255个" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>python2字符串编码方式_一、基础部分-2.字符串编码</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>一、字符编码历史</p> <p>1. ASCII</p> <p>美国人搞了个ASCII码表，把123abcABC%$#(数字、字母、特殊符号) ，全部用10进制的数字表示。例如数字65，代表着“A” ，ASCII码表一共255个数字，基本代表米国常用英文和符号(其实127以后都不是太常用的了)</p> <p>2. GB2312--&gt;GBK--&gt;GB18030</p> <p>中国汉字那么多，255个数字显然不够表示。所以中国人发明了GB2312(6千个常用简体汉字)，后来又搞了GBK(2万多汉字，并且包含中日韩中的汉字)，再后来又搞了一个GB18030(2.7万汉字，包含中国的少数民族语言)</p> <p>3. Unicode</p> <p>每个国家不同语言，都需要有自己的编码表，很麻烦。</p> <p>而且如果日本的软件出口到中国，中国电脑一打开就会乱码(因为没装日本的编码表，软件内文字会乱码)。</p> <p>再或者，如果一个文件中包含日语、中文、英文，那打开后就乱码了。于是，Unicode国际统一码(2-4个字节)诞生了。 至少用16个2进制表示：11111111 11111111 (2个bytes)</p> <p>Unicode其实是一张很大的对应关系表，对应着1个字符，在unicode的位置，以及这个字符在ascii码中的位置。</p> <p>所以，无论你使用何种编码，都能转换成unicode码，而unicode码又能转换成任何其他编码(可以理解unicode左手牵着你编码的字符，右手牵着其他国家的各种编码，额unicode是千手观音，有很多手)。</p> <p>这样的话，无论你使用GBK、ASCII、或者其他国家对字符进行编码，都能通过这张大表，找到对应其他编码的位置。</p> <p>4. UTF-8</p> <p>使用unicode全球人民都很高兴，终于不再出现乱码了，但是美国、英国人不高兴了。</p> <p>因为以前他们都使用ASCII码，存一个电影1个GB，现在用Unicode变成了2个GB了(因为ASCII码一共255个数字就可以表示美国人使用的常用字符，255转换成二进制：1111 1111(十进制转二进制)，是1个bytes。而Unicode至少2个bytes，所有使用unicode编码的文件，就会比ascii码多一倍大小)</p> <p>于是乎，为了优化unicode，节省字节。又搞出了UTF-8(英文继续用1个字节，欧洲用2个字节，东南亚用3个字节)，注意：使用unicode的时候中文是2个字节，现在使用UTF8变成了3个字节表示了，这占空间啊，很蛋疼，但没办法。</p> <p>5. 其他知识：</p> <p>数据文件存到硬盘上是2进制的，像这样： 01010100100101001(尽然没逗号，那计算机怎么断句呢？其实计算机会一次性读取8位2进制，不足8位的补0)</p> <p>你使用ascii码对你的文件编码，并保存到硬盘。当你打开的时候(就是读到内存的时候)，就必须也要指定使用ascii码打开。如果你错误的使用GBK打开，那肯定乱码了。总的来说，什么方式存进去的，什么方式读出来。</p> <p>windows系统默认使用GBK编码，也就是说，当你存一个文件到磁盘的时候，如果你不指定使用什么编码，默认使用GBK给你编码(Mac、 Linux系统默认UTF8编码)</p> <p>二、Python2与Python3编码不同</p> <p>Python3 读取文件的流程：</p> <p>Python3解析器，按照文件头定义的编码进行解析。(如果你在文件头，不指定编码方式。python3默认使用UTF-8去读取)</p> <p>Python3自动把你的编码格式，转换成Unicode到内存中。</p> <p>按照代码内容语义分析，去解析执行。</p> <p>所有的变量、字符都是以Unicode编码去声明</p> <p>总结：在Python3中，无论读取中文、英文或其他国家语言编码的文件，在打印的时候都不会乱码，因为都进行了自动转换，变成了Unicode。(现在的所有操作系统，都支持Unicode编码)</p> <p>Python2 读取文件的流程：</p> <p>Python2默认使用ASCII编码，去尝试读取文件。</p> <p>Python2把ASCII编码加载到内存中(注意：不会像Python3一样，帮你自动转换成Unicode到内存哦)</p> <p>如果你文件中包含中文，直接就乱码了，因为ASCII表中没有中文啊。</p> <p>别急，通常在编写Python2文件时候，都在文件头加：#coding: utf-8，目的是想告诉Python2解释器，在读取文件时，别在使用默认的ASCII了，要使用UTF-8编码去读取。</p> <p>这下，终于把代码以UTF-8读取到内存了。</p> <p>还没完，如果你使用Windows电脑，Windows默认打印终端使用GBK编码，在终端打印的时候，你发现依然还是乱码了(崩溃了~)。</p> <p>Windows是支持Unicode或GBK打印的，所以，还需要你把内存中的UTF-8手动转换成Unicode或者GBK，才能正常打印。</p> <p>如何手动转换呢：</p> <p>UTF8 ---&gt; Unicode 把UTF8转换成Unicode的过程，称为：解码(decode)</p> <p>Unicode ---&gt; UTF8/GBK 把unicode编码转换成UTF8或者GBK的过程，称为：编码(encode)</p> <p>总结一下：</p> <p>Python3文件默认编码UTF-8(默认用utf-8读到内存)，在内存中，python3的字符串编码是unicode(Python3自动帮你把utf-8转成了unicode到内存中了)</p> <p>Python2文件默认编码ASCII码(默认用ASCII码读到内存)，在内存中，python2字符串默认你按照什么编码读出来的，在内存就是什么编码(如果你声明了文件头，就按照头声明来编码读到内存中)。</p> <p>Python2中，Unicode是个单独的数据类型。</p> <p>三、深入Python2字符编码</p> <p>1. 问题出现了</p> <p>想判断数据类型，使用type()函数。python2中unicode是一种单独的数据类型，而GBK和UTF-8使用type()函数判断类型时，都返回str类型。这样的话，我怎么知道，到底是GBK还是UTF8呢？有人说可以使用len()函数去判断，因为GBK是使用2个字符代表一个中文字，而UTF8使用3个字符代表一个中文字。如下：</p> <p>#!/usr/bin/env python2.7</p> <p>#encoding:utf-8</p> <p>s = "中"</p> <p>#unicode</p> <p>s2 = s.decode("utf-8")</p> <p>print "我运行在python2中，我声明了文件头是UTF8。虽然python2不会自动把我转换成unicode,但我可以自己使用decode函数手工转换，你看，我现在就变成了unicode编码了，我在python2中表现的数据类型是：%s " %type(s2)</p> <p>#GBK</p> <p>s3 = s2.encode("gbk") #注意：s2经过上一步的转换，已经变成了unicode编码了。s3现在相当于，在用encode函数把unicode编码成了GBK。</p> <p>print "我是gbk编码的，我在python2中的数据类型是：%s, 我的长度是：%s" % (type(s3),len(s3))</p> <p>#UTF8</p> <p>s4 = s2.encode("utf-8")</p> <p>print "我是utf-8编码的，我在python2中的数据类型是：%s , 我的长度是：%s " %(type(s4),len(s4))</p> <p>#运行结果：</p> <p>我运行在python2中，我声明了文件头是UTF8。虽然python2不会自动把我转换成unicode,但我可以自己使用decode函数手工转换，你看，我现在就变成了unicode编码了，我在python2中表现的数据类型是：</p> <p>我是gbk编码的，我在python2中的数据类型是：, 我的长度是：2</p> <p>我是utf-8编码的，我在python2中的数据类型是： , 我的长度是：3</p> <p>问题确实存在，gbk编码、utf-8编码，在python2中的数据类型都是str。</p> <p>我如何知道一个字符串到底是gbk编码的还是utf8编码的呢？</p> <p>虽然可以看长度，gbk用2个字节，代表1个中文，utf-8用3个字节，代表1个中文汉字。这没错，那是因为举得例子简单，如果无数个字节，比如这样：'\xd6\xd0...bulabulabula一大堆'，让你判断，这些字节的编码是什么？那怎么办呢？</p> <p>2. 难道是巧合？</p> <p>1. 突然想起来，有那个Unicode对应关系表啊..(http://www.unicode.org/charts/ 下载：CJK Unified Ideographs (Han) )</p> <p>&gt;&gt;&gt; s = "中"</p> <p>&gt;&gt;&gt; s_unicode = s.decode("utf-8")</p> <p>&gt;&gt;&gt; s_unicode</p> <p>u'\u4e2d'</p> <p>&gt;&gt;&gt;</p> <p>&gt;&gt;&gt; s_gbk = s_unicode.encode("gbk")</p> <p>&gt;&gt;&gt; s_gbk</p> <p>'\xd6\xd0'</p> <p>&gt;&gt;&gt;</p> <p>&gt;&gt;&gt; s_utf8 = s_unicode.encode("utf-8")</p> <p>&gt;&gt;&gt; s_utf8</p> <p>'\xe4\xb8\xad'</p> <p>总结下，这个"中"字:</p> <p>unicode编码是长这样: u'\u4e2d'</p> <p>gbk编码是长这样的: '\xd6\xd0'</p> <p>UTF8编码是长这样的: '\xe4\xb8\xad'</p> <p>2. 赶紧下载，并打开Unicode对应表：</p> <p>搜索"中"字，恩，"中"字旁边的Unicode确实写着：4E2D。</p> <p>但我们关心的是GBK啊，GBK上写着： G0-5650(16进制)。</p> <p>这5650 和 我们上面打印的'\xd6\xd0'也不完全对啊，但是貌似对了2位。6和0对了，5没对。</p> <p>3. gbk编码打印是这样的：'\xd6\xd0'，这是16进制，换成2进制试试看。</p> <p>d6(16进制)---&gt;11010110(2进制) PS: 4位2进制，代表1个16进制，所以 1101 代表d(13) 0110代表6</p> <p>d0(16进制)---&gt;11010000(2进制)</p> <p>4. 即便把16进制换成2进制，感觉也和G0-5650没啥关系啊，这样，把上面的2进制的第一位，去掉不算****，试试看：</p> <p>\xd6\xd0 中的d6，11010110(2进制)---&gt;1101 0110---&gt;去掉每组第1位不算---&gt;0101 0110---&gt;转成16进制---&gt;56</p> <p>\xd6\xd0 中的d0, 11010000(2进制)---&gt;1101 0000---&gt;去掉每组第1位不算---&gt;0101 0000)---&gt;转成16进制---&gt;50</p> <p>5. 我擦嘞~，当去掉1位后，就正好是5650。和Unicode表上的GBK编码对应上了...为什么要去掉1位呢？</p> <p>3. 原来是这样</p> <p>GBK是兼容ASCII码的,如何实现的？</p> <p>首先：GBK是每2个字节代表1个中文，ASCII码是1个字节代表1个英文字母的。</p> <p>如果给你一个2个2进制(2个字节)11010110 11010000，你怎知道是代表1个中文，还是2个ASCII码的英文字符呢？</p> <p>正好，ASCII码常用的就127个，7位2进制最大就是127，就可以表示了，还剩下1位。</p> <p>中国人设计GBK的时候，考虑到想兼容ASCII码。想到，既然ASCII码的127往后至255都不常用。那我们利用剩下的这1位做文章。</p> <p>[x] 如果，2个2进制(2个字节)，每个2进制的第1位，都被设置成了1，它就是中文。</p> <p>[x] 如果，1个2进制(1个字节)，第一位是1，那就是按照ASCII编码，是英文。</p> <p>举例：11010110 11010000 这2个二进制，第1位都被都设置了1，这是个中文。</p> <p>总结：</p> <p>GBK编码中，为了兼容ASCII码，1个2进制的字节，第一位，如果设置成1，叫高字节。如果设置成0，代表低字节。2个连续的高字节，就是中文。**</p> <p>Unicode表中，"中"字符--&gt; 本来应该用d6d0表示，但是它忽略了高字节---&gt;所以变成了这样 G0-5650</p> <p>其实，UTF-8 也是利用了高字节，来区分ASCII编码的。不然一堆连续的2进制，怎么判断啊？</p> <p>四、Python str和bytes类型</p> <p>1. python2中的str和bytes没啥区别</p> <p>python2</p> <p>&gt;&gt;&gt; s = "中"</p> <p>&gt;&gt;&gt; print s</p> <p>中 #称之为字符串 (其实是字形)</p> <p>&gt;&gt;&gt; s</p> <p>'\xe4\xb8\xad' #字符串"中"字，在编码表里的位置。 是二进制数据串(只不过16进制表现形式)</p> <p>其实按理说，print 应该打印 '\xe4\xb8\xad' 这个位置，但是print帮你打印了这个位置对应的"中"字 (其实这个"中"字就是一个图片字形)</p> <p>总结：</p> <p>根据2进制的数据串，在编码表中找到对应的关系，然后在找到的那个字形，就是字符串。</p> <p>一堆二进制数据串儿，python称他为bytes(注意有 s结尾，复数)。</p> <p>概念上"中"字符串(字形)和 '\xe4\xb8\xad'二进制串儿bytes 不是一种东西，但是本质上，却都指向了相同的一个东西。</p> <p>所以，python2中，直接把字符串"str" 类型等于了 bytes类型。</p> <p>实例：</p> <p>#python2里，把bytes类型和字符串类型，都称为字符串"str"，不区分，如下：。</p> <p>&gt;&gt;&gt; s_str = "中"</p> <p>&gt;&gt;&gt; print type(s_str)</p> <p> #字符串就是str类型</p> <p>&gt;&gt;&gt;</p> <p>&gt;&gt;&gt; s_bytes = b"中" #b"字符串" --&gt;定义一个bytes类型</p> <p>&gt;&gt;&gt; print type(s_bytes)</p> <p> #bytes类型 也是 str类型</p> <p>&gt;&gt;&gt;</p> <p>2. 既然python2的bytes类型和字符串str是一会儿事儿，为什么还要搞一个bytes类型呢( b"字符串" ) ？</p> <p>因为之所以能显示中文字形，是因为二进制串儿bytes，在Unicode编码表中找到了对应的图形，然后给展示出来。</p> <p>但图片、视频读到内存中，图片没编码(没unicode这种东西)，那怎么办呢？实际上，图片是一堆2进制流，对应成了屏幕像素快颜色，最终展示出来的。</p> <p>既然图片是一堆二进制流，那么这一堆数据流，怎么表示他们呢？就只能用bytes类型表示。</p> <p>print图片会乱码，因为图片又不是文字，如果你非要print图片，那print就会尝试把图片里的二进制流到unicod编码表中找对应关系，但最终肯定会乱码的。</p> <p>也就是说，字符、图片、视频等，都是bytes类型。但字符因为有Unicode那张表存在，可以找到对应关系。</p> <p>所以字符中的bytes，可以转成字符串str(字形)，而字符串"str"，也肯定能转换成bytes。</p> <p>但图片、音频中的bytes，则不能转换成字符串str(因为他们本来也不是字，是图啊..)</p> <p>3. Python3 数据保存和传输</p> <p>Python3的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把str变为以字节为单位的bytes，像这样：x = b'ABC'</p> <p>以Unicode表示的str通过encode()方法可以编码为指定的bytes，例如：</p> <p>#Python3</p> <p>&gt;&gt;&gt; type("ABC")</p> <p>&gt;&gt;&gt; 'ABC'.encode('ascii') #把英文的str变成了bytes</p> <p>b'ABC'</p> <p>&gt;&gt;&gt; '中文'.encode('utf-8') #把中文的str变成了bytes</p> <p>b'\xe4\xb8\xad\xe6\x96\x87'</p> <p>反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes。要把bytes变为str，就需要用decode()方法：</p> <p>&gt;&gt;&gt; b'ABC'.decode('ascii') #把英文bytes转换成了str</p> <p>u'ABC'</p> <p>&gt;&gt;&gt; type(b'ABC'.decode('ascii')) #通过type()函数查看，python3中str就是unicode类型。</p> <p>&gt;&gt;&gt; b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8') #把中文的bytes转成str</p> <p>u'\u4e2d\u6587'</p> <p>&gt;&gt;&gt; print(b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')) #打印时，就可以显示字形了。</p> <p>中文</p> <p>#说明：如果bytes中包含无法解码的字节，decode()方法会报错</p> <p>len()函数计算的是str的字符数，如果换成bytes，len()函数就计算字节数：</p> <p>&gt;&gt;&gt; len('ABC')</p> <p>3</p> <p>&gt;&gt;&gt; len('中文')</p> <p>2</p> <p>&gt;&gt;&gt;</p> <p>&gt;&gt;&gt; len(b'ABC')</p> <p>3</p> <p>&gt;&gt;&gt; len(b'\xe4\xb8\xad\xe6\x96\x87')</p> <p>6</p> <p>4. 总结</p> <p>Python2</p> <p>str = bytes</p> <p>为什么要有bytes类型？因为要表示图片和音频等，二进制格式的数据。</p> <p>python2，即便以utf-8编码的字符串，在windows上仍然不能显示(windows默认是GBK)。</p> <p>怎样才能正常显示？手动转unicode编码decode("utf8")。</p> <p>还有一个办法，在pythno2中，定义一个字符串时，在前面加个u，例如：u"中"，这时候打印类型print type，结果： </p> <p>python2 中，unicode类型可以表示字符串，还可以使用str表示字符串。</p> <p>有点儿乱，但是unicode是为了显示全球文字，而设计的类型。如果只有英文字符，str类型就够了。</p> <p>以utf-8、gbk等编码的文件，加载到内存时，还依然是 utf-8、gbk (不帮你转换unicode，读到什么，就是什么)</p> <p>所以说，python2中，如果以gbk格式编码的文件，加载到内存还是gbk，在print打印时，就是gbk格式的bytes。</p> <p>Python3</p> <p>以utf-8 gbk等编码的文件，加载到内存时，自动帮你转换成unicode。所以，在python3中看到的str字符串，都是unicode格式编码的bytes。</p> <p>也就是说python3，默认支持了全球化语言(因为str都是unicode编码的)，</p> <p>python3中已经没有了单独的unicode类型了，因为str就是Unicode，既str = unicode。</p> <p>在python2中，str = bytes，之所以多个bytes类型是为了表示图片等。而python3 str是str (str = unicode), bytes就是bytes，没关系。</p> <p>注意，在内存中可以是unicode展示，这没问题。但当你存储到硬盘、网络传输，当然不能用unicode存(unicode只是张对照表)，需要unicode转换成gbk或utf-8编码格式的，然后换成bytes去存储或传输。</p> <p>也就是说，python3中 str(unicode编码)就仅仅是打印使用的，真正字符串传输、或者存盘，都会转换成bytes。</p> <p>那为啥Python2有 str、Unicode，而Python3就只有str类型了(python3中str就是Unicode)？</p> <p>因为在python2初期开发的时候，就没考虑到全球化问题，默认用的ASCII码。后来python普及后，各国开发者呼吁支持全球化语言，所以python2没办法，单独又造了一个Unicode类型。</p> <p>#python2实例</p> <p>&gt;&gt;&gt; s = "str"</p> <p>&gt;&gt;&gt; s_unicode = s.decode("utf-8") #python2中，unicode类型是单独的。</p> <p>&gt;&gt;&gt; s_gbk = s_unicode.encode("gbk") #把unicode编码成gbk</p> <p>&gt;&gt;&gt; type(s_gbk)</p> <p> #打印时发现，gbk编码的类型显示为str。</p> <p>#python3实例</p> <p>&gt;&gt;&gt; s = "str" #python3 字符串str都是unicode</p> <p>&gt;&gt;&gt; s_gbk = s.encode("gbk") #把unicode编码成gbk</p> <p>&gt;&gt;&gt; type(s_gbk)</p> <p> #打印时发现， gbk编码的类型是 bytes。(不再和python2一样是str类型了)</p> <p>结论：</p> <p>1. 在python2中，str = bytes，之所以多个bytes类型是为了表示图片等二进制流。</p> <p>2. 在python3中，字符串str就是str字形 (str都是由unicode编码), bytes就是bytes，明确告诉你，你想看字符串str的字形，必须的是unicode编码。而图片二进制流，没办法编码和解码，传输时一律使用bytes类型。</p> <p>参考链接：</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42061.htm">动物接种疫苗的注意事项包括哪些方面（动物接种要点）</a></p>
+                                        <p>下一个：<a href="/news/article-42547.htm">Axios封装和Vuex模块化</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-26193.htm" title="宠物粮市场规模（中国宠物粮市场）">宠物粮市场规模（中国宠物粮市场）</a></li>
+                        <li class="py-2"><a href="/news/article-40081.htm" title="设计模式——原型模式">设计模式——原型模式</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-free-node-subscribe-links.htm" title="「10月8日」最高速度21.6M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接">「10月8日」最高速度21.6M/S，2024年V2ray/Clash/SSR/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-40570.htm" title="动物疫苗行业市场竞争特征（动物疫苗行业市场竞争特征分析）">动物疫苗行业市场竞争特征（动物疫苗行业市场竞争特征分析）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-16-node-share-links.htm" title="「10月16日」最高速度20.1M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「10月16日」最高速度20.1M/S，2024年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-32337.htm" title="C++2结构体，输入与输出函数">C++2结构体，输入与输出函数</a></li>
+                        <li class="py-2"><a href="/news/article-24336.htm" title="狐狸犬多少元一只（银狐犬属于什么档次）">狐狸犬多少元一只（银狐犬属于什么档次）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-node-subscribe.htm" title="「11月22日」最高速度18.9M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接">「11月22日」最高速度18.9M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-31866.htm" title="动物医院属于医疗机构吗知乎文章（动物医院属于什么性质）">动物医院属于医疗机构吗知乎文章（动物医院属于什么性质）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
