@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-49001.htm" />
+    <title>【EF框架】DbContext的使用</title>
+        <meta name="description" content="&nbsp; DbContext类是EntityFramework （简称 EF）中的一个类，可以理解为一个数据库对象的实例。在 EF中，无需手动的拼接 SQL 语句对数据库进行增删改查，而是通过 D" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-49001.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="【EF框架】DbContext的使用" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/610552e86a81521a4f6a2a8194cb9de6.webp" />
+        <meta property="og:release_date" content="2025-01-31T07:19:04" />
+    <meta property="og:updated_time" content="2025-01-31T07:19:04" />
+        <meta property="og:description" content="&nbsp; DbContext类是EntityFramework （简称 EF）中的一个类，可以理解为一个数据库对象的实例。在 EF中，无需手动的拼接 SQL 语句对数据库进行增删改查，而是通过 D" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="【EF框架】DbContext的使用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                                                <span class="mb-0 site-logo"><a href="/" class="h2 mb-0"><span>V2ray Node</span> </a></span>
+                                            </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                                <li><a href="#" class="nav-link">关于</a></li>
+                                <li><a href="#" class="nav-link">联系</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>【EF框架】DbContext的使用</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>&nbsp; DbContext类是EntityFramework （简称 EF）中的一个类，可以理解为一个数据库对象的实例。在 EF中，无需手动的拼接 SQL 语句对数据库进行增删改查，而是通过 DbContext 来进行相应操作。</p> </h1> <h2><span style="color:#009900;">DbContext类</span></h2> <p>&nbsp; DbContext类是实体框架的重要组成部分。它是您的域或实体类与数据库之间的桥梁。</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20221230/d75aca4eef76e92d15e30017ddd61841.jpg"></p> <p>DbContext是负责与数据交互作为对象的主要类。DbContext负责以下活动：<br /> （1）EntitySet： DbContext包含映射到数据库表的所有实体的实体集（DbSet &lt;TEntity&gt;）。<br /> （2）查询（<span style="color:#333333;">Querying</span>）： DbContext将LINQ-to-Entities查询转换为SQL查询并将其发送到数据库。<br /> （3）更改跟踪（Change Tracking）：跟踪实体在从数据库查询后发生的更改。<br /> （4）持久数据（Persisting Data）：它还根据实体的状态对数据库执行插入，更新和删除操作。<br /> （5）缓存（Caching）： DbContext默认进行一级缓存。它存储在上下文类生命周期中已经被检索的实体。<br /> （6）管理关系（Manage Relationship）： DbContext还使用DB-First或Model-First方法使用CSDL，MSL和SSDL或者使用Code-First方法使用流利的API来管理关系。<br /> （7）对象实现（Object Materialization）： DbContext将原始表数据转换为实体对象。</p> <p>以下是小编生成的excellentmcoinEntities类（派生DbContext的上下文类）的示例。</p> <pre class="has"><code class="language-csharp">//------------------------------------------------------------------------------ // &lt;auto-generated&gt; //    此代码是根据模板生成的。 // //    手动更改此文件可能会导致应用程序中发生异常行为。 //    如果重新生成代码，则将覆盖对此文件的手动更改。 // &lt;/auto-generated&gt; //------------------------------------------------------------------------------  namespace Model {     using System;     using System.Data.Entity;     using System.Data.Entity.Infrastructure;          public partial class excellentmcoinEntities : DbContext     {         public excellentmcoinEntities()             : base("name=excellentmcoinEntities")         {         }              protected override void OnModelCreating(DbModelBuilder modelBuilder)         {             throw new UnintentionalCodeFirstException();         }              public DbSet&lt;t_accumulate&gt; t_accumulate { get; set; }         public DbSet&lt;t_addmcoinrecord&gt; t_addmcoinrecord { get; set; }         public DbSet&lt;t_announce&gt; t_announce { get; set; }         public DbSet&lt;t_attribute&gt; t_attribute { get; set; }         public DbSet&lt;t_attriuser&gt; t_attriuser { get; set; }         public DbSet&lt;t_character&gt; t_character { get; set; }         public DbSet&lt;t_controller&gt; t_controller { get; set; }         public DbSet&lt;t_dayget&gt; t_dayget { get; set; }         public DbSet&lt;t_department&gt; t_department { get; set; }         public DbSet&lt;t_departmentgrade&gt; t_departmentgrade { get; set; }         public DbSet&lt;t_departquestype&gt; t_departquestype { get; set; }         public DbSet&lt;t_grade&gt; t_grade { get; set; }         public DbSet&lt;t_healthytips&gt; t_healthytips { get; set; }         public DbSet&lt;t_mcoin&gt; t_mcoin { get; set; }         public DbSet&lt;t_mcoindb&gt; t_mcoindb { get; set; }         public DbSet&lt;t_mcoindetail&gt; t_mcoindetail { get; set; }         public DbSet&lt;t_pageset&gt; t_pageset { get; set; }         public DbSet&lt;t_quesfamily&gt; t_quesfamily { get; set; }         public DbSet&lt;t_quesfamilymemeber&gt; t_quesfamilymemeber { get; set; }         public DbSet&lt;t_question&gt; t_question { get; set; }         public DbSet&lt;t_questype&gt; t_questype { get; set; }         public DbSet&lt;t_stageconfluence&gt; t_stageconfluence { get; set; }         public DbSet&lt;t_states&gt; t_states { get; set; }         public DbSet&lt;t_suggesstion&gt; t_suggesstion { get; set; }         public DbSet&lt;t_type&gt; t_type { get; set; }         public DbSet&lt;t_user&gt; t_user { get; set; }         public DbSet&lt;t_attributerecord&gt; t_attributerecord { get; set; }         public DbSet&lt;t_notice&gt; t_notice { get; set; }     } } </code>excellentmcoinEntities : DbContext     {         public excellentmcoinEntities()             : base("name=excellentmcoinEntities")         {         }              protected override void OnModelCreating(DbModelBuilder modelBuilder)         {             throw new UnintentionalCodeFirstException();         }              public DbSet&lt;t_accumulate&gt; t_accumulate { get; set; }         public DbSet&lt;t_addmcoinrecord&gt; t_addmcoinrecord { get; set; }         public DbSet&lt;t_announce&gt; t_announce { get; set; }         public DbSet&lt;t_attribute&gt; t_attribute { get; set; }         public DbSet&lt;t_attriuser&gt; t_attriuser { get; set; }         public DbSet&lt;t_character&gt; t_character { get; set; }         public DbSet&lt;t_controller&gt; t_controller { get; set; }         public DbSet&lt;t_dayget&gt; t_dayget { get; set; }         public DbSet&lt;t_department&gt; t_department { get; set; }         public DbSet&lt;t_departmentgrade&gt; t_departmentgrade { get; set; }         public DbSet&lt;t_departquestype&gt; t_departquestype { get; set; }         public DbSet&lt;t_grade&gt; t_grade { get; set; }         public DbSet&lt;t_healthytips&gt; t_healthytips { get; set; }         public DbSet&lt;t_mcoin&gt; t_mcoin { get; set; }         public DbSet&lt;t_mcoindb&gt; t_mcoindb { get; set; }         public DbSet&lt;t_mcoindetail&gt; t_mcoindetail { get; set; }         public DbSet&lt;t_pageset&gt; t_pageset { get; set; }         public DbSet&lt;t_quesfamily&gt; t_quesfamily { get; set; }         public DbSet&lt;t_quesfamilymemeber&gt; t_quesfamilymemeber { get; set; }         public DbSet&lt;t_question&gt; t_question { get; set; }         public DbSet&lt;t_questype&gt; t_questype { get; set; }         public DbSet&lt;t_stageconfluence&gt; t_stageconfluence { get; set; }         public DbSet&lt;t_states&gt; t_states { get; set; }         public DbSet&lt;t_suggesstion&gt; t_suggesstion { get; set; }         public DbSet&lt;t_type&gt; t_type { get; set; }         public DbSet&lt;t_user&gt; t_user { get; set; }         public DbSet&lt;t_attributerecord&gt; t_attributerecord { get; set; }         public DbSet&lt;t_notice&gt; t_notice { get; set; }     } } </pre> <p>上下文类（excellentmcoinEntities）包含所有实体的DbSet &lt;TEntity&gt;类型的实体集。</p> <h2><span style="color:#009900;">DbContext具体使用</span></h2> <h3><span style="color:#990000;">增</span></h3> <pre class="has"><code class="language-csharp">excellentmcoinEntities db = new excellentmcoinEntities(); //创建对象实体，注意，这里需要对所有属性进行赋值（除了自动增长主键外），如果不赋值，则会数据库中会被设置为NULL（注意是否可空） var user = new User             {                 Name = "bomo",                 Age = 21,                 Gender = "male"             }; db.User.Add(user); db.SaveChanges();</code></pre> <h3><span style="color:#990000;">删</span></h3> <pre class="has"><code class="language-csharp"> public bool deleteUser(string UserID)         {          excellentmcoinEntities dbcontext = new excellentmcoinEntities();             try             {                 string[] testUserID = UserID.Split(',');                                  for (int i = 0; i &lt; testUserID.Length; i++)                 {                     t_user usermodel = dbcontext.t_user.Find(testUserID[i]);                     dbcontext.t_user.Remove(usermodel);                     int flag = dbcontext.SaveChanges();                     if (flag &gt; 0)                     {                         continue;                     }                     else                     {                         return false;                     }                 }                 return true;             }             catch (Exception)             {                  throw new Exception("删除失败");             }         }</code></pre> <h3><span style="color:#990000;">改</span></h3> <pre class="has"><code class="language-csharp">public bool EditUser(t_user usermodel)         {             excellentmcoinEntities dbcontext = new excellentmcoinEntities();             try             {                 t_user user = dbcontext.t_user.Find(usermodel.userID);                 if (user == null)                 {                     return false;                 }                 user.userName = usermodel.userName;                 user.levelID = usermodel.levelID;                 user.state = usermodel.state;                 user.passWord = usermodel.passWord;                  //修改多个字段值                 dbcontext.Entry&lt;t_user&gt;(user).State = System.Data.EntityState.Modified;                 dbcontext.SaveChanges();                 return true;             }             catch (Exception)             {                  throw new Exception("用户修改失败");             }          }</code></pre> <h3><span style="color:#990000;">查</span></h3> <pre class="has"><code class="language-csharp">   public List&lt;userModel&gt; QueryAUser()         {             //定义了上下文实体             excellentmcoinEntities dbcontext = new excellentmcoinEntities();             var allUser = (from u in dbcontext.t_user                            join g in dbcontext.t_grade on u.gradeID equals g.gradeID                            orderby u.totalMcoin descending                            select new userModel()                            {                                userID = u.userID,                                userName = u.userName,                                userGrade = g.userGrade,                                totalMcoin = u.totalMcoin,                                gradeID = g.gradeID,                            }).ToList();             return allUser;         }</code></pre> </h1> <p>&nbsp; &nbsp; DbContext通常与包含模型的根实体的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://msdn.microsoft.com/en-us/library/gg696460%28v=vs.113%29.aspx"  title="DbSet&nbsp;<TEntity>" rel="nofollow">DbSet&nbsp;&lt;TEntity&gt;</a>属性的派生类型一起使用。当派生类的实例被创建时，这些集合会自动初始化。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-48384.htm">北京看动物咬伤的医院哪家好（北京狗咬伤去哪个医院比较好）</a></p>
+                                        <p>下一个：<a href="/news/article-49002.htm">做梦梦到抱别的女人睡觉啥意思（做梦梦见抱着别的女人）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-clash-v2ray-ss-ssr.htm" title="「10月24日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「10月24日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24821.htm" title="被猫抓不用***的图片（孩子10几天后才说被猫咬了）">被猫抓不用***的图片（孩子10几天后才说被猫咬了）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-node-subscribe.htm" title="「1月25日」最高速度20M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「1月25日」最高速度20M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-v2ray.htm" title="「10月23日」最高速度20.4M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接">「10月23日」最高速度20.4M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37106.htm" title="Node.js躬行记（17）——UmiJS版本升级">Node.js躬行记（17）——UmiJS版本升级</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-v2ray-subscribe.htm" title="「10月22日」最高速度19.7M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「10月22日」最高速度19.7M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="「11月17日」最高速度21M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「11月17日」最高速度21M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-free-v2ray.htm" title="「1月1日」最高速度22.3M/S，2025年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接">「1月1日」最高速度22.3M/S，2025年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「10月21日」最高速度21.9M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-node-share-links.htm" title="「1月19日」最高速度21.6M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「1月19日」最高速度21.6M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
