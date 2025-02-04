@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2ray-node.github.io/news/article-20220.htm" />
     <title>数组模拟队列进阶版本——环形队列（真正意义上的排队）</title>
         <meta name="description" content="昨天我们做了数组模拟队列的基本情景。可以进行排队和取出数据（最早的人离开队列)，但是我们发现，取出的地方不能重复利用。让我们的队列成为了一次性队列。今天我们来看如何将我们的队列改进称数组模拟环形队列。" />
         <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-20220.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="数组模拟队列进阶版本——环形队列（真正意义上的排队）" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/610552e86a81521a4f6a2a8194cb9de6.webp" />
+        <meta property="og:release_date" content="2024-12-02T07:58:10" />
+    <meta property="og:updated_time" content="2024-12-02T07:58:10" />
+        <meta property="og:description" content="昨天我们做了数组模拟队列的基本情景。可以进行排队和取出数据（最早的人离开队列)，但是我们发现，取出的地方不能重复利用。让我们的队列成为了一次性队列。今天我们来看如何将我们的队列改进称数组模拟环形队列。" />
+        
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="数组模拟队列进阶版本——环形队列（真正意义上的排队）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
-    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
     <!-- Google tag (gtag.js) -->
@@ -65,7 +94,7 @@
                 </div>
             </div>
         </header>
-        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
@@ -93,16 +122,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-24-node-share.htm" title="「9月24日」最高速度20.5M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「9月24日」最高速度20.5M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-26192.htm" title="养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）">养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）</a></li>
-                        <li class="py-2"><a href="/news/article-22968.htm" title="宠物用品店代理（宠物用品店代理如何做）">宠物用品店代理（宠物用品店代理如何做）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-v2ray.htm" title="「12月9日」最高速度21.5M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「12月9日」最高速度21.5M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-28530.htm" title="Java中File类方法详解以及实践_java">Java中File类方法详解以及实践_java</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-subscribe-node.htm" title="「12月17日」最高速度19.1M/S，2024年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「12月17日」最高速度19.1M/S，2024年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-25284.htm" title="宠物领养狗狗的流程（领养宠物的途径）">宠物领养狗狗的流程（领养宠物的途径）</a></li>
+                        <li class="py-2"><a href="/news/article-34237.htm" title="查看一个VUE项目的版本">查看一个VUE项目的版本</a></li>
                         <li class="py-2"><a href="/news/article-22055.htm" title="动物疫苗作用机制有哪些（动物注射疫苗）">动物疫苗作用机制有哪些（动物注射疫苗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-node-subscribe.htm" title="「11月1日」最高速度18.3M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「11月1日」最高速度18.3M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-v2ray.htm" title="「12月3日」最高速度21.3M/S，2024年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接">「12月3日」最高速度21.3M/S，2024年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-node-subscribe-links.htm" title="「12月5日」最高速度18.1M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「12月5日」最高速度18.1M/S，2024年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37105.htm" title="c++引用折叠">c++引用折叠</a></li>
+                        <li class="py-2"><a href="/news/article-27139.htm" title="开宠物医院最低多少平（开宠物医院一年能赚多少）">开宠物医院最低多少平（开宠物医院一年能赚多少）</a></li>
+                        <li class="py-2"><a href="/news/article-47983.htm" title="广州有领养宠物猫的地方吗最近（广州有领养宠物猫的地方吗?）">广州有领养宠物猫的地方吗最近（广州有领养宠物猫的地方吗?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe-links.htm" title="「1月10日」最高速度20.6M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接">「1月10日」最高速度20.6M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22509.htm" title="SpringBoot中获取profile的方法详解_java">SpringBoot中获取profile的方法详解_java</a></li>
+                        <li class="py-2"><a href="/news/article-27138.htm" title="动物医院好评模板怎么写的啊英文（动物医院好评语）">动物医院好评模板怎么写的啊英文（动物医院好评语）</a></li>
+                        <li class="py-2"><a href="/news/article-49490.htm" title="兽药排行榜前50（兽药前十名）">兽药排行榜前50（兽药前十名）</a></li>
                     </ul>
     </div>
 </div>
@@ -114,22 +143,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

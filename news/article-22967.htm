@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2ray-node.github.io/news/article-22967.htm" />
     <title>VUE跨组件数据传递方法详解</title>
         <meta name="description" content="Q：需求是这样的： 兄弟组件或者子组件执行了某个操作之后，需要在另外一个A组件中执行刷新操作（某个方法）  解决思路： 1.如果是父子组件，可以用事件来处理，on，emit 2.我这个更普遍一点，不一" />
         <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-22967.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="VUE跨组件数据传递方法详解" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/37002d76718f469b4a4e2c3ae6e5a20a.webp" />
+        <meta property="og:release_date" content="2024-12-08T07:14:58" />
+    <meta property="og:updated_time" content="2024-12-08T07:14:58" />
+        <meta property="og:description" content="Q：需求是这样的： 兄弟组件或者子组件执行了某个操作之后，需要在另外一个A组件中执行刷新操作（某个方法）  解决思路： 1.如果是父子组件，可以用事件来处理，on，emit 2.我这个更普遍一点，不一" />
+        
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="VUE跨组件数据传递方法详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
-    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
     <!-- Google tag (gtag.js) -->
@@ -65,7 +94,7 @@
                 </div>
             </div>
         </header>
-        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
@@ -93,16 +122,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-8-26-free-v2ray.htm" title="「8月26日」最高速度19.1M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「8月26日」最高速度19.1M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-23-node-share-links.htm" title="「12月23日」最高速度18.1M/S，2024年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接">「12月23日」最高速度18.1M/S，2024年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-v2ray.htm" title="「11月6日」最高速度21.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「11月6日」最高速度21.4M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-16-free-high-speed-nodes.htm" title="「8月16日」最高速度20M/S，2024年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接">「8月16日」最高速度20M/S，2024年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-26192.htm" title="养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）">养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-17-free-v2ray-subscribe.htm" title="「9月17日」最高速度21.8M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「9月17日」最高速度21.8M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="「11月17日」最高速度21M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「11月17日」最高速度21M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-25-free-node-subscribe-links.htm" title="「8月25日」最高速度20.5M/S，2024年SSR/Clash/Shadowrocket/V2ray每天更新免费节点订阅链接">「8月25日」最高速度20.5M/S，2024年SSR/Clash/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-24-node-share.htm" title="「9月24日」最高速度20.5M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「9月24日」最高速度20.5M/S，2024年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-1-free-node-subscribe-links.htm" title="「10月1日」最高速度18.7M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接">「10月1日」最高速度18.7M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-45038.htm" title="动物疫苗规定几岁打的（动物疫苗接种时间）">动物疫苗规定几岁打的（动物疫苗接种时间）</a></li>
+                        <li class="py-2"><a href="/news/article-36623.htm" title="三国杀武将faq（三国杀武将翻面有啥用）">三国杀武将faq（三国杀武将翻面有啥用）</a></li>
+                        <li class="py-2"><a href="/news/article-31867.htm" title="动物防疫移动注射栏规范要求（动物防疫疫苗管理）">动物防疫移动注射栏规范要求（动物防疫疫苗管理）</a></li>
+                        <li class="py-2"><a href="/news/article-36098.htm" title="长春好的宠物医院（长春哪个宠物医院好）">长春好的宠物医院（长春哪个宠物医院好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-node-share.htm" title="「11月9日」最高速度21.6M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接">「11月9日」最高速度21.6M/S，2024年Clash/Shadowrocket/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37594.htm" title="宠物领养APP的设计与实现（宠物领养app的设计与实现方案）">宠物领养APP的设计与实现（宠物领养app的设计与实现方案）</a></li>
+                        <li class="py-2"><a href="/news/article-28997.htm" title="torch报错TypeError: can&#8217;t convert CUDA tensor to numpy. Use Tensor.cpu() to copy the tensor">torch报错TypeError: can&#8217;t convert CUDA tensor to numpy. Use Tensor.cpu() to copy the tensor</a></li>
+                        <li class="py-2"><a href="/news/article-47494.htm" title="分享MongoDB修改oplog大小的4种方法_MongoDB_">分享MongoDB修改oplog大小的4种方法_MongoDB_</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-node-subscribe.htm" title="「1月13日」最高速度22.4M/S，2025年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接">「1月13日」最高速度22.4M/S，2025年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-32337.htm" title="C++2结构体，输入与输出函数">C++2结构体，输入与输出函数</a></li>
                     </ul>
     </div>
 </div>
@@ -114,22 +143,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

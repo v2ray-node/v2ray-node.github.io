@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2ray-node.github.io/news/article-32806.htm" />
     <title>C/C++编程：异常处理(exception handling)的原理</title>
         <meta name="description" content="问题：很久之前，C程序是使用错误码来处理错误的，那为什么C++还要引入异常呢？  回答：异常不能被忽略。  如果一个函数通过设置一个状态变量来返回错误码来表示一个异常状态，没有办法保证函数调用将一定检" />
         <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-32806.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="C/C++编程：异常处理(exception handling)的原理" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/6bd468ee81514cc7f73ce3590652082a.webp" />
+        <meta property="og:release_date" content="2024-12-29T05:24:41" />
+    <meta property="og:updated_time" content="2024-12-29T05:24:41" />
+        <meta property="og:description" content="问题：很久之前，C程序是使用错误码来处理错误的，那为什么C++还要引入异常呢？  回答：异常不能被忽略。  如果一个函数通过设置一个状态变量来返回错误码来表示一个异常状态，没有办法保证函数调用将一定检" />
+        
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C/C++编程：异常处理(exception handling)的原理">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
-    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="__ADDON__/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
     <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
     <!-- Google tag (gtag.js) -->
@@ -65,7 +94,7 @@
                 </div>
             </div>
         </header>
-        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(__ADDON__/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
@@ -93,16 +122,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-7-node-share-links.htm" title="「9月7日」最高速度22.8M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「9月7日」最高速度22.8M/S，2024年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-24-clash-v2ray-ss-ssr.htm" title="「10月24日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「10月24日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-v2ray.htm" title="「10月23日」最高速度20.4M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接">「10月23日」最高速度20.4M/S，2024年V2ray/SSR/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-14-node-share-links.htm" title="「11月14日」最高速度19.1M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接">「11月14日」最高速度19.1M/S，2024年V2ray/Shadowrocket/Clash/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-9-free-v2ray.htm" title="「9月9日」最高速度23M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「9月9日」最高速度23M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-18-free-high-speed-nodes.htm" title="「9月18日」最高速度21.8M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接">「9月18日」最高速度21.8M/S，2024年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-17-free-v2ray-subscribe.htm" title="「9月17日」最高速度21.8M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「9月17日」最高速度21.8M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-v2ray-subscribe.htm" title="「11月8日」最高速度18.5M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「11月8日」最高速度18.5M/S，2024年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-subscribe-node.htm" title="「11月25日」最高速度20.6M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接">「11月25日」最高速度20.6M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-node-subscribe.htm" title="「10月14日」最高速度21.2M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「10月14日」最高速度21.2M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-32807.htm" title="成都宠物领养中心地址在哪里啊（成都宠物领养中心官网收容中心）">成都宠物领养中心地址在哪里啊（成都宠物领养中心官网收容中心）</a></li>
+                        <li class="py-2"><a href="/news/article-33274.htm" title="1970年4月22日出生是什么命（1970年4月18日出生是什么命）">1970年4月22日出生是什么命（1970年4月18日出生是什么命）</a></li>
+                        <li class="py-2"><a href="/news/article-23440.htm" title="宠物领养网站的设计与实现开题报告论文（宠物领养系统毕业设计）">宠物领养网站的设计与实现开题报告论文（宠物领养系统毕业设计）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-node-subscribe-links.htm" title="「12月24日」最高速度19.1M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接">「12月24日」最高速度19.1M/S，2024年Clash/V2ray/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21588.htm" title="开宠物店盈利吗现在还有吗（开宠物店到底赚不赚钱）">开宠物店盈利吗现在还有吗（开宠物店到底赚不赚钱）</a></li>
+                        <li class="py-2"><a href="/news/article-49001.htm" title="【EF框架】DbContext的使用">【EF框架】DbContext的使用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-node-share-links.htm" title="「1月19日」最高速度21.6M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「1月19日」最高速度21.6M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-high-speed-nodes.htm" title="「1月21日」最高速度22M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接">「1月21日」最高速度22M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22967.htm" title="VUE跨组件数据传递方法详解">VUE跨组件数据传递方法详解</a></li>
+                        <li class="py-2"><a href="/news/article-42061.htm" title="动物接种疫苗的注意事项包括哪些方面（动物接种要点）">动物接种疫苗的注意事项包括哪些方面（动物接种要点）</a></li>
                     </ul>
     </div>
 </div>
@@ -114,22 +143,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
