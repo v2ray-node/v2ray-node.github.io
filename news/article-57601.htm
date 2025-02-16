@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-57601.htm" />
+    <title>python中利用正则表达式匹配ip地址</title>
+        <meta name="description" content="现在有一道题目，要求利用python中re模块来匹配ip地址，我们应如何着手？ 首先能想到的是ip地址是数字，正则表达式是如何匹配数字的呢？  \d或[0-9]  对于这个问题，不要一下子上来就写匹配" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-57601.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="python中利用正则表达式匹配ip地址" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/95bb0467eb6b57893fa4076c6c174669.webp" />
+        <meta property="og:release_date" content="2025-02-16T07:21:22" />
+    <meta property="og:updated_time" content="2025-02-16T07:21:22" />
+        <meta property="og:description" content="现在有一道题目，要求利用python中re模块来匹配ip地址，我们应如何着手？ 首先能想到的是ip地址是数字，正则表达式是如何匹配数字的呢？  \d或[0-9]  对于这个问题，不要一下子上来就写匹配" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python中利用正则表达式匹配ip地址">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>python中利用正则表达式匹配ip地址</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <p><span style="font-family:verdana, geneva;font-size:15px;">现在有一道题目，要求利用python中re模块来匹配ip地址，我们应如何着手？</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">首先能想到的是ip地址是数字，正则表达式是如何匹配数字的呢？</span></p> <div class="cnblogs_code"> <pre>\d或[0-9]</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">对于这个问题，不要一下子上来就写匹配模式，应该一步步分解，把复杂的问题简单化</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">比如ip地址，我们可以总结一下规律</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">1. 它是一个字符串</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">2. 字符串内部是由4个1-3位的数字和3个.组成</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">3. 数字的范围是0-255</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">接下来，我们先试一下匹配第1个数字</span></p> </h1> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; <span style="color:#0000ff;">import</span><span style="color:#000000;"> re </span>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 3), match=<span style="color:#800000;">'</span><span style="color:#800000;">192</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> </h1> <p><span style="font-family:verdana, geneva;font-size:15px;">值得注意的是，由于正则表达式中的元字符 . 表示除了\n之外的任意一个字符，我们需要匹配 . 本身，就需要用 \ 进行转义</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d\.</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.12</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 4), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> </h1> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 15), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <h2><span style="font-family:verdana, geneva;font-size:16px;">这样写有什么问题呢？</span></h2> <h2><span style="font-family:verdana, geneva;font-size:16px;">1. 我们的数字并不都是3位，像192.168.100.1这样的，我们的匹配模式就失效了</span></h2> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&gt;&gt;&gt; </pre> </p></div> <h2><span style="font-family:verdana, geneva;font-size:16px;">2. 不够美观</span></h2> </h1> <p><span style="font-family:verdana, geneva;font-size:15px;">很多人一上手，就写成了[0-255]，这不就是数字的范围0-255吗？我们说，这样是不对的</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">正则表达式中，真正要匹配的永远是字符串，一个字符串内部是由三位的数字构成的，如果需要匹配三位数字的形式，就需要用到[0-9][0-9][0-9]或\d\d\d，用一个[0-9]表示的只能匹配一位，[0-255]这种错误的写法也只能匹配到一位0-9之间的数字</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">[0-255]</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">255</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 1), match=<span style="color:#800000;">'</span><span style="color:#800000;">2</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:16px;">如下图，第一个[0-255]匹配到了1， \.匹配到了. </span></p> <p><span style="font-family:verdana, geneva;font-size:16px;">这个ip地址中根本没有 1. 这种形式的，所以返回了None</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">[0-255]\.[0-255]\.[0-255]\.[0-255]</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&gt;&gt;&gt; </pre> </p></div> </h1> <p><span style="font-family:verdana, geneva;font-size:15px;">既然上面的不对，那能不能把255分解成 2, 5, 5， 我们匹配时能否写成[0-2][0-5][0-5]，看似是没问题的，我们来试试</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">[0-2][0-5][0-5]</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(8, 11), match=<span style="color:#800000;">'</span><span style="color:#800000;">100</span><span style="color:#800000;">'</span>&gt; &gt;&gt;&gt; </pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">为什么192没有匹配到？168也没有匹配到？因为数字的十位和个位最大只能是5，超过5的肯定没法匹配</span></p> </h1> <p><span style="font-family:verdana, geneva;font-size:15px;">我们来看下0-255这个范围，当百位是0或者1时，十位和个位可以是[0-9]，也就是\d，当百位是2时，十位是[0-4]时，个位可以是\d，当百位是2时，十位是5时，个位只能是[0-5]，那么，我们是不是可以这样来写，比如匹配192，匹配模式可以写成</span></p> <div class="cnblogs_code"> <pre>[01]\d\d|2[0-4]\d|25[0-5]</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">如果有重复的，我们可以给上面的模式加上 {n} 表示重复匹配前面的字符n次</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]\d\d|2[0-4]\d|25[0-5]\d)\.){3}([01]\d\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 15), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">看似正确了，但是还是匹配不到数字 1 ，因为我们的百位是[01]，意味这如果是 1 的情况下，我们的结果是001，但ip地址是不能写成001， 002的</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]\d\d|2[0-4]\d|25[0-5]\d)\.){3}([01]\d\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&gt;&gt;&gt; </pre> </p></div> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]\d\d|2[0-4]\d|25[0-5]\d)\.){3}([01]\d\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.001</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 15), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.001</span><span style="color:#800000;">'</span>&gt; &gt;&gt;&gt; </pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">可以通过{0,1}来优化，表示前面的字符重复0-1次，也可以用 ?</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5]\d)\.){3}([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 13), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">'</span>&gt;  &gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]?\d?\d|2[0-4]\d|25[0-5]\d)\.){3}([01]?\d?\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 13), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">这样，当数字只有个位时，百位的0匹配0次，十位的0匹配0次，只留下个位数字[0-9]</span></p> <p>&nbsp;</p> </div> <p>转载于:https://www.cnblogs.com/my_captain/p/9210605.html</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-57035.htm">宠物绝育活动文案（宠物绝育活动海报）</a></p>
+                                        <p>下一个：<a href="/news/article-57602.htm">宠物店一年收入多少钱（宠物店一个月利润怎么样）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-21588.htm" title="开宠物店盈利吗现在还有吗（开宠物店到底赚不赚钱）">开宠物店盈利吗现在还有吗（开宠物店到底赚不赚钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-node-subscribe-links.htm" title="「2月1日」最高速度21.2M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「2月1日」最高速度21.2M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-47983.htm" title="广州有领养宠物猫的地方吗最近（广州有领养宠物猫的地方吗?）">广州有领养宠物猫的地方吗最近（广州有领养宠物猫的地方吗?）</a></li>
+                        <li class="py-2"><a href="/news/article-47029.htm" title="狗粮加工厂需要什么手续办理（狗粮加工厂需要哪些证件）">狗粮加工厂需要什么手续办理（狗粮加工厂需要哪些证件）</a></li>
+                        <li class="py-2"><a href="/news/article-42061.htm" title="动物接种疫苗的注意事项包括哪些方面（动物接种要点）">动物接种疫苗的注意事项包括哪些方面（动物接种要点）</a></li>
+                        <li class="py-2"><a href="/news/article-26192.htm" title="养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）">养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）</a></li>
+                        <li class="py-2"><a href="/news/article-24821.htm" title="被猫抓不用***的图片（孩子10几天后才说被猫咬了）">被猫抓不用***的图片（孩子10几天后才说被猫咬了）</a></li>
+                        <li class="py-2"><a href="/news/article-40569.htm" title="云南农大动物医院肖院长简历图片（云南农大动物医院肖院长简历图片大全）">云南农大动物医院肖院长简历图片（云南农大动物医院肖院长简历图片大全）</a></li>
+                        <li class="py-2"><a href="/news/article-31281.htm" title="免费领养狗狗正规网站平台有哪些软件可以下载（免费领养狗狗app）">免费领养狗狗正规网站平台有哪些软件可以下载（免费领养狗狗app）</a></li>
+                        <li class="py-2"><a href="/news/article-51071.htm" title="动物医院理念（动物医院企业文化）">动物医院理念（动物医院企业文化）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
