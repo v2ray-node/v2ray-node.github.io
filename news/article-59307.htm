@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-59307.htm" />
+    <title>【spring】详解@RequestMapping注解的基本属性以及使用</title>
+        <meta name="description" content="文章目录  @RequestMapping注解功能 @RequestMapping注解位置 @RequestMapping注解属性   value属性 method属性 params属性 header" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-59307.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="【spring】详解@RequestMapping注解的基本属性以及使用" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/37002d76718f469b4a4e2c3ae6e5a20a.webp" />
+        <meta property="og:release_date" content="2025-02-19T06:37:09" />
+    <meta property="og:updated_time" content="2025-02-19T06:37:09" />
+        <meta property="og:description" content="文章目录  @RequestMapping注解功能 @RequestMapping注解位置 @RequestMapping注解属性   value属性 method属性 params属性 header" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="【spring】详解@RequestMapping注解的基本属性以及使用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>【spring】详解@RequestMapping注解的基本属性以及使用</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#font_face_size6_colorblueRequestMapping_3" rel="nofollow"><font face="楷体" size="6" color="blue">@RequestMapping注解功能</font></a></li> <li><a href="#font_face_size6_colorblueRequestMapping_6" rel="nofollow"><font face="楷体" size="6" color="blue">@RequestMapping注解位置</font></a></li> <li><a href="#font_face_size6_colorblueRequestMapping_27" rel="nofollow"><font face="楷体" size="6" color="blue">@RequestMapping注解属性</font></a></li> <li> <ul> <li><a href="#font_face_size5_colorFFFFvalue_41" rel="nofollow"><font face="楷体" size="5" color="##FFFF">value属性</font></a></li> <li><a href="#font_face_size5_colorFFFFmethod_58" rel="nofollow"><font face="楷体" size="5" color="##FFFF">method属性</font></a></li> <li><a href="#font_face_size5_colorFFFFparams_94" rel="nofollow"><font face="楷体" size="5" color="##FFFF">params属性</font></a></li> <li><a href="#font_face_size5_colorFFFFheaders_120" rel="nofollow"><font face="楷体" size="5" color="##FFFF">headers属性</font></a></li> </ul> </li> <li><a href="#font_face_size6_colorblueant_149" rel="nofollow"><font face="楷体" size="6" color="blue">支持ant风格的请求路径</font></a></li> <li><a href="#font_face_size6_colorblue_174" rel="nofollow"><font face="楷体" size="6" color="blue">支持路径中的占位符</font></a></li> </ul> </div> <hr/> </h1> <p><font face="楷体" size="5">@RequestMapping注解的作用就是将请求和处理请求的控制器方法关联起来，建立映射关系。<br /> SpringMVC 接收到指定的请求，就会来找到在映射关系中对应的控制器方法来处理这个请求。</font></p> </h1> <p><font face="楷体" size="5">@RequestMapping标识一个类：设置映射请求的请求路径的初始信息<br /> @RequestMapping标识一个方法：设置映射请求的请求路径的具体信息</font></p> <blockquote> <p><font face="楷体" size="5">注意：如果类上和方法上都有这个注解，那么就先访问初始信息，然后再访问具体信息</font></p> </blockquote> <pre><code class="prism language-html">href="@/test/testRequestMapping"</code></pre> <pre><code class="prism language-java"><span class="token annotation punctuation">@Controller</span><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/test"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">RequestMappingController</span><span class="token punctuation">{<!-- --></span><span class="token comment">//此时请求映射所映射的请求的请求路径为：/test/testRequestMapping @RequestMapping("/testRequestMapping")</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testRequestMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> </h1> <p><font face="楷体" size="5">下图是 @RequestMapping注解的属性，下面我们简单讲解几个比较常见的属性<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220903/f0a1237d6cb9fed3ff62ab58c5dda700.jpg" alt="【spring】详解@RequestMapping注解的基本属性以及使用"><br /> 属性的基本介绍：</font></p> <ul> <li><font face="楷体" size="5">value属性通过请求的请求地址匹配请求映射</font></li> <li><font face="楷体" size="5">method通过请求的请求方式来匹配请求映射</font></li> <li><font face="楷体" size="5">params通过请求参数匹配请求</font></li> <li><font face="楷体" size="5">headers通过请求头信息匹配请求</font></li> </ul> <blockquote> <p><font face="楷体" size="5">注意：<br /> 1、RequestMapping设置的属性越多，满足的条件就越多，匹配的请求就越精确<br /> 2、所有的请求条件同时满足时才会匹配请求映射</font></p> </blockquote> <h2><a id="font_face_size5_colorFFFFvalue_41" rel="nofollow"></a><font face="楷体" size="5" color="##FFFF">value属性</font></h2> <p><font face="楷体" size="5">@RequestMapping注解的value属性通过请求的请求地址匹配请求映射</font></p> <p><font face="楷体" size="5">@RequestMapping注解的value属性是一个字符串类型的数组，表示该请求映射能够匹配多个请求地址所对应的请求，当请求满足其中一个地址的时候，就可以访问到</font></p> <p><font face="楷体" size="5">@RequestMapping注解的value属性必须设置，@RequestMapping注解至少通过请求地址匹配请求映射，其他的属性可以不设置</font></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span> value<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"/testRequestMapping"</span><span class="token punctuation">,</span><span class="token string">"/test"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testRequestMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/testRequestMapping}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试RequestMapping注解的value属性--&gt;/testRequestMapping<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/test}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试RequestMapping注解的value属性--&gt;/test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span></code></pre> <h2><a id="font_face_size5_colorFFFFmethod_58" rel="nofollow"></a><font face="楷体" size="5" color="##FFFF">method属性</font></h2> <p><font face="楷体" size="5">@RequestMapping注解的method属性通过请求的请求方式（get或post）匹配请求映射</font></p> <p><font face="楷体" size="5">@RequestMapping注解的method属性是一个RequestMethod类型的数组，表示该请求映射能够匹配多种请求方式的请求 （请求方式包括：GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE）</font></p> <p><font face="楷体" size="5">注意：</font></p> <p><font face="楷体" size="5">1、method 不设置的时候是不以请求方式为条件，任意的请求方式都可以，设置的请求方式不对时（这时有put或者是delete请求），默认是get请求，</font></p> <p><font face="楷体" size="5">2、若当前请求的请求地址满足请求映射的value属性，但是请求方式不满足method属性，则浏览器报错 405：<code>Request method 'POST' not supported（请求方式不被支持）</code></font></p> <p><font face="楷体" size="5">3、对于处理指定请求方式的控制器方法，SpringMVC中提供了@RequestMapping的派生注解<br /> 处理get请求的映射–&gt;@GetMapping<br /> 处理post请求的映射–&gt;@PostMapping<br /> 处理put请求的映射–&gt;@PutMapping<br /> 处理delete请求的映射–&gt;@DeleteMapping</font></p> <p><font face="楷体" size="5">4、常用的请求方式有get，post，put，delete<br /> 但是目前浏览器只支持get和post，若在form表单提交时，为method设置了其他请求方式的字符 串（put或delete），则按照默认的请求方式get处理<br /> 若要发送put和delete请求，则需要通过spring提供的过滤器HiddenHttpMethodFilter</font></p> <pre><code class="prism language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/test}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试@RequestMapping的value属性--&gt;/test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span><span class="token attr-name"><span class="token namespace">th:</span>action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/test}<span class="token punctuation">"</span></span><span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span><span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>    value<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"/testRequestMapping"</span><span class="token punctuation">,</span><span class="token string">"/test"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>   method<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>GET<span class="token punctuation">,</span><span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>POST<span class="token punctuation">}</span><span class="token comment">//两种请求方式都支持</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testRequestMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <h2><a id="font_face_size5_colorFFFFparams_94" rel="nofollow"></a><font face="楷体" size="5" color="##FFFF">params属性</font></h2> <p><font face="楷体" size="5">@RequestMapping注解的params属性通过请求的请求参数匹配请求映射</font></p> <p><font face="楷体" size="5">@RequestMapping注解的params属性是一个字符串类型的数组，可以通过四种表达式设置请求参数 和请求映射的匹配关系</font></p> <ul> <li><font face="楷体" size="5">“param”：要求请求映射所匹配的请求必须携带param请求参数</font></li> <li><font face="楷体" size="5">“!param”：要求请求映射所匹配的请求必须不能携带param请求参数</font></li> <li><font face="楷体" size="5">“param=value”：要求请求映射所匹配的请求必须携带param请求参数且param=value</font></li> <li><font face="楷体" size="5"> “param!=value”：要求请求映射所匹配的请求必须携带param请求参数但是param!=value</font></li> </ul> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>      value<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"/testRequestMapping"</span><span class="token punctuation">,</span><span class="token string">"/test"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>     method<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>GET<span class="token punctuation">,</span><span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>POST<span class="token punctuation">}</span><span class="token punctuation">,</span>     params<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"username"</span><span class="token punctuation">,</span><span class="token string">"password!=123456"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testRequestMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/test(username=<span class="token punctuation">'</span>admin<span class="token punctuation">'</span>,password=123456)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试@RequestMapping的 params属性--&gt;/test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span></code></pre> <p><font face="楷体" size="5">注意：<br /> 若当前请求满足@RequestMapping注解的value和method属性，但是不满足params属性，此时页面回报错400：<code>Parameter conditions "username, password!=123456" not met for actual request parameters: username={admin}, password={123456}</code></font></p> <h2><a id="font_face_size5_colorFFFFheaders_120" rel="nofollow"></a><font face="楷体" size="5" color="##FFFF">headers属性</font></h2> <p><font face="楷体" size="5">@RequestMapping注解的headers属性通过请求的请求头信息匹配请求映射</font></p> <p><font face="楷体" size="5">@RequestMapping注解的headers属性是一个字符串类型的数组，可以通过四种表达式设置请求头信息和请求映射的匹配关系</font></p> <ul> <li><font face="楷体" size="5">“header”：要求请求映射所匹配的请求必须携带header请求头信息</font></li> <li><font face="楷体" size="5">“!header”：要求请求映射所匹配的请求必须不能携带header请求头信息</font></li> <li><font face="楷体" size="5">“header=value”：要求请求映射所匹配的请求必须携带header请求头信息且header=value</font></li> <li><font face="楷体" size="5">“header!=value”：要求请求映射所匹配的请求必须携带header请求头信息且header!=value</font></li> </ul> <blockquote> <p><font face="楷体" size="5">注意：若当前请求满足@RequestMapping注解的value和method属性，但是不满足headers属性，此时页面显示404错误，即资源未找到</font></p> </blockquote> <pre><code class="prism language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/testParamsAndHeaders(username=<span class="token punctuation">'</span>admin<span class="token punctuation">'</span>,password=123)}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试RequestMapping注解的params属性--&gt;/testParamsAndHeaders<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span></code></pre> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>             value<span class="token operator">=</span><span class="token string">"/testParamsAndHeaders"</span><span class="token punctuation">,</span>             params<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"username"</span><span class="token punctuation">,</span><span class="token string">"password!=123456"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>             headers<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"Host=localhost:8080"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testParamsAndHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> </h1> <p><font face="楷体" size="5"><code>？</code>：表示任意的单个字符，只可以填一个字符，不能有<code>/?</code>特殊符号<br /><code>*</code>：表示任意的0个或多个字符 ，可以填写多个字符，不能有<code>/?</code>特殊符号<br /><code>**</code>：表示任意的一层或多层目录，目录结构，可以有<code>/?</code>特殊符号，但是需要注意：</font></p> <p><font face="楷体" size="5">注意：在使用<code>**</code>时，只能使用<code>/**/xxx</code>的方式</font></p> <pre><code class="prism language-java"><span class="token comment">//@RequestMapping("/a?a/testAnt")</span><span class="token comment">//@RequestMapping("/a*a/testAnt")</span><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/**/testAnt"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testAnt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/a1a/testAnt}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试@RequestMapping可以匹配ant风格的路径--&gt;使用?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/a1a/testAnt}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试@RequestMapping可以匹配ant风格的路径--&gt;使用*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/a1a/testAnt}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试@RequestMapping可以匹配ant风格的路径--&gt;使用**<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span></code></pre> </h1> <p><font face="楷体" size="5">占位符—{}，用来传参，不在路由中出现？直接显示数据</font></p> <pre><code class="prism language-handlebars"><span class="token variable">原始方式：</span><span class="token punctuation">/</span><span class="token variable">deleteUser?id</span><span class="token punctuation">=</span><span class="token number">1</span><span class="token variable">rest方式：</span><span class="token punctuation">/</span><span class="token variable">deleteUser</span><span class="token punctuation">/</span><span class="token number">1</span></code></pre> <p><font face="楷体" size="5">SpringMVC路径中的占位符常用于RESTful风格中，当请求路径中将某些数据通过路径的方式传输到服务器中，就可以在相应的@RequestMapping注解的value属性中通过占位符{xxx}表示传输的数据，在通过@PathVariable注解，将占位符所表示的数据赋值给控制器方法的形参</font></p> <pre><code class="prism language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@{/testRest/1/admin}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>测试路径中的占位符--&gt;/testRest<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span></code></pre> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/testRest/{id}/{username}"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">testRest</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token class-name">String</span> id<span class="token punctuation">,</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span><span class="token class-name">String</span> username<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"id:"</span><span class="token operator">+</span>id<span class="token operator">+</span><span class="token string">",username:"</span><span class="token operator">+</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">//最终输出的内容为--&gt;id:1,username:admin</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58771.htm">中国兽药十大名牌厂家排名100强企业名单（全国兽药十大名厂）</a></p>
+                                        <p>下一个：<a href="/news/article-59308.htm">生产狗粮的成本和利润是多少（生产狗粮的利润有多大）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-free-subscribe-node.htm" title="「2月17日」最高速度21.2M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「2月17日」最高速度21.2M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-v2ray-subscribe.htm" title="「12月16日」最高速度18.1M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「12月16日」最高速度18.1M/S，2024年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-41555.htm" title="JS &#8211;引用数据类型">JS &#8211;引用数据类型</a></li>
+                        <li class="py-2"><a href="/news/article-50523.htm" title="jsp中使用vue，jsp中使用elementUI">jsp中使用vue，jsp中使用elementUI</a></li>
+                        <li class="py-2"><a href="/news/article-28072.htm" title="宠物领养小程序有哪些软件 宠物领养小程序有哪些软件好用">宠物领养小程序有哪些软件 宠物领养小程序有哪些软件好用</a></li>
+                        <li class="py-2"><a href="/news/article-54250.htm" title="动物医院连锁机构 动物医院连锁机构有哪些">动物医院连锁机构 动物医院连锁机构有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-33758.htm" title="React Ant Design Pro + .Net5 WebApi：后端环境搭建-IdentityServer4（二）授权模式">React Ant Design Pro + .Net5 WebApi：后端环境搭建-IdentityServer4（二）授权模式</a></li>
+                        <li class="py-2"><a href="/news/article-45523.htm" title="动物疫苗接种证书怎么查询（动物疫苗查询真伪）">动物疫苗接种证书怎么查询（动物疫苗查询真伪）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-free-subscribe-node.htm" title="「1月22日」最高速度22.2M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「1月22日」最高速度22.2M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-high-speed-nodes.htm" title="「1月21日」最高速度22M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接">「1月21日」最高速度22M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
