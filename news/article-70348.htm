@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-70348.htm" />
+    <title>go微服务框架Kratos简单使用总结</title>
+        <meta name="description" content="Kratos是B站开源的一款go的微服务框架，最近PS5上的 战神·诸神黄昏比较火，主角就是奎托斯。这个框架的名字就取自他。 在进行框架选型时，对比了目前主流的很多go微服务框架，如Zero，最后对比" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-70348.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="go微服务框架Kratos简单使用总结" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/610552e86a81521a4f6a2a8194cb9de6.webp" />
+        <meta property="og:release_date" content="2025-03-09T09:46:24" />
+    <meta property="og:updated_time" content="2025-03-09T09:46:24" />
+        <meta property="og:description" content="Kratos是B站开源的一款go的微服务框架，最近PS5上的 战神·诸神黄昏比较火，主角就是奎托斯。这个框架的名字就取自他。 在进行框架选型时，对比了目前主流的很多go微服务框架，如Zero，最后对比" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="go微服务框架Kratos简单使用总结">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>go微服务框架Kratos简单使用总结</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>Kratos是B站开源的一款go的微服务框架，最近PS5上的 战神·诸神黄昏比较火，主角就是奎托斯。这个框架的名字就取自他。</p> <p>在进行框架选型时，对比了目前主流的很多go微服务框架，如Zero，最后对比之下，选择了Kratos，原因是Kratos给了开发人员更多的选择和更多的自由空间，方便自定义实现和选用很多东西，可以更快的适应已有的服务 以及 让开发者更快地上手使用（因为选用自己熟悉的工具）。</p> <blockquote> <p>Kratos并不绑定于特定的基础设施，不限定于某种注册中心，或数据库ORM等，所以您可以十分轻松地将任意库集成进项目里，与Kratos共同运作。</p> </blockquote> <h4><a id="httpsgokratosdevdocs_6" rel="nofollow"></a>原则<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://go-kratos.dev/docs/#%E5%8E%9F%E5%88%99"  rel="nofollow"></a></h4> <ul> <li><strong>简单</strong>：不过度设计，代码平实简单；</li> <li><strong>通用</strong>：通用业务开发所需要的基础库的功能；</li> <li><strong>高效</strong>：提高业务迭代的效率；</li> <li><strong>稳定</strong>：基础库可测试性高，覆盖率高，有线上实践安全可靠；</li> <li><strong>健壮</strong>：通过良好的基础库设计，减少错用；</li> <li><strong>高性能</strong>：性能高，但不特定为了性能做 hack 优化，引入 unsafe ；</li> <li><strong>扩展性</strong>：良好的接口设计，来扩展实现，或者通过新增基础库目录来扩展功能；</li> <li><strong>容错性</strong>：为失败设计，大量引入对 SRE 的理解，鲁棒性高；</li> <li><strong>工具链</strong>：包含大量工具链，比如 cache 代码生成，lint 工具等等；</li> </ul> <p>这是kratos官方挂出的框架设计出发点，其中有几点是在现有工具中尤为宝贵，并且十分契合go开发风格的。如 简单，高效，扩展性，容错性。</p> <p>有人说，使用go最大的好处就是无论什么人，他们水平高或低，可以写出相近的代码，大家都读得懂。</p> <p>我也认为，go的上手难度较低，风格相对固定，性能也还可以，所以，在中国的互联网企业风靡了起来。</p> <p>而kratos这个框架，无疑将go的这些特性进行了放大。接下来，我会将我在实际使用中，最关注的一些点做些分享和记录。</p> <hr/> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221120/ce35620b88939c61a9650b0103bfa937.jpg" alt="go微服务框架Kratos简单使用总结"></p> <p>首先，是整个kratos的架构风格图，可以看到kratos将整个服务大体分为了3层，API / Service / DB</p> <p>左侧标注了在 Service和DB层，使用依赖注入（DI）进行实现，工具名称为Wire。</p> <p>从这张图中，可以看到Wire这个工具几乎贯穿Kratos架构始终，是一个大角色。</p> <hr/> <h3><a id="1__38" rel="nofollow"></a>1. 传输协议</h3> <p>支持http + grpc两种调用方式，通过编写proto文件来实现。</p> <p>一般，http开放给外部调用，可以使用restful风格定义。grpc面向内部微服务之间进行调用。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221120/a0efc183abff559a490e1b9bf1af0424.jpg" alt="go微服务框架Kratos简单使用总结"></p> <p> 在项目中，会以这样的结构出现，并且可以对不同协议进来的请求进行处理，添加处理的中间件，如<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://go-kratos.dev/docs/component/middleware/auth"  rel="nofollow">权限校验</a>、<code>熔断限流</code>等等。</p> <h3><a id="2__48" rel="nofollow"></a>2. 日志</h3> <p>在kratos中，可以自定义日志框架选型，设置日志格式和输出内容，然后将logger对象以依赖注入的方式，分配给server中的grpc server和http server，这样就可以实现每次收到请求后的日志打印。</p> <p>将logger对象以依赖注入的方式，注入到业务层，就可以在业务层中统一使用logger进行输出。</p> <h3><a id="3__54" rel="nofollow"></a>3. 错误处理</h3> <p>在grpc中，比较通用的一种错误处理方式就是直接通过 proto 预定义定义错误码，然后通过 proto-gen-go 生成帮助代码，直接返回 error。</p> <pre><code class="prism language-json"><span class="token punctuation">{<!-- --></span><span class="token comment">// 错误码，跟 http-status 一致，并且在 grpc 中可以转换成 grpc-status</span><span class="token string-property property">"code"</span><span class="token operator">:</span><span class="token number">500</span><span class="token punctuation">,</span><span class="token comment">// 错误原因，定义为业务判定错误码</span><span class="token string-property property">"reason"</span><span class="token operator">:</span><span class="token string">"USER_NOT_FOUND"</span><span class="token punctuation">,</span><span class="token comment">// 错误信息，为用户可读的信息，可作为用户提示内容</span><span class="token string-property property">"message"</span><span class="token operator">:</span><span class="token string">"invalid argument error"</span><span class="token punctuation">,</span><span class="token comment">// 错误元信息，为错误添加附加可扩展信息</span><span class="token string-property property">"metadata"</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token string-property property">"foo"</span><span class="token operator">:</span><span class="token string">"bar"</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>结构是这样的。这里可以发现，为了兼容grpc，在http的返回结果中，code也无法自定义，只能跟随httpcode。所以这里客户端或者第三方去处理错误时，需要判断reason字段。</p> <h3><a id="4__75" rel="nofollow"></a>4. 配置管理</h3> <p>使用proto文件定义配置和生成struct，然后将yaml中的内容读取到对应struct 字段中进行使用。</p> <p>在这里我们可以注意到，在kratos中，除了传输格式使用了proto进行定义之外，错误处理和配置管理，也使用了proto来进行。可以说，一切皆proto。</p> <h3><a id="5_wire_81" rel="nofollow"></a>5. wire</h3> <p><strong>Wire</strong> 是一个灵活的依赖注入工具（需要安装），通过自动生成代码的方式在编译期完成依赖注入。通过<em>Wire</em> 进行初始化代码，可以很好地解决组件之间的耦合，以及提高代码维护性。</p> <p>打开Kratos的示例项目，从main入口看，有一处调用了wireApp方法，这里就是一切的源头（万恶之源）。</p> <p>这个方法调用的是main同目录的wire文件中的wireApp方法，同目录的wire_gen.go实现了此方法。</p> <p>wire_gen中去实例化不同service和组建的对象，用于调用。关系图如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221120/562c91bec5a1c18d95214576e193cf88.jpg" alt="go微服务框架Kratos简单使用总结"></p> <p>在每个模块中，只需要一个<em>ProviderSet</em> 提供者集合，就可以在 wire 中进行依赖注入。</p> <p>简单的描述一下：有一个数据库连接对象，service需要操作数据库，依赖数据库连接对象。这时候我们可以声明数据库连接对象在<em>ProviderSet</em>集合，然后在service对象处声明，我需要一个数据库连接对象。 然后我们使用wire工具，就可以自动帮我们生成依赖注入的代码。</p> <p>这个功能使用的时候，我才真正明白了依赖注入。和使用java的依赖注入是完全不同的感觉。有了显式的依赖注入，让代码间的依赖关系一目了然。当我们查看同事代码时，只需要点开wire_gen.go 代码，什么处理过程 需要依赖哪些组件，清清楚楚，大大提高了代码的维护性。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69715.htm">哪里有免费给狗狗打疫苗的地方重庆（重庆哪里可以免费给狗狗打狂犬疫苗）</a></p>
+                                        <p>下一个：<a href="/news/article-70349.htm">宠物领养协议书范本模板图片下载 宠物领养协议书范本模板图片下载大全</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-51071.htm" title="动物医院理念（动物医院企业文化）">动物医院理念（动物医院企业文化）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-clash-v2ray-ss-ssr.htm" title="「1月31日」最高速度18.4M/S，2025年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接">「1月31日」最高速度18.4M/S，2025年Shadowrocket/SSR/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-free-v2ray-subscribe.htm" title="「2月13日」最高速度18.9M/S，2025年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接">「2月13日」最高速度18.9M/S，2025年Clash/SSR/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-clash-v2ray-ss-ssr.htm" title="「2月22日」最高速度20.8M/S，2025年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「2月22日」最高速度20.8M/S，2025年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-53707.htm" title="瑞派宠物连锁医院怎么样（瑞派宠物医院是直营还是加盟）">瑞派宠物连锁医院怎么样（瑞派宠物医院是直营还是加盟）</a></li>
+                        <li class="py-2"><a href="/news/article-47029.htm" title="狗粮加工厂需要什么手续办理（狗粮加工厂需要哪些证件）">狗粮加工厂需要什么手续办理（狗粮加工厂需要哪些证件）</a></li>
+                        <li class="py-2"><a href="/news/article-55917.htm" title="go web 处理文件上传">go web 处理文件上传</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-free-v2ray.htm" title="「3月1日」最高速度18M/S，2025年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接">「3月1日」最高速度18M/S，2025年SSR/Shadowrocket/V2ray/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-49002.htm" title="做梦梦到抱别的女人睡觉啥意思（做梦梦见抱着别的女人）">做梦梦到抱别的女人睡觉啥意思（做梦梦见抱着别的女人）</a></li>
+                        <li class="py-2"><a href="/news/article-44061.htm" title="意大利女鞋品牌鞋的品牌有哪些(意大利女鞋品牌大全排名)">意大利女鞋品牌鞋的品牌有哪些(意大利女鞋品牌大全排名)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>

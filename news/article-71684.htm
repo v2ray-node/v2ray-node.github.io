@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-71684.htm" />
+    <title>纳尼！ROOT修改权限不足？提示Operation not permitted？</title>
+        <meta name="description" content="今天小艾同学在编辑项目时发现root用户修改权限不足； 说实话还真的懵了下，上网查询了下(对Linux不是很深入了解); 查询地址：https://blog.csdn.net/yuanxiang01/" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-71684.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="纳尼！ROOT修改权限不足？提示Operation not permitted？" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/cc523ed9277a0375a6331d5674ef34dc.webp" />
+        <meta property="og:release_date" content="2025-03-11T07:47:53" />
+    <meta property="og:updated_time" content="2025-03-11T07:47:53" />
+        <meta property="og:description" content="今天小艾同学在编辑项目时发现root用户修改权限不足； 说实话还真的懵了下，上网查询了下(对Linux不是很深入了解); 查询地址：https://blog.csdn.net/yuanxiang01/" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="纳尼！ROOT修改权限不足？提示Operation not permitted？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>纳尼！ROOT修改权限不足？提示Operation not permitted？</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>今天小艾同学在编辑项目时发现root用户修改权限不足；<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230206/51ad5d75b787598234b2064603c49342.jpg" alt="纳尼！ROOT修改权限不足？提示Operation not permitted？"><br /> 说实话还真的懵了下，上网查询了下(对Linux不是很深入了解);<br /> 查询地址：https://blog.csdn.net/yuanxiang01/article/details/81508699</p> <h2> <a id="_5" rel="nofollow"></a>解决办法</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230206/e9309282e6146a859096131dcb4a86aa.jpg" alt="纳尼！ROOT修改权限不足？提示Operation not permitted？"><br /> 上面我们执行的chmod命令，其底层实现是chattr命令，用此命的功能更为强大，甚至可以锁定文件，即使root用户也操作不了此文件。</p> <p>chattr是用来更改文件属性，lsattr可用来查看文件的属性，执行命令lsattr ./wwwroot/default/.user.ini便可以看到当前文件的属性；</p> <p>可以发现当前文件有个i属性，查阅命令帮助文档可以看到有i属性的文件是不能修改的，更不可被删除，即使是root用户也不可。</p> <p>既然知道了文件不能删除的原因是加了i属性，所以相应的解决方案就是把文件的i属性去除，然后再删除。<br /> 1、chattr -i webapps //去除i属性<br /> 2、rm -rf webapps //删除文件夹</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-71036.htm">广州哪里买狗狗好（广州哪里买狗最便宜）</a></p>
+                                        <p>下一个：<a href="/news/article-71685.htm">动物诊疗许可证多少钱（动物诊疗许可证样本）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-49001.htm" title="【EF框架】DbContext的使用">【EF框架】DbContext的使用</a></li>
+                        <li class="py-2"><a href="/news/article-39084.htm" title="动物疫苗打一次管多长时间啊图片大全集（动物疫苗打一次管多长时间啊图片大全集图解）">动物疫苗打一次管多长时间啊图片大全集（动物疫苗打一次管多长时间啊图片大全集图解）</a></li>
+                        <li class="py-2"><a href="/news/article-57034.htm" title="送养孩子如何办理手续（送养孩子手续办理需要多久）">送养孩子如何办理手续（送养孩子手续办理需要多久）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-free-subscribe-node.htm" title="「2月17日」最高速度21.2M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「2月17日」最高速度21.2M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-50524.htm" title="宠物领养平台论文摘要写什么内容好（宠物领养系统的开题报告）">宠物领养平台论文摘要写什么内容好（宠物领养系统的开题报告）</a></li>
+                        <li class="py-2"><a href="/news/article-65901.htm" title="青浦二中2020中考最低录取分数线（上海2020年青浦二中升学率）">青浦二中2020中考最低录取分数线（上海2020年青浦二中升学率）</a></li>
+                        <li class="py-2"><a href="/news/article-46036.htm" title="宠物粮销售微信群（宠物粮食销售文案）">宠物粮销售微信群（宠物粮食销售文案）</a></li>
+                        <li class="py-2"><a href="/news/article-51071.htm" title="动物医院理念（动物医院企业文化）">动物医院理念（动物医院企业文化）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-clash-v2ray-ss-ssr.htm" title="「2月22日」最高速度20.8M/S，2025年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接">「2月22日」最高速度20.8M/S，2025年Shadowrocket/Clash/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-44540.htm" title="58同城比特犬买卖（比特犬五百到一千出售）">58同城比特犬买卖（比特犬五百到一千出售）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
