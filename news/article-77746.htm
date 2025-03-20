@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-77746.htm" />
+    <title>ES 文档与索引介绍</title>
+        <meta name="description" content="在之前的文章中，介绍了 ES 整体的架构和内容，这篇主要针对 ES 最小的存储单位 - 文档以及由文档组成的索引进行详细介绍。 会涉及到如下的内容：  文档的 CURD 操作。 Dynamic Map" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-77746.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="ES 文档与索引介绍" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/37002d76718f469b4a4e2c3ae6e5a20a.webp" />
+        <meta property="og:release_date" content="2025-03-20T10:02:05" />
+    <meta property="og:updated_time" content="2025-03-20T10:02:05" />
+        <meta property="og:description" content="在之前的文章中，介绍了 ES 整体的架构和内容，这篇主要针对 ES 最小的存储单位 - 文档以及由文档组成的索引进行详细介绍。 会涉及到如下的内容：  文档的 CURD 操作。 Dynamic Map" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ES 文档与索引介绍">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>ES 文档与索引介绍</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<p>在之前的文章中，介绍了 ES 整体的架构和内容，这篇主要针对 ES 最小的存储单位 - 文档以及由文档组成的索引进行详细介绍。</p> <p>会涉及到如下的内容：</p> <ol> <li>文档的 CURD 操作。</li> <li>Dynamic Mapping 和显示 Mapping 的区别</li> <li>常见 Mapping 类型与常见参数介绍</li> <li>Index Template 和 Dynamic Template</li> </ol> <h2 id="对文档进行操作">对文档进行操作</h2> <h3 id="单个文档-crud">单个文档 CRUD</h3> <p>和常见的数据库类似，ES 也支持 CURD 操作：</p> <p>下面展示了对单个 ES 文档的操作：</p> <table> <thead> <tr> <th>操作名称</th> <th>URL</th> <th>解释</th> </tr> </thead> <tbody> <tr> <td>Index</td> <td><img decoding="async" src="https://img2022.cnblogs.com/blog/1861307/202204/1861307-20220415094752058-2069665508.png" alt="ES 文档与索引介绍"></td> <td>创建或者更新索引中的文档。在指定 id 的情况下，如果 id 存在，则会更新。如果不指定，则会创建。</td> </tr> <tr> <td>Get</td> <td><img decoding="async" src="https://img2022.cnblogs.com/blog/1861307/202204/1861307-20220415094753171-240782846.png" alt="ES 文档与索引介绍"></td> <td>查询某个文档。</td> </tr> <tr> <td>Delete</td> <td>DELETE /<index>/_doc/&lt;_id&gt;</index></td> <td>删除某个指定的文档。</td> </tr> <tr> <td>Update</td> <td>POST /<index>/_update/&lt;_id&gt;</index></td> <td>更新某个文档中的内容，可以理解成 Patch 的更新。如果想完全替换文档，请使用 index.</td> </tr> </tbody> </table> <p>下面是实际操作文档的例子, 打开 kibana 的开发者工具：</p> <p>先来创建一个文档：</p> <p>ES 在创建文档时，会有两种方式 index 和 create。index 与 create 不同在于，在指定 id 的情况下，如果 id 存在，index 会覆盖，同时版本号+1，而 create 会报错不让创建。</p> <p>这里手动指定 id 为10，使用 index 方法，创建了一个文档，注意版本号为 1。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3e42cf2e5b7b6b373c6af0ca9e186918.jpg" alt="ES 文档与索引介绍"></p> <p>注意再次发送同样的情况，可以看到正常执行，版本号变成 2了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/89a5948bb7df732d8f6396beab8c9fb6.jpg" alt="ES 文档与索引介绍"></p> <p>但是使用 create 方法：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/42324759fc6e72acd55cdd4b70421be0.jpg" alt="ES 文档与索引介绍"></p> <p>这里报错，显示文档已经存在。</p> <p>需要注意的 ES 这里的更新并不是正常理解的更新，而是先把老文档删掉，然后创建一个新文档出来。</p> <p>接着对文档进行更新：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/517272532d71bab4e67718a75f533047.jpg" alt="ES 文档与索引介绍"></p> <p>可以看到这里只更新 user 字段，这种更新和之前 index 那种更新不同，属于部分更新，将增加的内容 merge 进原始文档。</p> <p>对文档进行读取，这里由于之前更新了三次，所以 version = 3：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/cf17aa8ba9ea9f75ebb21cb601dcba84.jpg" alt="ES 文档与索引介绍"></p> <p>删除文档就很好理解了，但有一点需要注意，删除文档时并不会立马释放空间，而是将文档标记位 deleted 状态，后台进程会在合适的时候清理这些标记位已经删除的文档。</p> <h3 id="批量文档操作">批量文档操作</h3> <p>批量写入</p> <p>相较于当个文档的操作，大批量的操作对于 ES 来说，是更为常见的场景。ES 也提供了批量 API，该 API 支持在一次 API请求中包含 4 种类型, 并且 Response 中会针对每一条操作返回一个对应的结果。</p> <pre><code>POST _bulk { "index" : { "_index" : "test", "_id" : "1" } } { "field1" : "value1" } { "delete" : { "_index" : "test", "_id" : "2" } } { "create" : { "_index" : "test", "_id" : "3" } } { "field1" : "value3" } { "update" : {"_id" : "1", "_index" : "test"} } { "doc" : {"field2" : "value2"} }</code></pre> <p>批量读取</p> <p>可以同时传入多个文档 id，进行读取，多个文档可以属于不同的索引。</p> <pre><code>GET /_mget {   "docs": [     {       "_index": "my-index-000001",       "_id": "1"     },     {       "_index": "my-index-000001",       "_id": "2"     }   ] }</code></pre> <h2 id="索引---mapping">索引 - Mapping</h2> <p>索引是多个文档的集合，体现了逻辑空间的概念。对于每个索引来说都可以设置 Mapping 和 Setting 两部分。</p> <p>其中 Mapping 定义了文档包含字段的类型与名称，以及如倒排索引，分词的一些设置。Setting 定义了如何将数据分布保存在不同的节点上。</p> <h3 id="数据类型">数据类型</h3> <p>ES 中的数据类型分为三种：</p> <ul> <li>简单类型</li> <li>复杂类型 <ul> <li>对象类型</li> <li>嵌套类型</li> </ul> </li> <li>特殊类型 <ul> <li>地理位置等</li> </ul> </li> </ul> <p>下图中显示了 ES 中常见的简单数据类型以及和 SQL 对应的关系。</p> <table> <thead> <tr> <th><strong>Elasticsearch type</strong></th> <th><strong>Elasticsearch SQL type</strong></th> <th><strong>SQL type</strong></th> <th><strong>SQL precision</strong></th> </tr> </thead> <tbody> <tr> <td><strong>Core types</strong></td> <td></td> <td></td> <td></td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/null-value.html"  target="_blank" rel="nofollow"><code>null</code></a></td> <td><code>null</code></td> <td>NULL</td> <td>0</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/boolean.html"  target="_blank" rel="nofollow"><code>boolean</code></a></td> <td><code>boolean</code></td> <td>BOOLEAN</td> <td>1</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>byte</code></a></td> <td><code>byte</code></td> <td>TINYINT</td> <td>3</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>short</code></a></td> <td><code>short</code></td> <td>SMALLINT</td> <td>5</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>integer</code></a></td> <td><code>integer</code></td> <td>INTEGER</td> <td>10</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>long</code></a></td> <td><code>long</code></td> <td>BIGINT</td> <td>19</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>double</code></a></td> <td><code>double</code></td> <td>DOUBLE</td> <td>15</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>float</code></a></td> <td><code>float</code></td> <td>REAL</td> <td>7</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>half_float</code></a></td> <td><code>half_float</code></td> <td>FLOAT</td> <td>3</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/number.html"  target="_blank" rel="nofollow"><code>scaled_float</code></a></td> <td><code>scaled_float</code></td> <td>DOUBLE</td> <td>15</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/keyword.html"  target="_blank" rel="nofollow">keyword type family</a></td> <td><code>keyword</code></td> <td>VARCHAR</td> <td>32,766</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/text.html"  target="_blank" rel="nofollow"><code>text</code></a></td> <td><code>text</code></td> <td>VARCHAR</td> <td>2,147,483,647</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/binary.html"  target="_blank" rel="nofollow"><code>binary</code></a></td> <td><code>binary</code></td> <td>VARBINARY</td> <td>2,147,483,647</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/date.html"  target="_blank" rel="nofollow"><code>date</code></a></td> <td><code>datetime</code></td> <td>TIMESTAMP</td> <td>29</td> </tr> <tr> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/ip.html"  target="_blank" rel="nofollow"><code>ip</code></a></td> <td><code>ip</code></td> <td>VARCHAR</td> <td>39</td> </tr> </tbody> </table> <h3 id="dynamic-mapping">Dynamic Mapping</h3> <p>我们知道，Mapping 类似于数据库 Scheme 的定义，但回想之前对文档 CURD 的操作时，我们并未手动设置 Mapping，但可以自动创建文档，原因就在于利用了 Dynamic Mapping 的特性。就是即使索引不存在时，也可以手动创建索引，并根据文档信息自动推算出对应的 Mapping 关系。</p> <p>比如之前创建的文档，如下就是生成的 Mapping 关系，ES 自动将 company 和 user 推断为 text 字段。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/1159f3e7e5b65fa348195508ea45f5d7.jpg" alt="ES 文档与索引介绍"></p> <p>当 Dynamic Mapping 也有自己的缺点：就是推算不准确，比如上面的例子，company 和 user 的字段为 keyword 类型更为合适，以至于搜索时出现一些问题。</p> <p>dynamic Mapping 可以通过<code>dynamic</code> 字段进行控制, 其值为 true，false，strict 三种类型。</p> <p>对于已经创建的索引，在修改 Mapping 分为两种情况：</p> <ul> <li>增加新的字段： <ul> <li>dynamic 为 true，新字段写入后，Mapping 也会被更新</li> <li>dynamic 为 false，字段可以写入到 _source, 但 Mapping 不会被更新，自然也不会被索引</li> <li>dynamic 为 strict，不允许写入</li> </ul> </li> <li>修改已经存在字段的类型： <ul> <li>不允许修改，因为 Lucene 生成的倒排索引，不允许被修改。</li> <li>除非重新生成索引。</li> </ul> </li> </ul> <h3 id="显示指定-mapping">显示指定 Mapping</h3> <p>与 Dynamic Mapping 不同，显示指定 Mapping 可以允许我们手动指定 Mapping 结构。</p> <p>编写 Mapping 有两种方式：</p> <ul> <li>可以参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.1/properties.html"  target="_blank" rel="nofollow">doc</a></li> <li>利用 dynamic 自动创建功能，查询后，自己再编辑成想要的结构。</li> </ul> <p>看一个简单的例子：</p> <pre><code>PUT user  {   "user" : {     "mappings" : {       "properties" : {         "company" : {           "type" : "keyword"           "null_value": "NULL"           }         },         "name" : {           "type" : "keyword"，           "index_options": "offsets"         },         "id_card" : {           "type" : "keyword",           "index": false # 表示该字段不需要被索引，不用被搜索到         }       }   } }</code></pre> <p>"null_value"：表示对 NULL 值可以进行搜索。</p> <p>"index": false 表示该字段不需要被索引，不用被搜索到</p> <p>"index_options": "offsets" 表示对倒排索引的结构进行设置：</p> <ul> <li>docs ：表示记录 doc id</li> <li>freqs ：表示记录 doc id 和 term frequencies</li> <li>position ：表示记录 doc id 和 term frequencies 和 term position（Text 类型默认记录为 position）</li> <li>offsets:  表示记录 doc id 和 term frequencies 和 term position 以及 character offset.</li> </ul> <p>关于倒排可以查看之前写的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/michael9/p/16094063.html"  target="_blank" rel="nofollow">这篇文章</a>。</p> <h3 id="index-template-和-dynamic-template">Index Template 和 Dynamic Template</h3> <h4 id="index-template">Index Template</h4> <p>考虑到数据不断增长的情况的，就需要按照一定的规则，将数据分散在不同的 Index 中。但每次都需要为每个 Index 设置 Mapping 和 Setting 关系。</p> <p>这时 Index Template 就可以很好满足这个需求。</p> <p>在 Index Template 中，可以通过设置一个通配名称，当创建的索引的名称，满足该条件时，就会使用模板的规则。</p> <p>Note：</p> <ul> <li>模板只会在创建新索引时生效，修改模板不会影响已经创建的索引。</li> <li>可以设置多个模板，通过 "order" 参数，控制那个模板的规则生效。</li> </ul> <p>下面这个例子就是为告警建立的一个 template，当创建的名字以 alarm 开头时，就会使用该索引。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/21f577a806e9ac5ff6456dceb7f3577f.jpg" alt="ES 文档与索引介绍"></p> <h4 id="dynamic-template">Dynamic Template</h4> <p>在上面 Dynamic Mapping 的介绍中知道，ES 对于没有设置 Mapping 字段的内容，会自己推算一个类型，但这就可能造成推算类型不准确的情况。</p> <p>这时就可以用 Dynamic Template 来解决，通过规范插入的字段的名称，来指定他的类型：</p> <ul> <li>比如可以 is 开头的字段，都设置成 boolean</li> <li>long_ 开头的字段，设置成 long</li> <li>所有字符串类型，设置成 keyword</li> </ul> <p>Dynamic Template 直接作用在索引上, 看下面这个例子。</p> <pre><code>PUT my-index-000001 {   "mappings": {     "dynamic_templates": [       {         "longs_as_strings": {           "match_mapping_type": "string",           "match":   "long_*",           "unmatch": "*_text",           "mapping": {             "type": "long"           }         }       }     ]   } }  PUT my-index-000001/_doc/1 {   "long_num": "5",    "long_text": "foo"  }</code></pre> <p>当匹配到以 long 开头的字符串时并且不包含以 _text 结尾，会将其设置成 long 类。</p> <h2 id="总结">总结</h2> <p>本篇文章中，主要是对 ES 文档和索引的设置进行了说明。</p> <p>ES 文档支持 CURD 操作，但需要知道 Index 和 create 的区别在于，对于指定 id 情况下的处理方式不同。同时为了适应大数据量的读取和写入，可以用 bulk api.</p> <p>对于 ES 索引来说，在创建时，支持两种方式来指定 Setting 和 Mapping 的关系。一种 Dynamic Mapping，这种方式不需要手动设置 Index 格式，会根据文档自动的创建，但缺点在于推断的类型不不准确。而显示 Mapping，可以手动规定 index 的格式。</p> <p>考虑到数据不断增长的情况，需要将数据拆分到不同的 index 上，可以通过 IndexTemplate 实现。</p> <p>对于 Dynamic Mapping，推断不准确的情况，可以通过 Dynamic Template 手动规定创建的类型。</p> <h2 id="参考">参考</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docs.html"  target="_blank" rel="nofollow">https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docs.html</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/7.1/mapping-params.html"  target="_blank" rel="nofollow">https://www.elastic.co/guide/en/elasticsearch/reference/7.1/mapping-params.html</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-templates.html"  target="_blank" rel="nofollow">https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-templates.html</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-77071.htm">广州宠物市场搬去哪了（广州市十大宠物市场）</a></p>
+                                        <p>下一个：<a href="/news/article-77747.htm">上海宠物医院有多少家分院啊（上海宠物医院知乎）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-node-share-links.htm" title="「1月29日」最高速度19.8M/S，2025年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接">「1月29日」最高速度19.8M/S，2025年Clash/SSR/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-36098.htm" title="长春好的宠物医院（长春哪个宠物医院好）">长春好的宠物医院（长春哪个宠物医院好）</a></li>
+                        <li class="py-2"><a href="/news/article-61049.htm" title="重庆宠物领养平台电话是多少号码啊（重庆宠物领养中心宠物领养）">重庆宠物领养平台电话是多少号码啊（重庆宠物领养中心宠物领养）</a></li>
+                        <li class="py-2"><a href="/news/article-56461.htm" title="vue项目实战精粹汇总">vue项目实战精粹汇总</a></li>
+                        <li class="py-2"><a href="/news/article-37106.htm" title="Node.js躬行记（17）——UmiJS版本升级">Node.js躬行记（17）——UmiJS版本升级</a></li>
+                        <li class="py-2"><a href="/news/article-66501.htm" title="流光之城刘妍（流光之城结局）学到了吗，">流光之城刘妍（流光之城结局）学到了吗，</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-free-subscribe-node.htm" title="「1月22日」最高速度22.2M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接">「1月22日」最高速度22.2M/S，2025年Shadowrocket/V2ray/Clash/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-free-node-subscribe.htm" title="「2月2日」最高速度21.7M/S，2025年SSR/Clash/Shadowrocket/V2ray每天更新免费节点订阅链接">「2月2日」最高速度21.7M/S，2025年SSR/Clash/Shadowrocket/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-53178.htm" title="宠物粮食生产厂家电话地址（宠物粮食批发厂家价格）">宠物粮食生产厂家电话地址（宠物粮食批发厂家价格）</a></li>
+                        <li class="py-2"><a href="/news/article-50011.htm" title="python学习分享之垃圾回收-缓存机制">python学习分享之垃圾回收-缓存机制</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-77070.htm" />
+    <title>Centos7系统离线安装nginx步骤(亲测，超详细步骤)</title>
+        <meta name="description" content="1.整理离线安装需要的包，打包成nginxOfflinePack.tar.gz 压缩包复制到centos相应目录 我整理的包已上传到csdn资源库 ，下载地址 https://download.csd" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-77070.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="Centos7系统离线安装nginx步骤(亲测，超详细步骤)" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/823330949e90bc030d363139bfc4db3d.webp" />
+        <meta property="og:release_date" content="2025-03-19T09:10:43" />
+    <meta property="og:updated_time" content="2025-03-19T09:10:43" />
+        <meta property="og:description" content="1.整理离线安装需要的包，打包成nginxOfflinePack.tar.gz 压缩包复制到centos相应目录 我整理的包已上传到csdn资源库 ，下载地址 https://download.csd" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Centos7系统离线安装nginx步骤(亲测，超详细步骤)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>Centos7系统离线安装nginx步骤(亲测，超详细步骤)</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1.整理离线安装需要的包，打包成nginxOfflinePack.tar.gz 压缩包复制到centos相应目录</p> <p>我整理的包已上传到csdn资源库 ，下载地址</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.csdn.net/download/qq445829096/12451908"  rel="nofollow">https://download.csdn.net/download/qq445829096/12451908</a></p> <p><img fetchpriority="high" decoding="async" alt="" height="485" src="http://img.555519.xyz/uploads3/20220608/969e703e903b5f72c2f57ec5130f3167.jpg"></p> <p>2.下载完成后复制到centos相应目录，推荐一个linux远程神器MobaXterm</p> <p>执行命令，文件复制功能都很好用，还有小游戏...</p> <p><img decoding="async" alt="" height="518" src="http://img.555519.xyz/uploads3/20220608/d5080a6a949250d78109f5a63d29df6e.jpg"></p> <p>3.解压nginxOfflinePack.tar.gz&nbsp; ，我这边是解压到/dev/nginxOfflinePack 目录</p> <p>cd到存放nginxOfflinePack.tar.gz的目录</p> <p>执行tar zxvf nginxOfflinePack.tar.gz</p> <p><img decoding="async" alt="" height="310" src="http://img.555519.xyz/uploads3/20220608/49e1c3ee512b88d51f00df467a77f5a7.jpg"></p> <p>4.</p> <p>安装<br /> 开始安装</p> <p>把包放在一个文件夹中，cd到nginxOfflinePack目录</p> <p><strong>然后运行命令：rpm -Uvh *.rpm --nodeps --force</strong></p> <p><img loading="lazy" decoding="async" alt="" height="313" src="http://img.555519.xyz/uploads3/20220608/cae8aa8fe60e6f5d48204e1752ca7c4c.jpg"><br /><strong>安装pcre：</strong><br /> nginxOfflinePack目录 执行</p> <p>tar -zxvf pcre-8.43.tar.gz</p> <p>之后cd到pcre-8.43目录 依次执行以下3个指令安装<br /> ./configure<br /> make<br /> make install</p> <p><strong>安装openssl：</strong></p> <p>nginxOfflinePack目录 执行<br /> tar -zxvf openssl-1.0.2r.tar.gz<br /> 之后cd到openssl-1.0.2r目录 依次执行以下3个指令安装</p> <p><strong><img loading="lazy" decoding="async" alt="" height="69" src="http://img.555519.xyz/uploads3/20220608/702dd6ecb75a0117c6ce995ce7f1986a.jpg"><br /> ./configure或者./config&nbsp; (如果./configure提示上图错误，则使用./config)</strong><br /> make<br /> make install</p> <p><strong>安装zlib：</strong></p> <p>nginxOfflinePack目录 执行<br /> tar -zxvf zlib-1.2.11.tar.gz</p> <p>之后cd到zlib-1.2.11目录 依次执行以下3个指令安装<br /> ./configure<br /> make<br /> make install</p> <p><img loading="lazy" decoding="async" alt="" height="393" src="http://img.555519.xyz/uploads3/20220608/bbbd977f4caf29303f33239e8472c606.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="250" src="http://img.555519.xyz/uploads3/20220608/0964aa6adfa7263590dd364ace3df907.jpg"><br /><strong>安装nginx：</strong></p> <p>nginxOfflinePack目录 执行<br /> tar -zxvf nginx-1.16.0.tar.gz</p> <p><img loading="lazy" decoding="async" alt="" height="137" src="http://img.555519.xyz/uploads3/20220608/507373a94e71445f0e7031e57cd526a1.jpg"></p> <p>之后cd到nginx-1.16.0目录 依次执行以下3个指令安装<br /> ./configure<br /> make<br /> make install</p> <p><img loading="lazy" decoding="async" alt="" height="143" src="http://img.555519.xyz/uploads3/20220608/1ea5b6fe858effd825aed33a701cb16c.jpg"></p> <p>注意 执行make install后 nginx的安装目录会打印出来，不指定的话默认都是该目录</p> <p><img loading="lazy" decoding="async" alt="" height="351" src="http://img.555519.xyz/uploads3/20220608/179d6f33cbc7c8f7b3bffa0c22ce32a9.jpg"></p> <p><strong>初次启动</strong><br /> cd /usr/local/nginx/sbin<br /><strong>执行指令</strong> ./nginx</p> <p>./表示是当前目录<br /> 浏览器已可访问nginx，打开浏览器访问此机器的 IP，如果浏览器出现 Welcome to nginx! 则表示 Nginx 安装并运行成功。；</p> <p>如果暂没有window电脑可以访问到也可以执行指令查看</p> <p>任意路径执行执行&nbsp;curl http://127.0.0.1&nbsp; &nbsp;(nginx配置文件配置的默认端口是80)</p> <p><img loading="lazy" decoding="async" alt="" height="419" src="http://img.555519.xyz/uploads3/20220608/48dcad8996ee498925ca94a0ab270762.jpg"></p> <p></p> <p>停止nginx</p> <p>cd /usr/local/nginx/sbin</p> <p>执行指令./nginx -s stop</p> <p>重启nginx</p> <p>cd /usr/local/nginx/sbin</p> <p><strong>执行指令</strong>./nginx -s reload</p> <p>查看nginx是够启动</p> <p><strong>ps -ef|grep nginx</strong></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-76392.htm">北京宠物医院价格表（北京宠物医院价格表图片）</a></p>
+                                        <p>下一个：<a href="/news/article-77071.htm">广州宠物市场搬去哪了（广州市十大宠物市场）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-clash-v2ray-ss-ssr.htm" title="「3月2日」最高速度18.1M/S，2025年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接">「3月2日」最高速度18.1M/S，2025年Shadowrocket/V2ray/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39562.htm" title="人打的疫苗和动物打的疫苗一样吗知乎 人打的疫苗和动物打的疫苗一样吗知乎">人打的疫苗和动物打的疫苗一样吗知乎 人打的疫苗和动物打的疫苗一样吗知乎</a></li>
+                        <li class="py-2"><a href="/news/article-59308.htm" title="生产狗粮的成本和利润是多少（生产狗粮的利润有多大）">生产狗粮的成本和利润是多少（生产狗粮的利润有多大）</a></li>
+                        <li class="py-2"><a href="/news/article-37105.htm" title="c++引用折叠">c++引用折叠</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-node-share.htm" title="「3月12日」最高速度18.6M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接">「3月12日」最高速度18.6M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-54810.htm" title="延吉市动物卫生检疫站电话 延吉市动物卫生检疫站电话号码">延吉市动物卫生检疫站电话 延吉市动物卫生检疫站电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-57601.htm" title="python中利用正则表达式匹配ip地址">python中利用正则表达式匹配ip地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-free-subscribe-node.htm" title="「2月28日」最高速度18M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「2月28日」最高速度18M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-67132.htm" title="JSON  传输数据出现415错误 Content type &#8216;application/xml;charset=UTF-8&#8217; not supported">JSON  传输数据出现415错误 Content type &#8216;application/xml;charset=UTF-8&#8217; not supported</a></li>
+                        <li class="py-2"><a href="/news/article-51586.htm" title="宠物粮商标取名大全图片 宠物粮商标取名大全图片及名字">宠物粮商标取名大全图片 宠物粮商标取名大全图片及名字</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
