@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-78429.htm" />
+    <title>C/C++标准格式、输入输出及main函数的作用</title>
+        <meta name="description" content="//#include这行代码是一条C预处理指令，相当于把stdio.h文件中所有内容都输入到该行所在位置 //实际上是一种复制粘贴 //stdio.h--&gt;标准输入输出头文件 standard " />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-78429.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="C/C++标准格式、输入输出及main函数的作用" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/050eeaeae15c4f80c45d1b2f1bf69e02.webp" />
+        <meta property="og:release_date" content="2025-03-21T10:31:14" />
+    <meta property="og:updated_time" content="2025-03-21T10:31:14" />
+        <meta property="og:description" content="//#include这行代码是一条C预处理指令，相当于把stdio.h文件中所有内容都输入到该行所在位置 //实际上是一种复制粘贴 //stdio.h--&gt;标准输入输出头文件 standard " />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C/C++标准格式、输入输出及main函数的作用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>C/C++标准格式、输入输出及main函数的作用</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <pre><code class="prism language-c"><span class="token comment">//#include这行代码是一条C预处理指令，相当于把stdio.h文件中所有内容都输入到该行所在位置</span> <span class="token comment">//实际上是一种复制粘贴</span> <span class="token comment">//stdio.h--&gt;标准输入输出头文件 standard input output </span> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span> <span class="token comment">//从main函数开始执行</span> <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token comment">//标准写法</span> <span class="token punctuation">{<!-- --></span> <span class="token comment">//可以用大小写字母、数字和下划线来命名，首字符必须是字母或者下划线</span> 	<span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Number is %d \n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>一个标准的C程序格式如下：</p> <pre><code class="prism language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">inlcude</span><span class="token expression"><span class="token operator">&lt;</span>stdio<span class="token punctuation">.</span>h<span class="token operator">&gt;</span></span></span> <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">]</span> argv<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	语句 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p><strong>argc、argv的具体含义</strong><br /> argc和argv参数在用命令行编译程序时有用。main( int argc, char* argv[], char **env ) 中<br /> 第一个参数，int型的argc，为整型，用来统计程序运行时发送给main函数的命令行参数的个数，在VS中默认值为1。<br /> 第二个参数，char*型的argv[]，为字符串数组，用来存放指向的字符串参数的指针数组，每一个元素指向一个参数。各成员含义如下：<br /> argv[0]指向程序运行的全路径名<br /> argv[1]指向在DOS命令行中执行程序名后的第一个字符串<br /> argv[2]指向执行程序名后的第二个字符串<br /> argv[3]指向执行程序名后的第三个字符串<br /> argv[argc]为NULL<br /> 第三个参数，char ** 型的env，为字符串数组。env[]的每一个元素都包含ENVVAR=value形式的字符串，其中ENVVAR为环境变量，value为其对应的值。平时使用到的比较少。</p> </h1> <p>通常，main()被<strong>启动代码</strong>调用，启动代码是由编译器添加到程序中的，是程序和操作系统的桥梁。该函数头描述的是main()和操作系统之间的接口。运行C++程序时，通常是从main函数开始执行的，如果没有main函数，程序将不完整。但也有例外情况，如在Windows编程中，编写一个动态链接库（DLL）模块，用于专用环境的程序–如机器人的控制器芯片，可能不需要main函数。</p> </h1> <pre><code class="prism language-c"><span class="token keyword">int</span> carrots<span class="token punctuation">;</span> </code></pre> <p>该语句提供了两条信息：需要的内存，以及该内存单元的名称。声明通常指出了要存储的数据类型和程序对存储在这里的数据使用的名称，该声明语句叫做定义声明，简称定义，这意味着编译器为变量分配内存空间。</p> <blockquote> <p>对于声明变量，在C中所有变量的声明通常位于函数或者过程的开始位置；C++的做法是尽可能在首次使用变量前声明它。</p> </blockquote> <pre><code class="prism language-c">	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a:%d,%d,%d"</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> 	<span class="token comment">//输出结果：a:2,9389856,9376608</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a:%d,%d,%d"</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token comment">//输出结果:a:2,3,4</span> 	 </code></pre> <p>待打印值少于转换说明：打印出来的是内存中的任意值<br /> 多出来的则不打印</p> </h1> <p>十进制：%d<br /> 八进制：%o<br /> 十六进制：%x<br /> 如果是小写的x，输出的字母就是小写的；如果是大写的X，输出的字母就是大写的；如果加一个#，就以标准的十六进制形式输出<br /> 如果要显示进制的前缀,则需在**%<strong>后加上</strong>#**符号：<br /> 十进制：%#d<br /> 八进制：%#o<br /> 十六进制：%#x</p> <blockquote> <p>二进制 Binary</p> <p>八进制 Octal</p> <p>十进制 Decimal</p> <p>十六进制 Hexadecimal</p> </blockquote> <pre><code class="prism language-cpp"><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span> <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">47</span><span class="token punctuation">;</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//47</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#o\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//057</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//2f</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%X\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//2F</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#x\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//0x2f</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%#X\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//0X2F</span> 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </h1> <p>关键字 <strong>sizeof</strong><br /> sizeof是C语言内置运算符，以<strong>字节</strong>为单位给出指定类型的大小<br /> 返回类型为<strong>size_t</strong>，使用%zd转换说明，一些不支持C99和C11的编译器可以用%u或%lu代替。<br /> 各个类型的变量长度由编译器来决定（实际上与操作系统位数和编译器都有关）使用时可用sizeof（）得到，当前主流编译器一般是32位或64位。</p> <p><strong>字节：byte；位：bit</strong><br /><strong>1byte=8bit</strong></p> <table> <thead> <tr> <th>类型</th> <th>32位（字节）</th> <th>64位（字节）</th> <th>范围</th> </tr> </thead> <tbody> <tr> <td>char</td> <td>1</td> <td>1</td> <td></td> </tr> <tr> <td>bool</td> <td>1</td> <td>1</td> <td></td> </tr> <tr> <td>short int</td> <td>2</td> <td>2</td> <td>-32768 ~ 32767；(即-2^ 15 - 2 ^15-1)</td> </tr> <tr> <td>int</td> <td>4</td> <td>4</td> <td>-2147483648 ~ 2147483647；(即-2^31 ~ 2 ^31-1)</td> </tr> <tr> <td>long int</td> <td>4</td> <td>8</td> <td></td> </tr> <tr> <td>long long int</td> <td>8</td> <td>8</td> <td></td> </tr> <tr> <td>char*(指针类型)</td> <td>4</td> <td>8</td> <td></td> </tr> <tr> <td>float</td> <td>4</td> <td>4</td> <td></td> </tr> <tr> <td>double</td> <td>8</td> <td>8</td> <td></td> </tr> </tbody> </table> <blockquote> <p>16位操作系统：long：4字节，int：2字节</p> <p>32位操作系统：long：4字节，int：4字节</p> <p>64位操作系统：long：8字节，int：4字节</p> </blockquote> <p>注意：在win10+vs2017环境下：<br /> 实测数据如下：</p> <pre><code class="prism language-cpp"><span class="token number">64</span>位： <span class="token keyword">sizeof</span> <span class="token keyword">int</span> <span class="token number">4</span> <span class="token keyword">sizeof</span> <span class="token keyword">double</span> <span class="token number">8</span> <span class="token keyword">sizeof</span> <span class="token keyword">long</span> <span class="token number">4</span> <span class="token keyword">sizeof</span> <span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token number">8</span> <span class="token keyword">sizeof</span> <span class="token keyword">char</span> <span class="token number">1</span> <span class="token keyword">sizeof</span> <span class="token keyword">float</span> <span class="token number">4</span> <span class="token keyword">sizeof</span> 指针 <span class="token number">8</span> <span class="token number">32</span>位： <span class="token keyword">sizeof</span> <span class="token keyword">int</span> <span class="token number">4</span> <span class="token keyword">sizeof</span> <span class="token keyword">double</span> <span class="token number">8</span> <span class="token keyword">sizeof</span> <span class="token keyword">long</span> <span class="token number">4</span> <span class="token keyword">sizeof</span> <span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token number">8</span> <span class="token keyword">sizeof</span> <span class="token keyword">char</span> <span class="token number">1</span> <span class="token keyword">sizeof</span> <span class="token keyword">float</span> <span class="token number">4</span> <span class="token keyword">sizeof</span> 指针 <span class="token number">4</span> </code></pre> <blockquote> <p>long类型始终是4字节大小，至于网上说的在64位环境中的大小为8字节，是否考虑与编译器有关？还有待考证。</p> </blockquote> <p>C语言规定：无论什么平台都要保证long型占用字节数不小于int型, int型不小于short型。<br /> 注：指针类型存储是指所指向变量的地址，32位机只需32 bit,64位机需要64 bit</p> </h1> <p>字符串是一个或多个字符的序列，都被储存在char类型的数组中，数组末尾以 \0 结尾。<br /> 字符串常量 “X” 和字符常量 ‘X’ 不同：</p> <ul> <li>‘X’ 的基本类型为char，而"X"是派生类型（char 数组）</li> <li>"X"实际上是由两个字符组成的：‘X’ 和空字符 \0<br /> sizeof 运算符以字节为单位给出对象的大小；strlen()函数给出字符串中的字符长度。</li> </ul> <pre><code class="prism language-c">	<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">PRAISE</span> <span class="token string">"You are an ectraordinary being."</span></span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" %d letters"</span><span class="token punctuation">,</span><span class="token function">strlen</span><span class="token punctuation">(</span>PRAISE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//31</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" %d btyes\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span> PRAISE<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//32</span> </code></pre> </h1> <h2> <a id="printf_153" rel="nofollow"></a>printf()</h2> <p><strong>转换说明</strong></p> <blockquote> <ul> <li>%a :浮点数，十六进制和p计数法</li> <li>%A</li> <li>%c 单个字符</li> <li>%d 、%i 有符号十进制整数</li> <li>%md m 为指定的输出字段的宽度。如果数据的位数小于 m，则左端补以空格，若大于 m，则按实际位数输出</li> <li>%e、%E 浮点数，e计数法</li> <li>%f 浮点数，十进制计数法</li> <li>%.mf 输出实数时小数点后保留 m 位，注意 m 前面有个点。</li> <li>%g、%G 根据值的不同，自动选择%f或%e。%e格式用于指数小于-4或者大于等于精度时。</li> <li>%o 无符号八进制整数</li> <li>%x、%X 无符号十六进制整数，使用十六进制数0f、0F。</li> <li>%p 指针</li> <li>%s 字符串</li> <li>%u 无符号十进制数</li> <li>%% 打印一个%</li> </ul> </blockquote> <p>printf()中的修饰符</p> <ul> <li>标记 （-、+、空格、#和0），可以使用多个标记</li> <li>数字 最小字段宽度，该字段不能容纳待打印的数字或字符串，系统会使用更宽的字段。</li> <li>.数字 小数点后的数字表示精度，对于%e、%E和%f转换，表示小数点右边数字的位数。对于%g和%G，表示有效数字的最大位数；对于%s，表示打印字符的最大数量。对于整形转换，表示待打印数字的最小位数。，如果有必要，使用前导0来达到这个位数。</li> </ul> <p><strong>printf()中的标记</strong></p> <blockquote> <ul> <li>‘-’ 代打印项左对齐</li> <li>‘+’ 有符号值若为正，则在前面显示加号；若为负，则显示减号。</li> <li>空格 有符号值若为正，则在值前面显示前导空格（不显示任何符号）；若为负，则在值前面显示减号，+标记覆盖一个空格</li> <li>‘#’ 把结果转换为另一种形式。如果是%o格式，则以0开始，如果是%x或%X则以0x或0X开始；</li> <li>对于所有浮点格式，#保证了即使后面没有任何数字，也打印一个小数点字符。对于%g和%G格式，防止结果后面的0被删除。</li> <li>0 对于数值格式，用前导0代替空格填充字段宽度。对于整数格式，如果出现‘-’标记或者指定精度，则忽略该标记。</li> </ul> </blockquote> <p><strong>printf()的返回值：返回打印字符的个数。</strong></p> </h1> <blockquote> <ul> <li>如果用scanf()读取基本变量的值，在变量名前加上一个&amp;</li> <li>如果是把字符串读入字符数组中，不需使用&amp;</li> </ul> </blockquote> <h2> <a id="scanf_192" rel="nofollow"></a><strong>scanf()的返回值</strong><br /> </h2> <p>返回成功读取的<strong>项数</strong></p> <pre><code class="prism language-c"><span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d,%d,%d,%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">,</span><span class="token operator">&amp;</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//num=4</span> </code></pre> <p>如果没有任何读取项，且需要读取一个数字而用户却输入一个非数值字符，scanf()便返回0。当检测到“文件结尾”时，会返回EOF（EOF是stdio.h中定义的特殊值，通常用#define指令把EOF定义为-1）</p> </h1> <p>可通过程序来动态指定字段宽度和浮点值的精度</p> <pre><code class="prism language-c">	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>width<span class="token punctuation">,</span><span class="token operator">&amp;</span>precision<span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Weight = %*.*f\n"</span><span class="token punctuation">,</span>width<span class="token punctuation">,</span>precision<span class="token punctuation">,</span>weight<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> </h1> <p>把*放在%和转换字符之间，会使得scanf()跳过相应的输出项</p> <pre><code class="prism language-c">	<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%*d,%*d,%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1,2，3</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//3</span> </code></pre> </h1> <pre><code class="prism language-c">	<span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">,</span>d<span class="token punctuation">;</span> 	a<span class="token operator">=</span>b<span class="token operator">=</span>c<span class="token operator">=</span>d<span class="token operator">=</span><span class="token number">222</span><span class="token punctuation">;</span> </code></pre> </h1> <p>整数除法和浮点数除法不同。浮点数除法结果是浮点数，整数除法结果是整数。整数是没有小数部分的数。</p> <pre><code class="prism language-c">	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%f\n"</span><span class="token punctuation">,</span><span class="token number">5.0</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//混合类型，浮点数/整数。结果是浮点数，一般情况要避免使用混合类型。</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%f\n"</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%f\n"</span><span class="token punctuation">,</span><span class="token number">5.</span><span class="token operator">/</span><span class="token number">4.</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	结果： 	<span class="token number">1</span> 	<span class="token number">1.250000</span> 	<span class="token number">0.000000</span> 	<span class="token number">1.250000</span> </code></pre> </h1> <p>如果一个变量出现在一个函数的多个参数中，或者多次出现在一个表达式中，不要使用递增或递减运算符。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-77747.htm">上海宠物医院有多少家分院啊（上海宠物医院知乎）</a></p>
+                                        <p>下一个：<a href="/news/article-78430.htm">养土狗的方法与技术有哪些视频讲解（养土狗技巧）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68414.htm" title="丹东领养猫（丹阳领养猫）">丹东领养猫（丹阳领养猫）</a></li>
+                        <li class="py-2"><a href="/news/article-64648.htm" title="宠物粮食加工厂什么岗位比较好做 宠物粮食加工厂什么岗位比较好做呢">宠物粮食加工厂什么岗位比较好做 宠物粮食加工厂什么岗位比较好做呢</a></li>
+                        <li class="py-2"><a href="/news/article-63415.htm" title="流浪猫不想被收养的表现（收养的流浪猫不想养了怎么办）">流浪猫不想被收养的表现（收养的流浪猫不想养了怎么办）</a></li>
+                        <li class="py-2"><a href="/news/article-54811.htm" title="附近的领养宠物店 附近的领养宠物店徐州狗狗">附近的领养宠物店 附近的领养宠物店徐州狗狗</a></li>
+                        <li class="py-2"><a href="/news/article-57601.htm" title="python中利用正则表达式匹配ip地址">python中利用正则表达式匹配ip地址</a></li>
+                        <li class="py-2"><a href="/news/article-73013.htm" title="VUE元素的隐藏和显示（v-show指令)">VUE元素的隐藏和显示（v-show指令)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-v2ray.htm" title="「1月14日」最高速度18.8M/S，2025年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接">「1月14日」最高速度18.8M/S，2025年Shadowrocket/Clash/SSR/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-node-subscribe.htm" title="「1月12日」最高速度22.9M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「1月12日」最高速度22.9M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-v2ray.htm" title="「3月3日」最高速度20.9M/S，2025年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接">「3月3日」最高速度20.9M/S，2025年Shadowrocket/SSR/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-47495.htm" title="合肥宠物猫领养中心（合肥猫咪领养中心）">合肥宠物猫领养中心（合肥猫咪领养中心）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
