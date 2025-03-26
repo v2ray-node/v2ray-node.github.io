@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-80474.htm" />
+    <title>springcloud解决使用feign调用服务 header参数传递的问题</title>
+        <meta name="description" content="1. 遇到的问题 测试人员发现，在用户查看自己的一个收藏功能时，显示用户没有登录。 2.问题原因 收藏服务A的一个功能，方法里面调用了另外一个服务B的接口，由于还没有做单点登录系统，需要在同一个注册中" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-80474.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="springcloud解决使用feign调用服务 header参数传递的问题" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/610552e86a81521a4f6a2a8194cb9de6.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:21:22" />
+    <meta property="og:updated_time" content="2025-03-24T08:21:22" />
+        <meta property="og:description" content="1. 遇到的问题 测试人员发现，在用户查看自己的一个收藏功能时，显示用户没有登录。 2.问题原因 收藏服务A的一个功能，方法里面调用了另外一个服务B的接口，由于还没有做单点登录系统，需要在同一个注册中" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springcloud解决使用feign调用服务 header参数传递的问题">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>springcloud解决使用feign调用服务 header参数传递的问题</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1. 遇到的问题</p> <p>测试人员发现，在用户查看自己的一个收藏功能时，显示用户没有登录。</p> <p>2.问题原因</p> <p>收藏服务A的一个功能，方法里面调用了另外一个服务B的接口，由于还没有做单点登录系统，需要在同一个注册中心上注册的服务之间传递header参数里面的一个token，导致服务B里面的方法接受的请求header里面没有token，因此服务B的方法抛出异常【用户未登录】，然后把结果链式传递到了服务A，最终给用户显示【用户未登录】</p> <p>3.解决思路</p> <p>方法1.做一个单点登录系统，目前人手不够，还没时间研究研究，</p> <p>方法2.通过feign调用其他服务的时候，把服务A的header参数传递到服务B( 目前通过2解决掉)</p> <p>4.步骤</p> <p>①eureka注册中心上现在有三个服务 ：网关gateway-service，用户user-service 收藏collect-service</p> <p>②前端调用对应的服务其实都是经过了gateway-service，前置过滤器来判断token信息，存储到一次请求HttpServletRequest中了，并把token信息存储到redis里面缓存起来 ，gateway-service中的guolv之后存储token信息逻辑如下：</p> <pre class="has"><code class="language-java">@Override 	public Object run() throws ZuulException { 		RequestContext ctx = RequestContext.getCurrentContext(); 		HttpServletRequest req = ctx.getRequest(); 		String token = req.getHeader("token"); 		log.info("===========登录令牌 = {}", token); 		if (StringUtils.isNotBlank(token)) { 			String json = stringRedisTemplate.opsForValue().get("token" + token); 			log.info("===========登录用户缓存信息：{}", json); 			if (StringUtils.isNotBlank(json)) { 				ctx.setSendZuulResponse(true); 				ctx.setResponseStatusCode(HttpStatus.SC_OK); 				try { 					ctx.addZuulRequestHeader("USER_REDIS_KEY", 							URLEncoder.encode(JSONObject.toJSONString(json), "UTF-8")); 				} catch (UnsupportedEncodingException e) { 					e.printStackTrace(); 				} 				return null; 			} 		} 	 		// 返回错误提示信息 		log.error("===========请求失败401"); 		ctx.setSendZuulResponse(false); 		ctx.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED); 		String responseBody = JSON.toJSON(Result.error(ResponseCode.NO_ACCESS)).toString(); 		ctx.setResponseBody(responseBody); 		ctx.getResponse().setContentType("application/json;charset=UTF-8"); 		return null; 	}</code></pre> <p>③由于之前在使用feign调用的其他服务时候，直接使用的对方的服务名来调用，没有经过网关服务，其实想要通过feign之间 的服务调用经过网关，很简单，把服务名都配置成网关服务名即可，让eureka找到gateway-service后，然后让gate-service来帮你找对应的实例&nbsp;，collect-service中 feignClient接口如下：</p> <pre class="has"><code class="language-java">package com.client;  import com.util.Result; import com.form.UserCollectCheckWxappForm; import org.springframework.cloud.openfeign.FeignClient; import org.springframework.web.bind.annotation.PostMapping;  @FeignClient("gateway-service") //之前这里写的是user-service，换成网关服务gate-service，这样就经过网关了 public interface UserServiceClient {      // 这里想要调用的服务加上user-service即可     @PostMapping(value = "user-service/easysale/wxapp/collect/v1/checkHasCollect")     Result checkHasCollect(UserCollectCheckWxappForm userCollectCheckWxappForm);  }</code></pre> <p>④collect-service中 配置feign拦截器，使其传递header中token参数</p> <pre class="has"><code class="language-java">package com.config;  import feign.RequestInterceptor; import feign.RequestTemplate; import lombok.extern.slf4j.Slf4j; import org.springframework.context.annotation.Configuration; import org.springframework.web.context.request.RequestContextHolder; import org.springframework.web.context.request.ServletRequestAttributes;  import javax.servlet.http.HttpServletRequest; import java.util.Enumeration; import java.util.Objects;  @Slf4j @Configuration public class FeignConfig implements RequestInterceptor {      @Override     public void apply(RequestTemplate requestTemplate) {         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();          log.info("house-server, attributes:{}",attributes);         if (Objects.isNull(attributes)) return;          HttpServletRequest request = attributes.getRequest();         Enumeration&lt;String&gt; headerNames = request.getHeaderNames();         log.info("house-server, headerNames:{}",headerNames);         if (headerNames != null) {             while (headerNames.hasMoreElements()) {                 String name = headerNames.nextElement();                 String values = request.getHeader(name);                 requestTemplate.header(name, values);             }         }     } }</code></pre> <p>⑤还有一点别忘了，在yml文件配置熔断策略，SEMAPHORE，这能保障在一次链路请求中........（其实这里我还也还没搞清楚，后续再聊。。。）</p> <pre class="has"><code>hystrix:   command:     default:       execution:         isolation:           strategy: SEMAPHORE           thread:             timeoutInMilliseconds: 60000</code></pre> <p>⑥重启网关服务gateway-service，和collect-service 测试ok，解决测试问题</p> <p>5.后记</p> <p>这个问题当时搞了我一下午，看来对这些框架原理还不是特别熟，不过能解决这个，还是有点小收获滴。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79806.htm">宠物医院服务项目价格表（宠物医院服务项目价格表最新）</a></p>
+                                        <p>下一个：<a href="/news/article-80475.htm">FP-growth算法以及代码实现</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-clash-v2ray-ss-ssr.htm" title="「3月20日」最高速度21.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「3月20日」最高速度21.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-63416.htm" title="北京动物疫苗生产厂家排名（北京动物疫苗生产厂家排名榜）">北京动物疫苗生产厂家排名（北京动物疫苗生产厂家排名榜）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-high-speed-nodes.htm" title="「1月26日」最高速度21.1M/S，2025年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「1月26日」最高速度21.1M/S，2025年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-54249.htm" title="动物医院英语短语怎么写的呀（动物医院的拼音）">动物医院英语短语怎么写的呀（动物医院的拼音）</a></li>
+                        <li class="py-2"><a href="/news/article-47028.htm" title="想领养狗狗哪里可以领养（在哪里能领养狗）">想领养狗狗哪里可以领养（在哪里能领养狗）</a></li>
+                        <li class="py-2"><a href="/news/article-73670.htm" title="pip 查看要安装的包所有版本（所有包版本）">pip 查看要安装的包所有版本（所有包版本）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-free-node-subscribe-links.htm" title="「2月8日」最高速度22.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「2月8日」最高速度22.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39562.htm" title="人打的疫苗和动物打的疫苗一样吗知乎 人打的疫苗和动物打的疫苗一样吗知乎">人打的疫苗和动物打的疫苗一样吗知乎 人打的疫苗和动物打的疫苗一样吗知乎</a></li>
+                        <li class="py-2"><a href="/news/article-58161.htm" title="宠物领养协议文案范文怎么写 宠物领养协议文案范文怎么写的">宠物领养协议文案范文怎么写 宠物领养协议文案范文怎么写的</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-high-speed-nodes.htm" title="「3月5日」最高速度20.9M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「3月5日」最高速度20.9M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
