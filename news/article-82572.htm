@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-82572.htm" />
+    <title>C# 一维数组如何快速实现数组元素的数据类型的转换</title>
+        <meta name="description" content="假设有一串字符串如下所示，字符串中的数字之间已用英文状态下的逗号隔开。要求用此字符串中的数字快速生成int类型的数组，且尽可能使用最少的代码量。 string str = "1,2,3,4,5,6,7" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-82572.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="C# 一维数组如何快速实现数组元素的数据类型的转换" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/23719af02f410bf11c49229669ae7202.webp" />
+        <meta property="og:release_date" content="2025-03-27T08:14:58" />
+    <meta property="og:updated_time" content="2025-03-27T08:14:58" />
+        <meta property="og:description" content="假设有一串字符串如下所示，字符串中的数字之间已用英文状态下的逗号隔开。要求用此字符串中的数字快速生成int类型的数组，且尽可能使用最少的代码量。 string str = "1,2,3,4,5,6,7" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C# 一维数组如何快速实现数组元素的数据类型的转换">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>C# 一维数组如何快速实现数组元素的数据类型的转换</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				</h1> <p>假设有一串字符串如下所示，字符串中的数字之间已用英文状态下的逗号隔开。要求用此字符串中的数字快速生成int类型的数组，且尽可能使用最少的代码量。</p> <pre class="language-csharp"><code>string str = "1,2,3,4,5,6,7,8,9";</code></pre> </h1> <p>我相信大多数同学在拿到这题的时候，一般都会给出以下的解决方案：</p> <pre class="language-csharp"><code>public int[] String2IntArray(string str) {     var strArr = str.Split(',');     int[] numArr = new int[strArr.Length];     for (int i = 0; i &lt; strArr.Length; i++)     {         numArr[i] = Convert.ToInt32(strArr[i]);     }     return numArr; }</code></pre> <p>上述代码确实能解决上述场景中的问题。</p> </h1> <p>可是这时要求变了，改为生成char类型的数组。</p> <p>这时一部分同学会说，既然让生成char类型数组，那我改下数据类型不就可以了嘛，于是给出如下代码：</p> <pre class="language-csharp"><code>public char[] String2CharArray(string str) {     var strArr = str.Split(',');     char[] cArr = new char[strArr.Length];     for (int i = 0; i &lt; strArr.Length; i++)     {         cArr[i] = Convert.ToChar(strArr[i]);     }     return cArr; }</code></pre> <p>另外一部分同学会说，每改变一次输出的数据类型就要再写一个与之相应的方法，且方法还不能做到通用性，这样很不好。能不能用泛型解决此问题呢？想了一下，然后给出了以下代码：</p> <pre class="language-csharp"><code>public T[] String2Array&lt;T&gt;(string str) {     var tc = TypeDescriptor.GetConverter(typeof(T));     var strArr = str.Split(',');     T[] tArr = new T[strArr.Length];     for (int i = 0; i &lt; strArr.Length; i++)     {         tArr[i] = (T)tc.ConvertTo(strArr[i], typeof(T));     }     return tArr; }</code></pre> <p>泛型代码的解决方案可圈可点，可通用性感觉还是较差，代码量也还是有点多。</p> <p>如果这时要求数组实例直接进行数据元素的数据类型转换呢？上面泛型代码解决方案又要进行代码优化改进。这时有没有更好的解决方案呢？答案肯定是有的。</p> </h1> <p>数组（Array）类有一个静态方法ConvertAll，该方法能将一种类型的数组转换为另一种类型的数组。该方法能有效的解决上述问题的痛点。</p> <p>我们先来看一下这个方法的定义是怎样的：</p> <p><code>public static TOutput[] ConvertAll&lt;TInput, TOutput&gt;(TInput[] array, Converter&lt;TInput, TOutput&gt; converter);</code></p> <ul> <li>该方法没有重载方法，是类的静态方法，无需创建实例便可直接通过类名调用。</li> <li>TInput：源数组元素的类型。</li> <li>TOutput：目标数组元素的类型。</li> </ul> <p>上述问题用ConvertAll方法该如何编码实现呢？下面给出代码示例：</p> <pre class="language-csharp"><code>var arr = str.Split(','); var numArr = Array.ConvertAll&lt;string, int&gt;(arr, z =&gt; int.Parse(z));</code></pre> <p>&nbsp;或者</p> <pre class="language-csharp"><code>var arr = str.Split(','); var numArr = Array.ConvertAll&lt;string, int&gt;(arr, delegate (string s) { return int.Parse(s); });</code></pre> <p>&nbsp;ConvertAll方法仅用两行代码就能解决场景中的问题，与前述的其他解决方案相比，结果一目了然、不言而喻。</p> </h1> <p>那ConvertAll是如何实现数组元素的数据类型的转换的呢？我们反编译一下该方法，得到如下代码：</p> <pre class="language-csharp"><code>public static TOutput[] ConvertAll&lt;TInput, TOutput&gt;(TInput[] array, Converter&lt;TInput, TOutput&gt; converter) {     if (array == null)     {         throw new ArgumentNullException("array");     }          if (converter == null)     {         throw new ArgumentNullException("converter");     }          TOutput[] array2 = new TOutput[array.Length];     for (int i = 0; i &lt; array.Length; i++)     {         array2[i] = converter(array[i]);     }          return array2; }</code></pre> <p>&nbsp;我们再看一下Converter是如何定义的：</p> <p><code>public delegate TOutput Converter&lt;in TInput, out TOutput&gt;(TInput input);</code></p> <p>原来converter实际是一个委托。</p> <p>知其然知其所以然，以后再遇到数组元素的数据类型转换的问题我们就不再怕的了。</p> <p>这时，有的同学可能会说：“在不知道数组（Array）类ConvertAll静态方法和其实现的提前下，我也是有可能写出与ConvertAll方法类似或相同的代码实现的！”。那不得不说这些同学是真的很厉害，既然系统底层提供了该方法供我们使用，我们再编码一遍（提前是知道ConvertAll方法的存在和该方法的代码实现）岂不是有丢丢多余呀？直接使用何乐而不为呢？</p> <p>本篇文章我们经历了：提出问题-&gt;解决问题-&gt;延伸问题-&gt;刨根问底</p> <p>这样的思考方式有助于我们快速提升编码能力，也希望这样的思考方式能给各位同学解决问题带来些许灵感。</p> <p>--------------The&nbsp; End--------------</p> <p>----------本篇文章到此结束----------</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82571.htm">java使用单循环链表解决约瑟夫问题</a></p>
+                                        <p>下一个：<a href="/news/article-83299.htm">猫不打疫苗可以出门吗（猫不打疫苗可以出门吗）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-61640.htm" title="动物疫苗的种类有哪些,各有什么特点呢英语翻译（动物疫苗的作用意义）">动物疫苗的种类有哪些,各有什么特点呢英语翻译（动物疫苗的作用意义）</a></li>
+                        <li class="py-2"><a href="/news/article-52647.htm" title="畜牧局打疫苗吗（畜牧局有没有疫苗）">畜牧局打疫苗吗（畜牧局有没有疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-clash-v2ray-ss-ssr.htm" title="「2月26日」最高速度18M/S，2025年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接">「2月26日」最高速度18M/S，2025年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37106.htm" title="Node.js躬行记（17）——UmiJS版本升级">Node.js躬行记（17）——UmiJS版本升级</a></li>
+                        <li class="py-2"><a href="/news/article-79805.htm" title="宠物粮的种类大全（宠物粮go）">宠物粮的种类大全（宠物粮go）</a></li>
+                        <li class="py-2"><a href="/news/article-44061.htm" title="意大利女鞋品牌鞋的品牌有哪些(意大利女鞋品牌大全排名)">意大利女鞋品牌鞋的品牌有哪些(意大利女鞋品牌大全排名)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-free-high-speed-nodes.htm" title="「1月9日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接">「1月9日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-55346.htm" title="axios安装，配置及配合vue脚手架">axios安装，配置及配合vue脚手架</a></li>
+                        <li class="py-2"><a href="/news/article-70349.htm" title="宠物领养协议书范本模板图片下载 宠物领养协议书范本模板图片下载大全">宠物领养协议书范本模板图片下载 宠物领养协议书范本模板图片下载大全</a></li>
+                        <li class="py-2"><a href="/news/article-61048.htm" title="Mysql模糊查询区分大小写">Mysql模糊查询区分大小写</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
