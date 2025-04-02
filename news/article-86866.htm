@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-86866.htm" />
+    <title>java中通过es搜索数据</title>
+        <meta name="description" content="例  import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;   @Autowired privat" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-86866.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="java中通过es搜索数据" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/6345d414940bf8384f94baa293357b86.webp" />
+        <meta property="og:release_date" content="2025-04-02T07:44:50" />
+    <meta property="og:updated_time" content="2025-04-02T07:44:50" />
+        <meta property="og:description" content="例  import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;   @Autowired privat" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="java中通过es搜索数据">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>java中通过es搜索数据</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <ol> <li>例</li> </ol> <pre><code>import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;   @Autowired private ElasticsearchRestTemplate elasticsearchRestTemplate;   //前端传递查询条件，将查询条件封装成map集合，多个条件构成map     //返回的数据类型也是map，需要返回查询的结果，总条数之类的     @Override     public Map&lt;String, Object&gt; search(Map&lt;String, String&gt; searchmap) {         //先读取到查询条件的关键字         String keywords = searchmap.get("keywords");         //判断关键字是否为空，不为空时再处理,为空赋初值         if (StringUtils.isEmpty(keywords)){             keywords = "手机";         }          //然后就是在es中搜索          //1. 创建查询对象的构建对象         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();         //2. 设置查询条件，设置前端传递的查询条件和当前实体类中的那个属性匹配查询。         nativeSearchQueryBuilder.withQuery(QueryBuilders.matchQuery("title", keywords));          //分组查询    terms("categoryGroup")是设置分组后的名字，相当于map中设置了一个键。         //           .field("category.keyword")是匹配实体类中的要分组的字段。keyword是精确匹配         nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("categoryGroup").field("category.keyword"));          //3. 创建查询对象         NativeSearchQuery query = nativeSearchQueryBuilder.build();          //4. 使用es查询,查询到的所有数据都在searchHits对象中         SearchHits&lt;SkuInfo&gt; searchHits = elasticsearchRestTemplate.search(query, SkuInfo.class);          //创建一个集合用于存放分组查询的分组信息的数据         //注：根据电视进行分词查询后可以将所有查询到的结果中的分组的字段获取出来存放进此list，所以就对应所有的数据的分类         List&lt;Object&gt; categoryList = new ArrayList&lt;&gt;();         //获取分组查询结果         Terms terms = searchHits.getAggregations().get("categoryGroup");         for (Terms.Bucket bucket : terms.getBuckets()) {             categoryList.add(bucket.getKey());         }          //遍历查询结果，获取到所有查询到的数据         List&lt;SkuInfo&gt; skuInfoList = new ArrayList&lt;&gt;();         for (SearchHit&lt;SkuInfo&gt; searchHit : searchHits.getSearchHits()) {             SkuInfo skuInfo = searchHit.getContent();             //将查询到的skuInfo对象都存进list数组             skuInfoList.add(skuInfo);         }          //map中存放查到的数据的list和总条数         Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();         map.put("data", skuInfoList);         map.put("dataCount", searchHits.getTotalHits());         map.put("categoryList", categoryList);         return map;     }          //map中存放查到的数据的list和总条数         Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();         map.put("data", skuInfoList);         map.put("dataCount", searchHits.getTotalHits());         return map;     }</code></pre> <ol start="2"> <li>注意<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/86e2262d999caf3ce209695457e61090.jpg" alt="java中通过es搜索数据"><br /> 要注意查询条件和要查询的es中的数据中的属性相匹配，具体是要查询对应数据中的那个字段</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/e1386c33bb33d95704a572a7ba8b5e9b.jpg" alt="java中通过es搜索数据"><br /> 在使用es查询两个参数分别是上边查询条件匹配后的查询对象和查询数据对应的实体类的字节码对象</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/388b2c35ab9350631fa2b5b8c8631c03.jpg" alt="java中通过es搜索数据"><br /> 这四步就是将查询条件导入进去然后获取查询结果。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220603/d92d48a208384261948220043281b3d5.jpg" alt="java中通过es搜索数据"><br /> 这就是设置了一下，将所有条件搜索查询到的结果的数据的分类查询出来存进一个list</p> <p><strong>总结</strong><br /> es 查询和mybatisplus中的QueryWrapper设置条件的步骤和格式很像。mybatisplus条件查询也是先创建一个QueryWrapper对象，然后eq或like方法设置查询条件和对应要查询的实体类的字段。然后调用持久层的查询方法，将QueryWrapper对象传递进去。</p> <p><strong>补充，添加了排序，分页，条件查询等</strong></p> <pre><code>//前端传递查询条件，将查询条件封装成map集合，多个条件构成map     //返回的数据类型也是map，需要返回查询的结果，总条数之类的     @Override     public Map&lt;String, Object&gt; search(Map&lt;String, String&gt; searchmap) {         //先读取到查询条件的关键字         String keywords = searchmap.get("keywords");         //判断关键字是否为空，不为空时再处理,为空赋初值         if (StringUtils.isEmpty(keywords)) {             keywords = "";         }          //然后就是在es中搜索         //1. 创建查询对象的构建对象         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();          //2. 设置查询条件，设置前端传递的查询条件和当前实体类中的那个属性匹配查询。         nativeSearchQueryBuilder.withQuery(QueryBuilders.matchQuery("title", keywords));           /*下边的分组查询就是可以获取到搜索出来的数据的一些分类，规格，品牌的统计，并不会按照输入的进行匹配查询*/         //分类的分组查询    terms("categoryGroup")是设置分组后的名字，相当于map中设置了一个键。         //           .field("category.keyword")是匹配实体类中的要分组的字段。keyword是精确匹配         nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("categoryGroup").field("category.keyword"));          //品牌的分组查询         nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("brandGroup").field("brand.keyword"));          //规格的分组查询         nativeSearchQueryBuilder.addAggregation(AggregationBuilders.terms("specGroup").field("spec.keyword"));           /*多条件查询就是根据用户输入的数据进行匹配查询，和上边的分组查询不同，分组查询是做统计，这个是匹配用户的查询条件输出对应数据*/         //多条件查询，即条件筛选,多条件查询时，matchQuery是自动分词查询的         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();         //判断条件是否为空         if (!StringUtils.isEmpty(searchmap.get("brand"))) {             //matchQuery的第一个参数是需要匹配的es中存入的数据字段，第二个是传递进来要匹配的字段             boolQueryBuilder.filter(QueryBuilders.matchQuery("brand", searchmap.get("brand")));         }         if (!StringUtils.isEmpty(searchmap.get("category"))) {             boolQueryBuilder.filter(QueryBuilders.matchQuery("category", searchmap.get("category")));         }          //规格的多条件查询,规格因为是"{\"机身内存\":\"16G\",\"网络\":\"联通4G\"}"这种格式，所以需要和其他字段区别开使用的查询方法不同         for (String key : searchmap.keySet()) {   //前端传递进来的规格的键包括前缀spec_所以判断有包含的就是规格的             if (key.startsWith("spec_")){                 //该方法两个参数分别是，第一个是匹配es中存入的数据的键，第二个是要进行查询的值，前端传递的查询条件                 boolQueryBuilder.filter(QueryBuilders.termQuery("specMap."+key.substring(key.indexOf("_")+1)+".keyword", searchmap.get(key)));             }         }          //价格的多条件查询,先判断价格是否为空，不为空再转成double类型         String price = searchmap.get("price");         //价格的格式有￥-price,maxPrice-minPrice,minPrice-maxPrice,price-￥         if (!StringUtils.isEmpty(price)){             //将价格前后两部分切分出来             String[] split = price.split("-");             if ("￥".equals(split[0])) {                 //rangeQuery的方法就是判断区间的                 boolQueryBuilder.filter(QueryBuilders.rangeQuery("price").lte(Double.parseDouble(split[1])));             }else if ("￥".equals(split[1])){                 boolQueryBuilder.filter(QueryBuilders.rangeQuery("price").gte(Double.parseDouble(split[0])));             }else {                 //对大小值进行调换                 double minPrice = Double.parseDouble(split[0]);                 double maxPrice = Double.parseDouble(split[1]);                 if (minPrice &gt;maxPrice){                     double c = maxPrice;                     maxPrice = minPrice;                     minPrice = c;                 }                 //from -- to from是从小的to到大的                 boolQueryBuilder.filter(QueryBuilders.rangeQuery("price").from(minPrice).to(maxPrice));             }         }          //最后还需要把设置的条件查询的条件加入到构建对象中，进行接下来的查询对象的创建才会有结果         nativeSearchQueryBuilder.withQuery(boolQueryBuilder);         //多条件查询结束           //分页查询         String currentPage = searchmap.get("currentPage");         if (StringUtils.isEmpty(currentPage)){             currentPage = "1";         }         int page = Integer.parseInt(currentPage);         //PageRequest.of的两个参数是当前页和每页显示的条数         nativeSearchQueryBuilder.withPageable(PageRequest.of(page, 10));         //分页查询结束           //排序         //sortFild是按照哪个字段进行排序         String sortField = searchmap.get("sortField");         //sortRule是排序规格,转成小写         String sortRule = searchmap.get("sortRule");         System.out.println(sortRule);         if (!StringUtils.isEmpty(sortField) &amp;&amp; !StringUtils.isEmpty(sortRule)) {             sortRule = sortRule.toLowerCase();             //.fieldSorts是判断按照哪个字段进行排序，order是传递一个排序的规则             nativeSearchQueryBuilder.withSort(SortBuilders.fieldSort(sortField).order("asc".equals(sortRule)? SortOrder.ASC:SortOrder.DESC));         }         //排序结束           //3. 创建查询对象         NativeSearchQuery query = nativeSearchQueryBuilder.build();          //4. 使用es查询,查询到的所有数据都在searchHits对象中         SearchHits&lt;SkuInfo&gt; searchHits = elasticsearchRestTemplate.search(query, SkuInfo.class);          //5. 处理分页结果         SearchPage&lt;SkuInfo&gt; pageHits = SearchHitSupport.searchPageFor(searchHits, query.getPageable());           //返回分页的总页数         int pageCount = pageHits.getTotalPages();          //获取分类的分组查询结果,es的查询结果集中放着所有的查询数据         Terms categoryTerms = searchHits.getAggregations().get("categoryGroup");         //创建一个集合用于存放分组查询的分组信息的数据         //注：根据电视进行分词查询后可以将所有查询到的结果中的分组的字段获取出来存放进此list，所以就对应所有的数据的分类         List&lt;Object&gt; categoryList = addGroup(categoryTerms);          //获取品牌的分类结果         Terms brandTerms = searchHits.getAggregations().get("brandGroup");         List&lt;Object&gt; brandList = this.addGroup(brandTerms);          //获取规格的分类结果         Terms specTerms = searchHits.getAggregations().get("specGroup");         List&lt;Object&gt; specList = this.addGroup(specTerms);   //"{\"机身内存\":\"16G\",\"网络\":\"联通4G\"}",         Map&lt;String, Set&lt;String&gt;&gt; specMap = getSpecMap(specList);           //遍历查询结果，获取到所有查询到的数据         List&lt;SkuInfo&gt; skuInfoList = new ArrayList&lt;&gt;();         for (SearchHit&lt;SkuInfo&gt; searchHit : searchHits.getSearchHits()) {             SkuInfo skuInfo = searchHit.getContent();             //将查询到的skuInfo对象都存进list数组             skuInfoList.add(skuInfo);         }            //map中存放查到的数据的list和总条数         Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();         map.put("data", skuInfoList);   //查询到的数据         map.put("dataCount", searchHits.getTotalHits());   //数据总条数         map.put("categoryList", categoryList);  //商品分类         map.put("brandList", brandList);  //品牌         map.put("specMap", specMap);   //规格         map.put("pageCount", pageCount);   //总页数         return map;     }      //此方法是通过传递进来查询到商品的规格，然后将规格处理统计后返回     private Map&lt;String, Set&lt;String&gt;&gt; getSpecMap(List&lt;Object&gt; specList) {         //需要将所有的规格转成map，而且值还要去掉重复         Map&lt;String, Set&lt;String&gt;&gt; specMap = new HashMap&lt;&gt;();         for (Object spec : specList) {             //先将所有的规格信息转成json类型的字符创             //再将每个规格转成map             Map&lt;String, String&gt; map = JSON.parseObject(spec.toString(), Map.class);             //读取到所有键             Set&lt;String&gt; set = map.keySet();             //根据键获取值             for (String o : set) {  //o -&gt; 网络                 //这是map每个键对应的值                 String s = map.get(o);  //  s -&gt; 16G                  //如果specmap中存在o这个键，那么直接加入到o对应的值中，没有就创建set集合                 Set&lt;String&gt; specSet = specMap.get(o);                 //第一次循环的时候，specMap中没有键和值，所以需要创建set集合                 if (CollectionUtils.isEmpty(specSet)) {                     specSet = new HashSet&lt;&gt;();                 }                 specSet.add(s);                 specMap.put(o, specSet);             }         }         return specMap;     }      /**      * @param terms 是传递进来一个分组的查询结果      * @return 将传递进来的结果进行处理后装入list集合返回      */     private List&lt;Object&gt; addGroup(Terms terms) {         List&lt;Object&gt; categoryList = new ArrayList&lt;&gt;();         for (Terms.Bucket bucket : terms.getBuckets()) {             categoryList.add(bucket.getKey());         }         return categoryList;     }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-86160.htm">浅谈分布式一致性协议之3PC</a></p>
+                                        <p>下一个：<a href="/news/article-86867.htm">动物医院哪里好一点啊（动物医院大众点评）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-81849.htm" title="兽药疫苗查询（兽药疫苗查询真伪）">兽药疫苗查询（兽药疫苗查询真伪）</a></li>
+                        <li class="py-2"><a href="/news/article-75032.htm" title="北京免费领养猫咪中心（北京免费领养猫咪中心电话）">北京免费领养猫咪中心（北京免费领养猫咪中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-82571.htm" title="java使用单循环链表解决约瑟夫问题">java使用单循环链表解决约瑟夫问题</a></li>
+                        <li class="py-2"><a href="/news/article-83299.htm" title="猫不打疫苗可以出门吗（猫不打疫苗可以出门吗）">猫不打疫苗可以出门吗（猫不打疫苗可以出门吗）</a></li>
+                        <li class="py-2"><a href="/news/article-81214.htm" title="宠物粮食在哪里进货好卖（宠物粮食批发进货渠道）">宠物粮食在哪里进货好卖（宠物粮食批发进货渠道）</a></li>
+                        <li class="py-2"><a href="/news/article-73671.htm" title="宠物领养论坛网站（宠物领养信息发布）">宠物领养论坛网站（宠物领养信息发布）</a></li>
+                        <li class="py-2"><a href="/news/article-79805.htm" title="宠物粮的种类大全（宠物粮go）">宠物粮的种类大全（宠物粮go）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-node-share.htm" title="「3月12日」最高速度18.6M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接">「3月12日」最高速度18.6M/S，2025年Clash/Shadowrocket/V2ray/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-29-free-v2ray-subscribe.htm" title="「3月29日」最高速度18.2M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「3月29日」最高速度18.2M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-86160.htm" title="浅谈分布式一致性协议之3PC">浅谈分布式一致性协议之3PC</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-86159.htm" />
+    <title>DecimalFormat保留小数位</title>
+        <meta name="description" content="业务上有些数据需要对齐进行格式统一，比如位数问题，一个产品的良率信息，需要确保是要保留小数点几位，那么我们在用java处理的时候可以用DecimalFormat这个格式化类来达到目的。  Decima" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-86159.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="DecimalFormat保留小数位" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/823330949e90bc030d363139bfc4db3d.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:48:55" />
+    <meta property="og:updated_time" content="2025-04-01T09:48:55" />
+        <meta property="og:description" content="业务上有些数据需要对齐进行格式统一，比如位数问题，一个产品的良率信息，需要确保是要保留小数点几位，那么我们在用java处理的时候可以用DecimalFormat这个格式化类来达到目的。  Decima" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="DecimalFormat保留小数位">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>DecimalFormat保留小数位</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <blockquote> <p>业务上有些数据需要对齐进行格式统一，比如位数问题，一个产品的良率信息，需要确保是要保留小数点几位，那么我们在用java处理的时候可以用DecimalFormat这个格式化类来达到目的。</p> </blockquote> <pre><code class="language-java">DecimalFormat df = new DecimalFormat("#.00"); System.out.println(df.format(.1));//.10 System.out.println(df.format(.123));//.12 System.out.println(df.format(1.126));//1.13 System.out.println(df.format(1.125));//1.12   这个没有四舍五入，idea亲测结果值 System.out.println(df.format(.125));//.12 System.out.println(df.format(.126));//.13</code></pre> <p><strong>&nbsp;</strong></p> <hr/> <p><strong>项目中用到了这个格式“#.00”,简单介绍下这个符号的区别：</strong></p> <p><strong>#：</strong></p> <p><strong>在<span style="color:#fe2c24;">整数位</span>时表示该位没有数字时也保持一致，如上例子&nbsp; .123=&gt; .12，有则直接显示；</strong></p> <p><strong>在<span style="color:#fe2c24;">小数位</span>时表示n个#只保留n位有效小数(比如 #.##&nbsp; 1.00不保留=&gt; 1，1.11则保留=&gt;1.11)&nbsp;</strong></p> <h3><strong><span style="background-color:#d7d8d9;">这里有个特殊情况：#.##的格式下：&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .100 =&gt; 0.1,这个整数位补了0</span></strong></h3> <p><strong>0： 表示该位没有数字时补零显示，有则直接显示；出现在小数位部分时，n个0表示保留n位小数</strong></p> <p>&nbsp;</p> <pre><code class="language-java">DecimalFormat df = new DecimalFormat("0.00"); System.out.println(df.format(.1));//0.10 System.out.println(df.format(.123));//0.12 System.out.println(df.format(1.126));//1.13 System.out.println(df.format(1.125));//1.12   这个没有四舍五入，idea亲测结果值 System.out.println(df.format(.125));//0.12 System.out.println(df.format(.126));//0.13</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85431.htm">适合女人小成本开店（适合女人小成本开店成本5万）</a></p>
+                                        <p>下一个：<a href="/news/article-86160.htm">浅谈分布式一致性协议之3PC</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-81213.htm" title="狗猫批发市场（猫狗市场的猫怎么样）">狗猫批发市场（猫狗市场的猫怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-high-speed-nodes.htm" title="「3月15日」最高速度19.1M/S，2025年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「3月15日」最高速度19.1M/S，2025年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-73012.htm" title="VUE3开发问题总结(数据更新和页面显示问题)">VUE3开发问题总结(数据更新和页面显示问题)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-clash-v2ray-ss-ssr.htm" title="「3月20日」最高速度21.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「3月20日」最高速度21.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-67777.htm" title="合肥宠物领养中心官网地址 合肥宠物领养中心官网地址查询">合肥宠物领养中心官网地址 合肥宠物领养中心官网地址查询</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-node-share-links.htm" title="「4月1日」最高速度21.1M/S，2025年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接">「4月1日」最高速度21.1M/S，2025年V2ray/SSR/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-84717.htm" title="上海宠物领养中心电话（上海宠物领养中心免费领养狗狗）">上海宠物领养中心电话（上海宠物领养中心免费领养狗狗）</a></li>
+                        <li class="py-2"><a href="/news/article-79101.htm" title="宠物猫疫苗接种时间（宠物猫疫苗有效期多久）">宠物猫疫苗接种时间（宠物猫疫苗有效期多久）</a></li>
+                        <li class="py-2"><a href="/news/article-85430.htm" title="restTemplate配置及使用">restTemplate配置及使用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-subscribe-node.htm" title="「3月7日」最高速度22.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「3月7日」最高速度22.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
