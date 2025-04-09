@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-90510.htm" />
+    <title>vue实现可以快进后退的跑马灯组件_vue.js</title>
+        <meta name="description" content="本文实例为大家分享了vue开发实现跑马灯效果组件的具体代码，供大家参考，具体内容如下 用vue编写一个可以快进后退的跑马灯组件 由于业务需求，要实现一个会可以控制速度的跑马灯，初开始用js的setin" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-90510.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="vue实现可以快进后退的跑马灯组件_vue.js" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/050eeaeae15c4f80c45d1b2f1bf69e02.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:02:43" />
+    <meta property="og:updated_time" content="2025-04-07T09:02:43" />
+        <meta property="og:description" content="本文实例为大家分享了vue开发实现跑马灯效果组件的具体代码，供大家参考，具体内容如下 用vue编写一个可以快进后退的跑马灯组件 由于业务需求，要实现一个会可以控制速度的跑马灯，初开始用js的setin" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue实现可以快进后退的跑马灯组件_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>vue实现可以快进后退的跑马灯组件_vue.js</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                  				  				  				<p>本文实例为大家分享了vue开发实现跑马灯效果组件的具体代码，供大家参考，具体内容如下</p> <p><strong>用vue编写一个可以快进后退的跑马灯组件</strong></p> <p>由于业务需求，要实现一个会可以控制速度的跑马灯，初开始用js的setinterval每隔几毫秒来减取一个字符拼接到后面，效果不理想就放弃了。后查询用js的animate这个api改造大功告成！</p> <p>效果图</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220424/df6ffc8cb8ca166453225e5475f7fc71.jpg"></p> <p><strong>组件代码</strong></p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div class="marquee" @mouseover="pause(true)" @mouseleave="pause()"&gt;      &lt;i        class="marquee-btn btn-left el-icon-d-arrow-left"        @mousedown="speedUp(true)"        @mouseup="speedStop()"      &gt;&lt;/i&gt;      &lt;div ref="marqueeText" class="marquee-text"&gt;        &lt;div v-if="itemClick"&gt;          &lt;span            v-for="item in text.split(splitSymbol)"            :key="item"            @click="$emit('itemClickEvent', item)"          &gt;{{item + ' 、'}}&lt;/span&gt;        &lt;/div&gt;        &lt;div v-else&gt;{{text}}&lt;/div&gt;      &lt;/div&gt;      &lt;i        class="marquee-btn btn-right el-icon-d-arrow-right"        @mousedown="speedUp()"        @mouseup="speedStop()"      &gt;&lt;/i&gt;    &lt;/div&gt;  &lt;/template&gt;    &lt;script&gt;  export default {    name: "marquee",    props: {      text: {        type: String,        required: true      },      speed: {        type: Number,        required: false,        default: 110      },      // 是否每个都可以点击触发事件      itemClick: {        type: Boolean,        required: false,        default: false      },      // 每个触发事件元素的分割符号      splitSymbol: {        type: String,        required: false,        default: ''      }    },    data() {      return {        aniInstance: null,        speedTimer: null      };    },    methods: {      setAnimate() {        const contentWidth = this.$refs.marqueeText.scrollWidth;        const keyframes = [          { transform: "translateX(100%)" },          { transform: `translateX(-${contentWidth}px)` }        ];        const animateOptions = {          duration: (contentWidth / this.speed) * 1000,          iterations: Infinity,          easing: "linear"        };        this.aniInstance = document.querySelector(".marquee-text").animate(keyframes, animateOptions);      },      /**       * 快进       * @param { Boolean } isLeft 是否为左方向       */      speedUp(isLeft = false) {        const set = () =&gt; {          if (this.aniInstance.currentTime &gt; 0) {            this.aniInstance.currentTime = this.aniInstance.currentTime + (isLeft ? 2000 : -2000);            this.aniInstance.currentTime &lt;= 0 &amp;&amp; (this.aniInstance.currentTime = 0);          }        }        // 鼠标单击        set();        // 鼠标长按        this.speedTimer = setInterval(() =&gt; {          set()        }, 100);      },      // 快进停止      speedStop() {        clearInterval(this.speedTimer);        this.speedTimer = null;      },      /**       * 暂停、播放       * @param { Boolean } isPause 是否暂停       */      pause(isPause = false) {        this.aniInstance[["play", "pause"][Number(isPause)]]();      }    },    mounted() {      this.$nextTick(() =&gt; {        this.setAnimate();      });    }  };  &lt;/script&gt;    &lt;style lang="less" scoped&gt;  .marquee {    position: relative;    padding: 10px 0;    overflow: hidden;    width: 100%;    font-size: 16px;    color: #fff;    background-image: linear-gradient(      to left,      #b9565e,      #cb655a,      #da7655,      #e58a50,      #eb9f4b    );    &amp;:hover .marquee-btn {      opacity: 1;    }  }  .marquee-btn {    position: absolute;    top: 50%;    transform: translateY(-50%);    padding: 15px;    color: #fff;    background: rgba(1, 1, 1, 0.4);    z-index: 999;    cursor: pointer;    opacity: 0;    transition: all 0.2s linear;  }  .btn-left {    left: 0;  }  .btn-right {    right: 0;  }  .marquee-text {    white-space: nowrap;    span {      &amp;:hover {        cursor: pointer;        color: #2c3e50;      }    }  }  &lt;/style&gt;</pre> </div> <p><strong>父组件代码</strong></p> <div class="ay1code"> <pre class="brush:js;">&lt;Marquee    :text="overdueInfo.content"    :itemClick="true"    :speed="120"    splitSymbol="、"    @itemClickEvent="marqueeSearch"    class="marquee-box__container"  &gt;&lt;/Marquee&gt;</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-89763.htm">三国杀武将登场特效是什么样子的（三国杀武将限定技）</a></p>
+                                        <p>下一个：<a href="/news/article-90512.htm">领养狗狗什么意思（领养狗狗什么意思要钱吗）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-subscribe-node.htm" title="「3月7日」最高速度22.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「3月7日」最高速度22.4M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-90927.htm" title="动物医院名字怎么取好听点的（动物医院名字怎么取好听点的呢）">动物医院名字怎么取好听点的（动物医院名字怎么取好听点的呢）</a></li>
+                        <li class="py-2"><a href="/news/article-67133.htm" title="上海宠物领养救助站是真的吗（上海宠物领养机构）">上海宠物领养救助站是真的吗（上海宠物领养机构）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-free-high-speed-nodes.htm" title="「3月27日」最高速度22.8M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接">「3月27日」最高速度22.8M/S，2025年SSR/Clash/V2ray/Shadowrocket每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-70348.htm" title="go微服务框架Kratos简单使用总结">go微服务框架Kratos简单使用总结</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-node-share.htm" title="「3月22日」最高速度21M/S，2025年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接">「3月22日」最高速度21M/S，2025年V2ray/Clash/Shadowrocket/SSR每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-29-free-v2ray-subscribe.htm" title="「3月29日」最高速度18.2M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「3月29日」最高速度18.2M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-85430.htm" title="restTemplate配置及使用">restTemplate配置及使用</a></li>
+                        <li class="py-2"><a href="/news/article-65901.htm" title="青浦二中2020中考最低录取分数线（上海2020年青浦二中升学率）">青浦二中2020中考最低录取分数线（上海2020年青浦二中升学率）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-v2ray.htm" title="「3月13日」最高速度21.4M/S，2025年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接">「3月13日」最高速度21.4M/S，2025年SSR/V2ray/Clash/Shadowrocket每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
