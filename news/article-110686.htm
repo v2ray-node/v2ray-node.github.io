@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2ray-node.github.io/news/article-110686.htm" />
+    <title>Docker基础 — 36、CMD指令和ENTRYPOINT指令的区别</title>
+        <meta name="description" content="目录  1、CMD指令和ENTRYPOINT指令说明 2、CMD指令只有最后一条生效的原因 3、CMD指令演示 4、ENTRYPOINT指令演示 5、总结   CMD指令和ENTRYPOINT指令作用" />
+        <link rel="icon" href="/assets/website/img/v2ray_node/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="V2ray Node免费节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2ray-node.github.io/news/article-110686.htm" />
+    <meta property="og:site_name" content="V2ray Node免费节点官网" />
+    <meta property="og:title" content="Docker基础 — 36、CMD指令和ENTRYPOINT指令的区别" />
+    <meta property="og:image" content="https://v2ray-node.github.io/uploads/20240810/d21208fec1e7d0709067a1f22cc3ab5b.webp" />
+        <meta property="og:release_date" content="2025-05-03T10:29:21" />
+    <meta property="og:updated_time" content="2025-05-03T10:29:21" />
+        <meta property="og:description" content="目录  1、CMD指令和ENTRYPOINT指令说明 2、CMD指令只有最后一条生效的原因 3、CMD指令演示 4、ENTRYPOINT指令演示 5、总结   CMD指令和ENTRYPOINT指令作用" />
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Docker基础 — 36、CMD指令和ENTRYPOINT指令的区别">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/website/fonts/v2ray_node/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/aos.css">
+    <link rel="stylesheet" href="/assets/website/css/v2ray_node/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7H6DT73WHK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7H6DT73WHK');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-page="detail">
+    <div class="site-wrap">
+            
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <a href="/" class="h2 mb-0">
+                                                <span class="mb-0 site-logo"><span>V2ray Node</span></span>
+                                                </a>
+                    </div>
+                    <div class="col-12 col-md-9 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                                                <li><a href="/" class="nav-link">首页</a></li>
+                                                                <li><a href="/free-nodes/" class="nav-link">免费节点</a></li>
+                                                                <li><a href="/paid-subscribe/" class="nav-link">推荐机场</a></li>
+                                                                <li><a href="/client.htm" class="nav-link">客户端</a></li>
+                                                                <li><a href="/news/" class="nav-link">新闻资讯</a></li>
+                                                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/assets/website/img/v2ray_node/hero_1.jpg);" data-aos="fade" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mt-lg-5 mr-auto text-left align-self-end align-self-md-center">
+                        <h1>Docker基础 — 36、CMD指令和ENTRYPOINT指令的区别</h1>
+                        <p><a href="/">首页</a> <span class="mx-3">&bullet;</span> <a href="/news/">新闻资讯</a> <span class="mx-3">&bullet;</span> 正文</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="site-section" id="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="V2rayNode节点分享站" data-url="https://v2raynode.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li>1、CMD指令和ENTRYPOINT指令说明</li> <li>2、CMD指令只有最后一条生效的原因</li> <li>3、CMD指令演示</li> <li>4、ENTRYPOINT指令演示</li> <li>5、总结</li> </ul> </div> <p>CMD指令和ENTRYPOINT指令作用都是指定一个容器启动时要运行的命令。</p> <h2 id="1cmd指令和entrypoint指令说明">1、CMD指令和ENTRYPOINT指令说明</h2> <p><strong>CMD指令， 支持三种格式：</strong></p> <pre><code>CMD ["executable","param1","param2"] ：使用 exec 执行，推荐方式；  CMD command param1 param2 ：在 /bin/sh 中执行，提供给需要交互的应用；  CMD ["param1","param2"] ：提供给 ENTRYPOINT 的默认参数；</code></pre> <p>每个Dockerfile只能生效一条CMD指令。如果指定了多条CMD指令，只有最后一条生效。</p> <p>如果用户启动容器时候指定了运行的命令，则会覆盖掉CMD指定的命令。</p> <p><strong>ENTRYPOINT指令，支持两种格式：</strong></p> <pre><code>ENTRYPOINT ["executable", "param1", "param2"]  ENTRYPOINT command param1 param2 ：shell中执行</code></pre> <p>每个Dockerfile中只能生效一个ENTRYPOINT指令，当有多个ENTRYPOINT指令时，只有最后一个起效。</p> <p>如果用户启动容器时候指定了运行的命令，不会被<code>docker run</code>执行的命令参数覆盖。（追加效果：<code>docker run</code>命令之后的参数，会被当做参数传递给ENTRYPOINT，之后形成新的命令组合）</p> <h2 id="2cmd指令只有最后一条生效的原因">2、CMD指令只有最后一条生效的原因</h2> <p>CMD指令是一个容器中默认的可执行命令。也就是容器启动以后，默认执行的命令。（默认是重点）</p> <p>换句话说，给出了CMD指令的一个角色定位，它主要作用是<strong>定义默认的容器启动后执行的命令</strong>。</p> <blockquote> <p>提示：</p> <p>这也就是网上所说，只有最后一条CMD指令会生效，之前的都会被覆盖掉。</p> <p>就是因为CMD指令的角色定位就是默认，如果你不进行额外指定，那么就执行CMD指令。否则，你要自己指定了命令，那么就不会执行CMD指令，这也就是相当于CMD指令会被覆盖。</p> </blockquote> <p>而ENTRYPOINT指令，才是正统地用于定义容器启动以后的执行体，从名字上我们也可以看出，<code>entrypoint</code> 入口点的意思，一个容器的“入口”。</p> <h2 id="3cmd指令演示">3、CMD指令演示</h2> <p>我们以ContOS镜像为基础，对该镜像进行修改。</p> <p><strong>（1）准备测试环境</strong></p> <p>进入宿主机<code>/home/mydockerfile</code>目录中，创建Dockerfil文件<code>Dockerfile_cmd</code>。</p> <pre><code class="language-shell"># mydockerfile目录中创建Dockerfile_cmd文件 [root@192 mydockerfile]# pwd /home/mydockerfile [root@192 mydockerfile]# touch Dockerfile_cmd</code></pre> <p>编辑<code>Dockerfile_cmd</code>文件，内容如下：</p> <pre><code class="language-dockerfile">FROM centos # 继承了本地的centos镜像 CMD ["ls","-a"] # 执行ls -a 命令</code></pre> <blockquote> <p>说明：我们之前CMD执行都是<code>/bin/bash</code>，这回改成<code>ls -a</code>命令是一样的，就是启动容器后执行<code>ls -a</code>命令。</p> </blockquote> <p>根据<code>Dockerfile_cmd</code>生成<code>cmd</code>镜像。</p> <pre><code class="language-shell">[root@192 mydockerfile]# docker build -f /home/mydockerfile/Dockerfile_cmd -t wukong/cmd:1.0 . Sending build context to Docker daemon  3.072kB Step 1/2 : FROM centos  ---&gt; 300e315adb2f Step 2/2 : CMD ["ls","-a"]  ---&gt; Running in e34a0fc14329 Removing intermediate container e34a0fc14329  ---&gt; de211d4ca7f3 Successfully built de211d4ca7f3 Successfully tagged wukong/cmd:1.0</code></pre> <p><strong>（2）进行验证</strong></p> <p>运行<code>wukong/cmd</code>镜像，查看结果。</p> <pre><code class="language-shell"># 查看本地Docker镜像 [root@192 mydockerfile]# docker images REPOSITORY      TAG       IMAGE ID       CREATED         SIZE wukong/cmd      1.0       de211d4ca7f3   2 minutes ago   209MB wokong_centos   1.6       6441f63090d4   3 hours ago     291MB centos          latest    300e315adb2f   3 months ago    209MB  # 直接运行该容器，查看结果，输出了默认工作目录中的内容。 [root@192 mydockerfile]# docker run wukong/cmd:1.0 . .. .dockerenv bin dev etc home lib lib64 lost+found media mnt opt proc root run sbin srv sys tmp usr var  # 容器启动，执行完ls -a 命令后，就会停止。 [root@192 mydockerfile]# docker ps CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</code></pre> <p>接下来，我们在<code>docker run</code>命令后，加入<code>-l</code>命令，我们再来查看一下结果。</p> <pre><code class="language-shell">[root@192 mydockerfile]# docker run wukong/cmd:1.0 -l docker: Error response from daemon: OCI runtime create failed: container_linux.go:367: starting container process caused: exec: "-l": executable file not found in $PATH: unknown.</code></pre> <p><strong>说明：</strong></p> <p><strong>我的意思是想追加一个<code>-l</code>参数，让容器启动后，执行<code>ls -al</code>命令。结果我们看到是，可执行文件找不到的报错，<code> exec: "-l":executable file not found</code>。</strong></p> <p><strong>这就是我们之前说过的，跟在镜像名后面的是<code>command</code>（命令），运行时会替换CMD的默认值。也就是<code>-l</code>参数替换了Dockerfile文件中的<code>CMD ["ls","-a"]</code>命令，而不是添加在原来的命令里。</strong></p> <p><strong>而单独的<code>-l</code>参数不是Linux命令，不能单独的命令，自然找不到，所以就报错了。</strong></p> <p><strong>所以综上所述，CMD指令会被<code>docker run</code>之后的参数替换。</strong></p> <p>那么如果我们希望加入<code>-l</code>这个参数，就必须重新完整的输入整个命令，如下：</p> <pre><code class="language-shell">[root@192 mydockerfile]# docker run wukong/cmd:1.0 ls -al total 0 drwxr-xr-x.   1 root root   6 Mar 20 11:13 . drwxr-xr-x.   1 root root   6 Mar 20 11:13 .. -rwxr-xr-x.   1 root root   0 Mar 20 11:13 .dockerenv lrwxrwxrwx.   1 root root   7 Nov  3 15:22 bin -&gt; usr/bin drwxr-xr-x.   5 root root 340 Mar 20 11:13 dev drwxr-xr-x.   1 root root  66 Mar 20 11:13 etc drwxr-xr-x.   2 root root   6 Nov  3 15:22 home lrwxrwxrwx.   1 root root   7 Nov  3 15:22 lib -&gt; usr/lib lrwxrwxrwx.   1 root root   9 Nov  3 15:22 lib64 -&gt; usr/lib64 drwx------.   2 root root   6 Dec  4 17:37 lost+found drwxr-xr-x.   2 root root   6 Nov  3 15:22 media drwxr-xr-x.   2 root root   6 Nov  3 15:22 mnt drwxr-xr-x.   2 root root   6 Nov  3 15:22 opt dr-xr-xr-x. 122 root root   0 Mar 20 11:13 proc dr-xr-x---.   2 root root 162 Dec  4 17:37 root drwxr-xr-x.  11 root root 163 Dec  4 17:37 run lrwxrwxrwx.   1 root root   8 Nov  3 15:22 sbin -&gt; usr/sbin drwxr-xr-x.   2 root root   6 Nov  3 15:22 srv dr-xr-xr-x.  13 root root   0 Mar 20 06:42 sys drwxrwxrwt.   7 root root 145 Dec  4 17:37 tmp drwxr-xr-x.  12 root root 144 Dec  4 17:37 usr drwxr-xr-x.  20 root root 262 Dec  4 17:37 var</code></pre> <h2 id="4entrypoint指令演示">4、ENTRYPOINT指令演示</h2> <p>和上面CMD指令演示相似。</p> <p>我们以ContOS镜像为基础，对该镜像进行修改。</p> <p><strong>（1）准备测试环境</strong></p> <p>进入宿主机<code>/home/mydockerfile</code>目录中，创建Dockerfil文件<code>Dockerfile_entrypoint</code>。</p> <pre><code class="language-shell"># mydockerfile目录中创建Dockerfile_entrypoint文件 [root@192 mydockerfile]# pwd /home/mydockerfile [root@192 mydockerfile]# touch Dockerfile_entrypoint</code></pre> <p>编辑<code>Dockerfile_entrypoint</code>文件，内容如下：</p> <pre><code class="language-dockerfile">FROM centos # 继承了本地的centos镜像 ENTRYPOINT ["ls","-a"] # 执行ls -a 命令</code></pre> <p>根据<code>Dockerfile_entrypoint</code>生成<code>entrypoint</code>镜像。</p> <pre><code class="language-shell">[root@192 mydockerfile]# docker build -f /home/mydockerfile/Dockerfile_entrypoint -t wukong/entrypoint:1.0 . Sending build context to Docker daemon  4.096kB Step 1/2 : FROM centos  ---&gt; 300e315adb2f Step 2/2 : ENTRYPOINT ["ls","-a"]  ---&gt; Running in ecd4a636d8be Removing intermediate container ecd4a636d8be  ---&gt; e641401b4ea5 Successfully built e641401b4ea5 Successfully tagged wukong/entrypoint:1.0</code></pre> <p><strong>（2）进行验证</strong></p> <p>运行<code>wukong/entrypoint</code>镜像，查看结果。</p> <pre><code class="language-shell"># 查看本地Docker镜像 [root@192 mydockerfile]# docker images REPOSITORY          TAG       IMAGE ID       CREATED         SIZE wukong/entrypoint   1.0       e641401b4ea5   2 minutes ago   209MB wukong/cmd          1.0       adda4543a402   3 minutes ago   209MB wokong_centos       1.6       6441f63090d4   4 hours ago     291MB centos              latest    300e315adb2f   3 months ago    209MB  # 直接运行该容器，查看结果，输出了默认工作目录中的内容。 [root@192 mydockerfile]# docker run wukong/entrypoint:1.0 . .. .dockerenv bin dev etc home lib lib64 lost+found media mnt opt proc root run sbin srv sys tmp usr var</code></pre> <p>接下来，我们在<code>docker run</code>命令后，加入<code>-l</code>命令，我们再来查看一下结果。</p> <pre><code class="language-shell">[root@192 mydockerfile]# docker run wukong/entrypoint:1.0 -l total 0 drwxr-xr-x.   1 root root   6 Mar 20 12:03 . drwxr-xr-x.   1 root root   6 Mar 20 12:03 .. -rwxr-xr-x.   1 root root   0 Mar 20 12:03 .dockerenv lrwxrwxrwx.   1 root root   7 Nov  3 15:22 bin -&gt; usr/bin drwxr-xr-x.   5 root root 340 Mar 20 12:03 dev drwxr-xr-x.   1 root root  66 Mar 20 12:03 etc drwxr-xr-x.   2 root root   6 Nov  3 15:22 home lrwxrwxrwx.   1 root root   7 Nov  3 15:22 lib -&gt; usr/lib lrwxrwxrwx.   1 root root   9 Nov  3 15:22 lib64 -&gt; usr/lib64 drwx------.   2 root root   6 Dec  4 17:37 lost+found drwxr-xr-x.   2 root root   6 Nov  3 15:22 media drwxr-xr-x.   2 root root   6 Nov  3 15:22 mnt drwxr-xr-x.   2 root root   6 Nov  3 15:22 opt dr-xr-xr-x. 124 root root   0 Mar 20 12:03 proc dr-xr-x---.   2 root root 162 Dec  4 17:37 root drwxr-xr-x.  11 root root 163 Dec  4 17:37 run lrwxrwxrwx.   1 root root   8 Nov  3 15:22 sbin -&gt; usr/sbin drwxr-xr-x.   2 root root   6 Nov  3 15:22 srv dr-xr-xr-x.  13 root root   0 Mar 20 06:42 sys drwxrwxrwt.   7 root root 145 Dec  4 17:37 tmp drwxr-xr-x.  12 root root 144 Dec  4 17:37 usr drwxr-xr-x.  20 root root 262 Dec  4 17:37 var</code></pre> <p><strong>说明：想给Dockerfile文件中的<code>ENTRYPOINT ["ls","-a"]</code>命令追加一个<code>-l</code>参数，让容器启动后执行<code>ls -al</code>命令，结果顺利执行。</strong></p> <p><strong>结论：这就说明了，ENTRYPOINT指令是可以在容器启动的时候追加命令。</strong></p> <h2 id="5总结">5、总结</h2> <ul> <li>CMD：CMD设置容器启动后默认执行的命令及其参数。但CMD设置的指令，能够被<code>docker run</code>命令后面的命令行参数替换（也就是可被重写覆盖）。</li> <li>ENTRYPOINT，表示镜像在初始化时需要执行的命令。不会被忽略，一定会被执行，即使运行<code>docker run</code>命令时指定了其他命令（也就是可被重写覆盖）。</li> <li>CMD和ENTRYPOINT都只能在文件中存在一次。如果多个存在，只有最后一个生效，其它无效！</li> <li>对于 CMD 和 ENTRYPOINT 的设计而言，多数情况下它们应该是单独使用的。当然，有一个例外是 CMD 为 ENTRYPOINT 提供默认的可选参数。</li> </ul> <blockquote> <p>说明：</p> <p>对于 Dockerfile 来说，CMD 和 ENTRYPOINT 是非常重要的指令。它们不是在构建镜像的过程中执行，而是在启动容器时执行，所以主要用来指定容器默认执行的命令。</p> <p>Dockerfile中很多命令的功能都十分的相似，我们需要了解它们的区别，我们最好的学习就是对比他们，然后测试效果。</p> <p>以上就是CMD指令和ENTRYPOINT指令的区别。</p> </blockquote> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-109807.htm">使用etcd选举sdk实践master/slave故障转移_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-110687.htm">猫粮生产工艺及设备有哪些厂家（猫粮加工设备及配方）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-101591.htm" title="动物疫苗公司产量排名前十的有哪些（全国动物用疫苗销量排行）">动物疫苗公司产量排名前十的有哪些（全国动物用疫苗销量排行）</a></li>
+                        <li class="py-2"><a href="/news/article-103200.htm" title="Linux搭建NFS服务器">Linux搭建NFS服务器</a></li>
+                        <li class="py-2"><a href="/news/article-108156.htm" title="被猫抓伤要***吗?没出血也没有破皮怎么办（被猫抓了没出血没破皮要***吗）">被猫抓伤要***吗?没出血也没有破皮怎么办（被猫抓了没出血没破皮要***吗）</a></li>
+                        <li class="py-2"><a href="/news/article-102372.htm" title="动物疫苗行业排名前十名有哪些 动物疫苗行业排名前十名有哪些品牌">动物疫苗行业排名前十名有哪些 动物疫苗行业排名前十名有哪些品牌</a></li>
+                        <li class="py-2"><a href="/news/article-106332.htm" title="投资医美要多少钱（投资 医美）">投资医美要多少钱（投资 医美）</a></li>
+                        <li class="py-2"><a href="/news/article-95773.htm" title="猫三联要隔多久打一针（猫三联要隔多久打一针才有效）">猫三联要隔多久打一针（猫三联要隔多久打一针才有效）</a></li>
+                        <li class="py-2"><a href="/news/article-93483.htm" title="动物防疫站给猫打疫苗吗（动物防疫站给猫打针免费吗）">动物防疫站给猫打疫苗吗（动物防疫站给猫打针免费吗）</a></li>
+                        <li class="py-2"><a href="/news/article-86867.htm" title="动物医院哪里好一点啊（动物医院大众点评）">动物医院哪里好一点啊（动物医院大众点评）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-29-node-share.htm" title="「4月29日」最高速度22.1M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接">「4月29日」最高速度22.1M/S，2025年SSR/V2ray/Shadowrocket/Clash每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-22-free-v2ray.htm" title="「4月22日」最高速度20.7M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接">「4月22日」最高速度20.7M/S，2025年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+                <footer class="site-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="border-top">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">V2ray Node免费节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-3.3.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-migrate-3.0.1.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery-ui.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/popper.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/bootstrap.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/owl.carousel.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.stellar.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.easing.1.3.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/aos.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.fancybox.min.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/jquery.sticky.js"></script>
+      <script src="/assets/website/js/frontend/v2ray_node/main.js"></script>
+      <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+      <script src="/assets/website/js/frontend/G.js"></script>
+    </div> <!-- .site-wrap -->
+</body>
+
+</html>
