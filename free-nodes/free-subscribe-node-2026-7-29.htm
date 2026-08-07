@@ -381,34 +381,9 @@ ping www.google.com
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 是否支持多订阅源？</h5></div>
-    <div class="panel-body">
-        支持。用户可导入多个订阅 URL，每个订阅源独立管理。通过切换订阅源或合并策略组，可灵活管理节点，实现不同地区或用途的线路分配。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的多出口策略如何提高网络稳定性？</h5></div>
     <div class="panel-body">
         WinXray 支持为不同流量类型指定不同出口，通过策略组和路由规则自动选择最佳节点。这样可以分散流量压力，提高连接稳定性，并确保高优先级应用获得最佳速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 与 Shadowsocks 哪个更安全？</h5></div>
-    <div class="panel-body">
-        VMess 使用动态认证机制，防止重放攻击，而 Shadowsocks 依赖静态密钥。总体来说，VMess 的安全性更强，尤其在应对 DPI 检测和中间人攻击时表现更优。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowsocks 密码泄露后应如何应对？</h5></div>
-    <div class="panel-body">
-        立即更改服务端密码与相应的端口，检查服务器是否存在异常连接或 root 活动，查看日志并封禁可疑 IP。若使用多人共享节点，建议为每个用户单独分配独立端口与密码以降低风险传播。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 如何设置用户带宽与流量配额？</h5></div>
-    <div class="panel-body">
-        管理员可为每个用户单独设置带宽和流量上限。超出限制时，可自动降速或阻止访问，确保服务器资源合理分配，避免单用户占用过多带宽，提高整体网络公平性和效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何实现端口与流量的精确分流？</h5></div>
-    <div class="panel-body">
-        Sing-box 支持按端口匹配流量，将不同类型应用的流量分配到指定节点。结合策略组使用，可提高访问速度和网络稳定性，实现精准分流和优化用户体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 支持 Hysteria 协议吗？</h5></div>
@@ -416,9 +391,14 @@ ping www.google.com
         新版本的 WinXray 已整合了 V2Ray 内核更新，支持 Hysteria 协议。用户可通过导入 Clash 或 sing-box 类型的订阅使用基于 QUIC 的高性能连接，速度和稳定性均更出色。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 支持哪些定制化分流策略？</h5></div>
+    <div class="panel-heading"><h5>SSR 还能在现代网络环境下正常使用吗？</h5></div>
     <div class="panel-body">
-        QuantumultX 支持域名、IP、端口、协议以及用户自定义脚本分流。结合策略组使用，可实现广告屏蔽、视频加速、游戏优化等功能，提高访问速度和个性化网络体验。<hr />    </div>
+        虽然 SSR 的项目已经停止维护，但部分服务器依然提供 SSR 节点。只要服务器配置得当，SSR 在一些地区仍然可以稳定使用。不过，它的安全性和兼容性不如 V2Ray 或 Trojan 等现代协议。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 是否支持多订阅源？</h5></div>
+    <div class="panel-body">
+        支持。用户可导入多个订阅 URL，每个订阅源独立管理。通过切换订阅源或合并策略组，可灵活管理节点，实现不同地区或用途的线路分配。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的内核能否替换？</h5></div>
@@ -426,9 +406,29 @@ ping www.google.com
         可以。WinXray 的内核文件独立存在于程序目录中，用户可替换为最新的 v2ray-core 或 xray-core 文件以获取更好的性能与协议支持，但需保持版本兼容。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 还能在现代网络环境下正常使用吗？</h5></div>
+    <div class="panel-heading"><h5>Hiddify Next 如何设置用户带宽与流量配额？</h5></div>
     <div class="panel-body">
-        虽然 SSR 的项目已经停止维护，但部分服务器依然提供 SSR 节点。只要服务器配置得当，SSR 在一些地区仍然可以稳定使用。不过，它的安全性和兼容性不如 V2Ray 或 Trojan 等现代协议。    </div>
+        管理员可为每个用户单独设置带宽和流量上限。超出限制时，可自动降速或阻止访问，确保服务器资源合理分配，避免单用户占用过多带宽，提高整体网络公平性和效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 与 Shadowsocks 哪个更安全？</h5></div>
+    <div class="panel-body">
+        VMess 使用动态认证机制，防止重放攻击，而 Shadowsocks 依赖静态密钥。总体来说，VMess 的安全性更强，尤其在应对 DPI 检测和中间人攻击时表现更优。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 如何实现端口与流量的精确分流？</h5></div>
+    <div class="panel-body">
+        Sing-box 支持按端口匹配流量，将不同类型应用的流量分配到指定节点。结合策略组使用，可提高访问速度和网络稳定性，实现精准分流和优化用户体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Shadowsocks 密码泄露后应如何应对？</h5></div>
+    <div class="panel-body">
+        立即更改服务端密码与相应的端口，检查服务器是否存在异常连接或 root 活动，查看日志并封禁可疑 IP。若使用多人共享节点，建议为每个用户单独分配独立端口与密码以降低风险传播。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 支持哪些定制化分流策略？</h5></div>
+    <div class="panel-body">
+        QuantumultX 支持域名、IP、端口、协议以及用户自定义脚本分流。结合策略组使用，可实现广告屏蔽、视频加速、游戏优化等功能，提高访问速度和个性化网络体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -476,16 +476,16 @@ ping www.google.com
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-7-13-clash-windows.htm" title="「7月13日」最高速度19.4M/S，2025年Clash节点/Singbox节点/Shadowrocket节点/Trojan节点/V2ray节点/SSR节点每天更新免费节点订阅链接">「7月13日」最高速度19.4M/S，2025年Clash节点/Singbox节点/Shadowrocket节点/Trojan节点/V2ray节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-13-clash-windows.htm" title="「6月13日」最高速度20.2M/S，2025年Singbox节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点/SSR节点每天更新免费节点订阅链接">「6月13日」最高速度20.2M/S，2025年Singbox节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-15-free-clash-subscribe.htm" title="「7月15日」最高速度18.7M/S，2025年V2ray节点/Singbox节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点每天更新免费节点订阅链接">「7月15日」最高速度18.7M/S，2025年V2ray节点/Singbox节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-6-free-ssr-subscribe.htm" title="「7月6日」最高速度19.5M/S，2025年Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点/SSR节点/Clash节点每天更新免费节点订阅链接">「7月6日」最高速度19.5M/S，2025年Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点/SSR节点/Clash节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-26-clash-node.htm" title="「7月26日」最高速度21M/S，2025年Trojan节点/Singbox节点/SSR节点/Clash节点/V2ray节点/Shadowrocket节点每天更新免费节点订阅链接">「7月26日」最高速度21M/S，2025年Trojan节点/Singbox节点/SSR节点/Clash节点/V2ray节点/Shadowrocket节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-30-clash-v2ray-ss-ssr.htm" title="「7月30日」最高速度20.8M/S，2025年V2ray节点/Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/SSR节点每天更新免费节点订阅链接">「7月30日」最高速度20.8M/S，2025年V2ray节点/Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-3-free-clash-subscribe.htm" title="「7月3日」最高速度21.8M/S，2025年Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/Trojan节点/SSR节点每天更新免费节点订阅链接">「7月3日」最高速度21.8M/S，2025年Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/Trojan节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-19-free-high-speed-nodes.htm" title="「7月19日」最高速度19.8M/S，2025年Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点/Clash节点/SSR节点每天更新免费节点订阅链接">「7月19日」最高速度19.8M/S，2025年Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点/Clash节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-26-free-ssr-subscribe.htm" title="「6月26日」最高速度21M/S，2025年Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/Trojan节点/SSR节点每天更新免费节点订阅链接">「6月26日」最高速度21M/S，2025年Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/Trojan节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-16-free-v2ray.htm" title="「6月16日」最高速度20.8M/S，2025年Singbox节点/Clash节点/Trojan节点/Shadowrocket节点/SSR节点/V2ray节点每天更新免费节点订阅链接">「6月16日」最高速度20.8M/S，2025年Singbox节点/Clash节点/Trojan节点/Shadowrocket节点/SSR节点/V2ray节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-27-free-node-subscribe-links.htm" title="「7月27日」最高速度22.1M/S，2025年Clash节点/V2ray节点/Singbox节点/SSR节点/Trojan节点/Shadowrocket节点每天更新免费节点订阅链接">「7月27日」最高速度22.1M/S，2025年Clash节点/V2ray节点/Singbox节点/SSR节点/Trojan节点/Shadowrocket节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-4-free-v2ray.htm" title="「7月4日」最高速度18.5M/S，2025年SSR节点/Shadowrocket节点/Trojan节点/Clash节点/V2ray节点/Singbox节点每天更新免费节点订阅链接">「7月4日」最高速度18.5M/S，2025年SSR节点/Shadowrocket节点/Trojan节点/Clash节点/V2ray节点/Singbox节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-12-free-clash.htm" title="「6月12日」最高速度19.3M/S，2025年V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点/Trojan节点每天更新免费节点订阅链接">「6月12日」最高速度19.3M/S，2025年V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点/Trojan节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-18-free-ssr-subscribe.htm" title="「7月18日」最高速度20.4M/S，2025年Shadowrocket节点/Trojan节点/Singbox节点/SSR节点/Clash节点/V2ray节点每天更新免费节点订阅链接">「7月18日」最高速度20.4M/S，2025年Shadowrocket节点/Trojan节点/Singbox节点/SSR节点/Clash节点/V2ray节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-17-free-subscribe-node.htm" title="「6月17日」最高速度22M/S，2025年Singbox节点/V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/SSR节点每天更新免费节点订阅链接">「6月17日」最高速度22M/S，2025年Singbox节点/V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-8-3.htm" title="「8月3日」最高速度20.6M/S，2025年Shadowrocket节点/Clash节点/SSR节点/V2ray节点/Trojan节点/Singbox节点每天更新免费节点订阅链接">「8月3日」最高速度20.6M/S，2025年Shadowrocket节点/Clash节点/SSR节点/V2ray节点/Trojan节点/Singbox节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-16-free-node-subscribe.htm" title="「7月16日」最高速度20M/S，2025年Singbox节点/Trojan节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点每天更新免费节点订阅链接">「7月16日」最高速度20M/S，2025年Singbox节点/Trojan节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-2-node-share.htm" title="「7月2日」最高速度18.7M/S，2025年Singbox节点/Clash节点/V2ray节点/SSR节点/Shadowrocket节点/Trojan节点每天更新免费节点订阅链接">「7月2日」最高速度18.7M/S，2025年Singbox节点/Clash节点/V2ray节点/SSR节点/Shadowrocket节点/Trojan节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-24-free-ssr-subscribe.htm" title="「7月24日」最高速度20.5M/S，2025年Singbox节点/Trojan节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点每天更新免费节点订阅链接">「7月24日」最高速度20.5M/S，2025年Singbox节点/Trojan节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-21-clash-windows.htm" title="「6月21日」最高速度21.9M/S，2025年Trojan节点/V2ray节点/Clash节点/Singbox节点/Shadowrocket节点/SSR节点每天更新免费节点订阅链接">「6月21日」最高速度21.9M/S，2025年Trojan节点/V2ray节点/Clash节点/Singbox节点/Shadowrocket节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -496,6 +496,9 @@ ping www.google.com
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+            </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">31</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
             </li>
