@@ -152,34 +152,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         V2Ray 是一款代理核心工具，提供底层网络传输和加密支持；而 Clash 是一个多协议客户端，可以整合 V2Ray、Trojan、Shadowsocks 等多种协议。简而言之，V2Ray 负责“传输”，Clash 负责“管理与分流”。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 是否支持手动节点管理？</h5></div>
-    <div class="panel-body">
-        支持。用户可手动输入节点信息或扫描二维码导入节点，并可进行修改或删除。虽然不支持自动订阅更新，但足以满足轻量用户对节点管理和流量分流的需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 可以做什么？</h5></div>
-    <div class="panel-body">
-        Netch 是一款 Windows 平台的网络加速工具，支持基于 V2Ray、Socks5、Shadowsocks 等协议的代理。它可用于加速游戏、视频或网站访问，并能通过 TAP 模式实现系统级代理，广受游戏玩家喜爱。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的本地 PAC 模式与全局模式有什么区别？</h5></div>
-    <div class="panel-body">
-        PAC 模式通过规则文件自动判定哪些域名走代理，能兼顾速度与便利；全局模式则所有流量都通过代理，适合调试或访问被完全屏蔽的网络。两者可在界面一键切换，根据需求灵活选择。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 如何定时自动更新节点？</h5></div>
     <div class="panel-body">
         可在计划任务中添加命令 `passwall update` 并设定时间间隔，例如每日凌晨自动更新。这样可确保节点信息实时同步，避免旧节点失效影响连接体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 的 route 功能如何工作？</h5></div>
-    <div class="panel-body">
-        Sing-box 提供强大的路由系统，允许用户基于 IP、域名、GEO 数据库、进程名等条件精细分流。配置完成后，程序自动匹配规则，将不同流量转发到对应的出口。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的伪装域名为何重要？</h5></div>
-    <div class="panel-body">
-        伪装域名必须是真实可访问的网站，且证书有效。它用于伪装流量，使 Trojan 的数据在外观上完全像正常 HTTPS 请求，从而有效降低被封锁和 DPI 检测的风险。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash.Meta 与原版 Clash 有何不同？</h5></div>
@@ -187,14 +162,39 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         Clash.Meta 是社区优化版本，支持更多传输协议，如 Hysteria、TUIC、Reality 等。它还增强了 DNS 处理逻辑和脚本分流能力，适合追求极致速度和灵活规则配置的高级用户。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的本地 PAC 模式与全局模式有什么区别？</h5></div>
+    <div class="panel-body">
+        PAC 模式通过规则文件自动判定哪些域名走代理，能兼顾速度与便利；全局模式则所有流量都通过代理，适合调试或访问被完全屏蔽的网络。两者可在界面一键切换，根据需求灵活选择。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 可以做什么？</h5></div>
+    <div class="panel-body">
+        Netch 是一款 Windows 平台的网络加速工具，支持基于 V2Ray、Socks5、Shadowsocks 等协议的代理。它可用于加速游戏、视频或网站访问，并能通过 TAP 模式实现系统级代理，广受游戏玩家喜爱。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 无法代理游戏怎么办？</h5></div>
+    <div class="panel-body">
+        若 Netch 无法代理游戏，需检查游戏进程是否被正确捕获，以及防火墙是否阻止了 TUN 模式。可尝试以管理员身份运行程序，或切换为 Socks 模式重新导入节点。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的 Rule Provider 功能有哪些好处？</h5></div>
     <div class="panel-body">
         Rule Provider 可通过远程订阅自动更新规则和节点，减少手动维护。结合策略组，可实现分流规则和节点的自动同步，保证分流效率和网络可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 无法代理游戏怎么办？</h5></div>
+    <div class="panel-heading"><h5>Trojan 的伪装域名为何重要？</h5></div>
     <div class="panel-body">
-        若 Netch 无法代理游戏，需检查游戏进程是否被正确捕获，以及防火墙是否阻止了 TUN 模式。可尝试以管理员身份运行程序，或切换为 Socks 模式重新导入节点。    </div>
+        伪装域名必须是真实可访问的网站，且证书有效。它用于伪装流量，使 Trojan 的数据在外观上完全像正常 HTTPS 请求，从而有效降低被封锁和 DPI 检测的风险。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 的 route 功能如何工作？</h5></div>
+    <div class="panel-body">
+        Sing-box 提供强大的路由系统，允许用户基于 IP、域名、GEO 数据库、进程名等条件精细分流。配置完成后，程序自动匹配规则，将不同流量转发到对应的出口。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 是否支持手动节点管理？</h5></div>
+    <div class="panel-body">
+        支持。用户可手动输入节点信息或扫描二维码导入节点，并可进行修改或删除。虽然不支持自动订阅更新，但足以满足轻量用户对节点管理和流量分流的需求。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -242,16 +242,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-10-23.htm" title="「10月23日」最高速度20.4M/S，2025年Trojan节点/Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新免费节点订阅链接">「10月23日」最高速度20.4M/S，2025年Trojan节点/Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-20-free-ssr-subscribe.htm" title="「10月20日」最高速度19.3M/S，2025年Shadowrocket节点/SSR节点/Singbox节点/Clash节点/Trojan节点/V2ray节点每天更新免费节点订阅链接">「10月20日」最高速度19.3M/S，2025年Shadowrocket节点/SSR节点/Singbox节点/Clash节点/Trojan节点/V2ray节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-29.htm" title="「10月29日」最高速度19.3M/S，2025年V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点每天更新免费节点订阅链接">「10月29日」最高速度19.3M/S，2025年V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-10-17.htm" title="「10月17日」最高速度18.2M/S，2025年V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点每天更新免费节点订阅链接">「10月17日」最高速度18.2M/S，2025年V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-11-10-free-ssr-subscribe.htm" title="「11月10日」最高速度21.5M/S，2026年SSR节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点/V2ray节点每天更新免费节点订阅链接">「11月10日」最高速度21.5M/S，2026年SSR节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点/V2ray节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-11-7.htm" title="「11月7日」最高速度19.7M/S，2025年V2ray节点/Trojan节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新免费节点订阅链接">「11月7日」最高速度19.7M/S，2025年V2ray节点/Trojan节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-10-13.htm" title="「10月13日」最高速度22.5M/S，2025年Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点/Clash节点/SSR节点每天更新免费节点订阅链接">「10月13日」最高速度22.5M/S，2025年Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点/Clash节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-14-clash-node-daily-updates.htm" title="「10月14日」最高速度21.4M/S，2025年Shadowrocket节点/Trojan节点/V2ray节点/SSR节点/Clash节点/Singbox节点每天更新免费节点订阅链接">「10月14日」最高速度21.4M/S，2025年Shadowrocket节点/Trojan节点/V2ray节点/SSR节点/Clash节点/Singbox节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-10-11.htm" title="「10月11日」最高速度18.8M/S，2025年Shadowrocket节点/Singbox节点/Trojan节点/V2ray节点/Clash节点/SSR节点每天更新免费节点订阅链接">「10月11日」最高速度18.8M/S，2025年Shadowrocket节点/Singbox节点/Trojan节点/V2ray节点/Clash节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-10-21.htm" title="「10月21日」最高速度18.3M/S，2025年SSR节点/Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/Trojan节点每天更新免费节点订阅链接">「10月21日」最高速度18.3M/S，2025年SSR节点/Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/Trojan节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-11-2-free-ssr-subscribe.htm" title="「11月2日」最高速度18M/S，2025年Trojan节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Clash节点每天更新免费节点订阅链接">「11月2日」最高速度18M/S，2025年Trojan节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Clash节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-26-node-share.htm" title="「10月26日」最高速度22.3M/S，2025年V2ray节点/SSR节点/Trojan节点/Singbox节点/Clash节点/Shadowrocket节点每天更新免费节点订阅链接">「10月26日」最高速度22.3M/S，2025年V2ray节点/SSR节点/Trojan节点/Singbox节点/Clash节点/Shadowrocket节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-10-23.htm" title="「10月23日」最高速度20.4M/S，2025年Trojan节点/Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新免费节点订阅链接">「10月23日」最高速度20.4M/S，2025年Trojan节点/Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-10-25.htm" title="「10月25日」最高速度22.5M/S，2025年SSR节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/V2ray节点每天更新免费节点订阅链接">「10月25日」最高速度22.5M/S，2025年SSR节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/V2ray节点每天更新免费节点订阅链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/clash-windows-2026-11-13.htm" title="「11月13日」最高速度23M/S，2026年Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点/SSR节点/Clash节点每天更新免费节点订阅链接">「11月13日」最高速度23M/S，2026年Shadowrocket节点/V2ray节点/Trojan节点/Singbox节点/SSR节点/Clash节点每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-31.htm" title="「10月31日」最高速度18.5M/S，2025年Shadowrocket节点/Singbox节点/SSR节点/Clash节点/Trojan节点/V2ray节点每天更新免费节点订阅链接">「10月31日」最高速度18.5M/S，2025年Shadowrocket节点/Singbox节点/SSR节点/Clash节点/Trojan节点/V2ray节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-11-16-node-share.htm" title="「11月16日」最高速度23M/S，2026年Shadowrocket节点/Clash节点/Singbox节点/SSR节点/V2ray节点/Trojan节点每天更新免费节点订阅链接">「11月16日」最高速度23M/S，2026年Shadowrocket节点/Clash节点/Singbox节点/SSR节点/V2ray节点/Trojan节点每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-19.htm" title="「10月19日」最高速度18.6M/S，2025年Shadowrocket节点/Trojan节点/Clash节点/V2ray节点/Singbox节点/SSR节点每天更新免费节点订阅链接">「10月19日」最高速度18.6M/S，2025年Shadowrocket节点/Trojan节点/Clash节点/V2ray节点/Singbox节点/SSR节点每天更新免费节点订阅链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -263,7 +263,7 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2026-11/" title="2026-11 归档">2026-11</a></h4>
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2026-11/" title="2026-11 归档">2026-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">21</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
